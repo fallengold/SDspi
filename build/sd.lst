@@ -1,0 +1,776 @@
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"sd.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.xchg_byte,"ax",%progbits
+  18              		.align	1
+  19              		.global	xchg_byte
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	xchg_byte:
+  27              	.LVL0:
+  28              	.LFB132:
+  29              		.file 1 "Core/Src/sd.c"
+   1:Core/Src/sd.c **** #include "sd.h"
+   2:Core/Src/sd.c **** 
+   3:Core/Src/sd.c **** /* MMC/SD command */
+   4:Core/Src/sd.c **** #define CMD0 (0)           /* GO_IDLE_STATE */
+   5:Core/Src/sd.c **** #define CMD1 (1)           /* SEND_OP_COND (MMC) */
+   6:Core/Src/sd.c **** #define ACMD41 (0x80 + 41) /* SEND_OP_COND (SDC) */
+   7:Core/Src/sd.c **** #define CMD8 (8)           /* SEND_IF_COND */
+   8:Core/Src/sd.c **** #define CMD9 (9)           /* SEND_CSD */
+   9:Core/Src/sd.c **** #define CMD10 (10)         /* SEND_CID */
+  10:Core/Src/sd.c **** #define CMD12 (12)         /* STOP_TRANSMISSION */
+  11:Core/Src/sd.c **** #define CMD13 (13)
+  12:Core/Src/sd.c **** #define ACMD13 (0x80 + 13) /* SD_STATUS (SDC) */
+  13:Core/Src/sd.c **** #define CMD16 (16)         /* SET_BLOCKLEN */
+  14:Core/Src/sd.c **** #define CMD17 (17)         /* READ_SINGLE_BLOCK */
+  15:Core/Src/sd.c **** #define CMD18 (18)         /* READ_MULTIPLE_BLOCK */
+  16:Core/Src/sd.c **** #define CMD23 (23)         /* SET_BLOCK_COUNT (MMC) */
+  17:Core/Src/sd.c **** #define ACMD23 (0x80 + 23) /* SET_WR_BLK_ERASE_COUNT (SDC) */
+  18:Core/Src/sd.c **** #define CMD24 (24)         /* WRITE_BLOCK */
+  19:Core/Src/sd.c **** #define CMD25 (25)         /* WRITE_MULTIPLE_BLOCK */
+  20:Core/Src/sd.c **** #define CMD32 (32)         /* ERASE_ER_BLK_START */
+  21:Core/Src/sd.c **** #define CMD33 (33)         /* ERASE_ER_BLK_END */
+  22:Core/Src/sd.c **** #define CMD38 (38)         /* ERASE */
+  23:Core/Src/sd.c **** #define CMD55 (55)         /* APP_CMD */
+  24:Core/Src/sd.c **** #define CMD58 (58)         /* READ_OCR */
+  25:Core/Src/sd.c **** 
+  26:Core/Src/sd.c **** /*Fetch SPI_CS_PIN high or low*/
+  27:Core/Src/sd.c **** #define CS_HIGH()                                                    \
+  28:Core/Src/sd.c ****     {                                                                \
+  29:Core/Src/sd.c ****         HAL_GPIO_WritePin(SD_CS_GPIO_PORT, SD_CS_PIN, GPIO_PIN_SET); \
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 2
+
+
+  30:Core/Src/sd.c ****     }
+  31:Core/Src/sd.c **** #define CS_LOW()                                                       \
+  32:Core/Src/sd.c ****     {                                                                  \
+  33:Core/Src/sd.c ****         HAL_GPIO_WritePin(SD_CS_GPIO_PORT, SD_CS_PIN, GPIO_PIN_RESET); \
+  34:Core/Src/sd.c ****     }
+  35:Core/Src/sd.c **** //(Note that the _256 is used as a mask to clear the prescalar bits as it provides binary 111 in th
+  36:Core/Src/sd.c **** #define FCLK_SLOW()                                                                                
+  37:Core/Src/sd.c ****     {                                                                                              
+  38:Core/Src/sd.c ****         MODIFY_REG(SD_SPI_HANDLE.Instance->CR1, SPI_BAUDRATEPRESCALER_256, SPI_BAUDRATEPRESCALER_12
+  39:Core/Src/sd.c ****     } /* Set SCLK = slow, approx 280 KBits/s*/
+  40:Core/Src/sd.c **** #define FCLK_FAST()                                                                                
+  41:Core/Src/sd.c ****     {                                                                                              
+  42:Core/Src/sd.c ****         MODIFY_REG(SD_SPI_HANDLE.Instance->CR1, SPI_BAUDRATEPRESCALER_256, SPI_BAUDRATEPRESCALER_8)
+  43:Core/Src/sd.c ****     } /* Set SCLK = fast, approx 4.5 MBits/s */
+  44:Core/Src/sd.c **** 
+  45:Core/Src/sd.c **** /*Exchange a single byte through spi communication */
+  46:Core/Src/sd.c **** UINT8 xchg_byte(UINT8 xmitData)
+  47:Core/Src/sd.c **** {
+  30              		.loc 1 47 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 16
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 47 1 is_stmt 0 view .LVU1
+  35 0000 00B5     		push	{lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 4
+  38              		.cfi_offset 14, -4
+  39 0002 87B0     		sub	sp, sp, #28
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 32
+  42 0004 8DF80F00 		strb	r0, [sp, #15]
+  48:Core/Src/sd.c ****     UINT8 rcvData;
+  43              		.loc 1 48 5 is_stmt 1 view .LVU2
+  49:Core/Src/sd.c ****     rcvData = HAL_SPI_TransmitReceive(&SD_SPI_HANDLE, &xmitData, &rcvData, 1, 50);
+  44              		.loc 1 49 5 view .LVU3
+  45              		.loc 1 49 15 is_stmt 0 view .LVU4
+  46 0008 3223     		movs	r3, #50
+  47 000a 0093     		str	r3, [sp]
+  48 000c 0123     		movs	r3, #1
+  49 000e 0DF11702 		add	r2, sp, #23
+  50 0012 0DF10F01 		add	r1, sp, #15
+  51 0016 0448     		ldr	r0, .L3
+  52              	.LVL1:
+  53              		.loc 1 49 15 view .LVU5
+  54 0018 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+  55              	.LVL2:
+  56              		.loc 1 49 13 view .LVU6
+  57 001c 8DF81700 		strb	r0, [sp, #23]
+  50:Core/Src/sd.c ****     return rcvData;
+  58              		.loc 1 50 5 is_stmt 1 view .LVU7
+  51:Core/Src/sd.c **** }
+  59              		.loc 1 51 1 is_stmt 0 view .LVU8
+  60 0020 07B0     		add	sp, sp, #28
+  61              	.LCFI2:
+  62              		.cfi_def_cfa_offset 4
+  63              		@ sp needed
+  64 0022 5DF804FB 		ldr	pc, [sp], #4
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 3
+
+
+  65              	.L4:
+  66 0026 00BF     		.align	2
+  67              	.L3:
+  68 0028 00000000 		.word	hspi2
+  69              		.cfi_endproc
+  70              	.LFE132:
+  72              		.section	.text.send_cmd,"ax",%progbits
+  73              		.align	1
+  74              		.syntax unified
+  75              		.thumb
+  76              		.thumb_func
+  77              		.fpu fpv4-sp-d16
+  79              	send_cmd:
+  80              	.LVL3:
+  81              	.LFB136:
+  52:Core/Src/sd.c **** 
+  53:Core/Src/sd.c **** /*Wait until the sd card is ready or timeout*/
+  54:Core/Src/sd.c **** UINT8 sd_wait_ready(void)
+  55:Core/Src/sd.c **** {
+  56:Core/Src/sd.c ****     UINT16 timeout = 0xFFF;
+  57:Core/Src/sd.c ****     UINT8 data;
+  58:Core/Src/sd.c ****     do
+  59:Core/Src/sd.c ****     {
+  60:Core/Src/sd.c ****         data = xchg_byte(SD_DUMMY_BYTE);
+  61:Core/Src/sd.c ****     } while (data != 0xFF && --timeout);
+  62:Core/Src/sd.c ****     return (data == 0xFF) ? 1 : 0;
+  63:Core/Src/sd.c **** }
+  64:Core/Src/sd.c **** 
+  65:Core/Src/sd.c **** /*inactivate spi communication*/
+  66:Core/Src/sd.c **** void sd_deselect(void)
+  67:Core/Src/sd.c **** {
+  68:Core/Src/sd.c ****     CS_HIGH();
+  69:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+  70:Core/Src/sd.c **** }
+  71:Core/Src/sd.c **** 
+  72:Core/Src/sd.c **** /*activate spi communication*/
+  73:Core/Src/sd.c **** UINT8 sd_select(void)
+  74:Core/Src/sd.c **** {
+  75:Core/Src/sd.c ****     /*pull down the CS to select the sd card*/
+  76:Core/Src/sd.c ****     CS_LOW();
+  77:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+  78:Core/Src/sd.c ****     if (sd_wait_ready())
+  79:Core/Src/sd.c ****     {
+  80:Core/Src/sd.c ****         return 1;
+  81:Core/Src/sd.c ****     }
+  82:Core/Src/sd.c ****     else
+  83:Core/Src/sd.c ****     {
+  84:Core/Src/sd.c ****         /*select fail with no valid response*/
+  85:Core/Src/sd.c ****         sd_deselect();
+  86:Core/Src/sd.c ****         return 0;
+  87:Core/Src/sd.c ****     }
+  88:Core/Src/sd.c **** }
+  89:Core/Src/sd.c **** 
+  90:Core/Src/sd.c **** /*return command response token*/
+  91:Core/Src/sd.c **** static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
+  92:Core/Src/sd.c **** {
+  82              		.loc 1 92 1 is_stmt 1 view -0
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 4
+
+
+  83              		.cfi_startproc
+  84              		@ args = 0, pretend = 0, frame = 0
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86              		.loc 1 92 1 is_stmt 0 view .LVU10
+  87 0000 38B5     		push	{r3, r4, r5, lr}
+  88              	.LCFI3:
+  89              		.cfi_def_cfa_offset 16
+  90              		.cfi_offset 3, -16
+  91              		.cfi_offset 4, -12
+  92              		.cfi_offset 5, -8
+  93              		.cfi_offset 14, -4
+  94 0002 0446     		mov	r4, r0
+  95 0004 0D46     		mov	r5, r1
+  93:Core/Src/sd.c ****     UINT8 res;
+  96              		.loc 1 93 5 is_stmt 1 view .LVU11
+  94:Core/Src/sd.c ****     UINT8 crc;
+  97              		.loc 1 94 5 view .LVU12
+  95:Core/Src/sd.c ****     if (cmd & 0x80)
+  98              		.loc 1 95 5 view .LVU13
+  99              		.loc 1 95 8 is_stmt 0 view .LVU14
+ 100 0006 10F0800F 		tst	r0, #128
+ 101 000a 23D1     		bne	.L13
+ 102              	.LVL4:
+ 103              	.L6:
+  96:Core/Src/sd.c ****     {
+  97:Core/Src/sd.c ****         /*ACMD commands*/
+  98:Core/Src/sd.c ****         cmd &= 0x7F;
+  99:Core/Src/sd.c ****         res = send_cmd(CMD55, 0);
+ 100:Core/Src/sd.c ****         if (res > 1)
+ 101:Core/Src/sd.c ****         {
+ 102:Core/Src/sd.c ****             /*Illegal command response not 0*/
+ 103:Core/Src/sd.c ****             return (__R1_Res_Status)res;
+ 104:Core/Src/sd.c ****         }
+ 105:Core/Src/sd.c ****     }
+ 106:Core/Src/sd.c **** 
+ 107:Core/Src/sd.c ****     // /*reset communication status*/
+ 108:Core/Src/sd.c ****     // sd_deselect();
+ 109:Core/Src/sd.c ****     // if (!sd_select())
+ 110:Core/Src/sd.c ****     // {
+ 111:Core/Src/sd.c ****     //     /*Select fail*/
+ 112:Core/Src/sd.c ****     //     return WAITING_NO_RESPONSE;
+ 113:Core/Src/sd.c ****     // }
+ 114:Core/Src/sd.c **** 
+ 115:Core/Src/sd.c ****     /*Send command packet*/
+ 116:Core/Src/sd.c ****     xchg_byte(0x40 | cmd);
+ 104              		.loc 1 116 5 is_stmt 1 view .LVU15
+ 105 000c 44F04000 		orr	r0, r4, #64
+ 106 0010 FFF7FEFF 		bl	xchg_byte
+ 107              	.LVL5:
+ 117:Core/Src/sd.c ****     xchg_byte((UINT8)(arg >> 24));
+ 108              		.loc 1 117 5 view .LVU16
+ 109 0014 280E     		lsrs	r0, r5, #24
+ 110 0016 FFF7FEFF 		bl	xchg_byte
+ 111              	.LVL6:
+ 118:Core/Src/sd.c ****     xchg_byte((UINT8)(arg >> 16));
+ 112              		.loc 1 118 5 view .LVU17
+ 113 001a C5F30740 		ubfx	r0, r5, #16, #8
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 5
+
+
+ 114 001e FFF7FEFF 		bl	xchg_byte
+ 115              	.LVL7:
+ 119:Core/Src/sd.c ****     xchg_byte((UINT8)(arg >> 8));
+ 116              		.loc 1 119 5 view .LVU18
+ 117 0022 C5F30720 		ubfx	r0, r5, #8, #8
+ 118 0026 FFF7FEFF 		bl	xchg_byte
+ 119              	.LVL8:
+ 120:Core/Src/sd.c ****     xchg_byte((UINT8)arg);
+ 120              		.loc 1 120 5 view .LVU19
+ 121 002a E8B2     		uxtb	r0, r5
+ 122 002c FFF7FEFF 		bl	xchg_byte
+ 123              	.LVL9:
+ 121:Core/Src/sd.c **** 
+ 122:Core/Src/sd.c ****     /*crc + stop byte*/
+ 123:Core/Src/sd.c ****     switch (cmd)
+ 124              		.loc 1 123 5 view .LVU20
+ 125 0030 CCB1     		cbz	r4, .L10
+ 126 0032 082C     		cmp	r4, #8
+ 127 0034 19D1     		bne	.L11
+ 124:Core/Src/sd.c ****     {
+ 125:Core/Src/sd.c ****     case CMD0:
+ 126:Core/Src/sd.c ****         crc = 0X95;
+ 127:Core/Src/sd.c ****         break;
+ 128:Core/Src/sd.c ****     case CMD8:
+ 129:Core/Src/sd.c ****         crc = 0x87;
+ 128              		.loc 1 129 13 is_stmt 0 view .LVU21
+ 129 0036 8720     		movs	r0, #135
+ 130              	.L8:
+ 131              	.LVL10:
+ 130:Core/Src/sd.c ****         break;
+ 131:Core/Src/sd.c ****     /*dummy crc + stop byte*/
+ 132:Core/Src/sd.c ****     default:
+ 133:Core/Src/sd.c ****         crc = 0x01;
+ 134:Core/Src/sd.c ****     }
+ 135:Core/Src/sd.c ****     /*send crc + stop byte*/
+ 136:Core/Src/sd.c ****     xchg_byte(crc);
+ 132              		.loc 1 136 5 is_stmt 1 view .LVU22
+ 133 0038 FFF7FEFF 		bl	xchg_byte
+ 134              	.LVL11:
+ 137:Core/Src/sd.c **** 
+ 138:Core/Src/sd.c ****     /*recieve  R1 response*/
+ 139:Core/Src/sd.c ****     UINT8 cnt;
+ 135              		.loc 1 139 5 view .LVU23
+ 140:Core/Src/sd.c ****     cnt = 10;
+ 136              		.loc 1 140 5 view .LVU24
+ 137              		.loc 1 140 9 is_stmt 0 view .LVU25
+ 138 003c 0A24     		movs	r4, #10
+ 139              	.LVL12:
+ 140              	.L9:
+ 141:Core/Src/sd.c ****     do
+ 141              		.loc 1 141 5 is_stmt 1 discriminator 2 view .LVU26
+ 142:Core/Src/sd.c ****     {
+ 143:Core/Src/sd.c ****         /*wait for response by sending dummy byte*/
+ 144:Core/Src/sd.c ****         res = xchg_byte(SD_DUMMY_BYTE);
+ 142              		.loc 1 144 9 discriminator 2 view .LVU27
+ 143              		.loc 1 144 15 is_stmt 0 discriminator 2 view .LVU28
+ 144 003e FF20     		movs	r0, #255
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 6
+
+
+ 145 0040 FFF7FEFF 		bl	xchg_byte
+ 146              	.LVL13:
+ 145:Core/Src/sd.c ****         /*The left bit(MSB) of R1 response is always 0*/
+ 146:Core/Src/sd.c ****     } while ((res & 0x80) && --cnt);
+ 147              		.loc 1 146 13 is_stmt 1 discriminator 2 view .LVU29
+ 148              		.loc 1 146 5 is_stmt 0 discriminator 2 view .LVU30
+ 149 0044 10F0800F 		tst	r0, #128
+ 150 0048 03D0     		beq	.L7
+ 151              		.loc 1 146 27 discriminator 1 view .LVU31
+ 152 004a 631E     		subs	r3, r4, #1
+ 153              	.LVL14:
+ 154              		.loc 1 146 27 discriminator 1 view .LVU32
+ 155 004c 13F0FF04 		ands	r4, r3, #255
+ 156 0050 F5D1     		bne	.L9
+ 157              	.LVL15:
+ 158              	.L7:
+ 147:Core/Src/sd.c **** 
+ 148:Core/Src/sd.c ****     return (__R1_Res_Status)res;
+ 149:Core/Src/sd.c **** }
+ 159              		.loc 1 149 1 view .LVU33
+ 160 0052 38BD     		pop	{r3, r4, r5, pc}
+ 161              	.LVL16:
+ 162              	.L13:
+  98:Core/Src/sd.c ****         res = send_cmd(CMD55, 0);
+ 163              		.loc 1 98 9 is_stmt 1 view .LVU34
+  98:Core/Src/sd.c ****         res = send_cmd(CMD55, 0);
+ 164              		.loc 1 98 13 is_stmt 0 view .LVU35
+ 165 0054 00F07F04 		and	r4, r0, #127
+ 166              	.LVL17:
+  99:Core/Src/sd.c ****         if (res > 1)
+ 167              		.loc 1 99 9 is_stmt 1 view .LVU36
+  99:Core/Src/sd.c ****         if (res > 1)
+ 168              		.loc 1 99 15 is_stmt 0 view .LVU37
+ 169 0058 0021     		movs	r1, #0
+ 170              	.LVL18:
+  99:Core/Src/sd.c ****         if (res > 1)
+ 171              		.loc 1 99 15 view .LVU38
+ 172 005a 3720     		movs	r0, #55
+ 173 005c FFF7D0FF 		bl	send_cmd
+ 174              	.LVL19:
+ 100:Core/Src/sd.c ****         {
+ 175              		.loc 1 100 9 is_stmt 1 view .LVU39
+ 100:Core/Src/sd.c ****         {
+ 176              		.loc 1 100 12 is_stmt 0 view .LVU40
+ 177 0060 0128     		cmp	r0, #1
+ 178 0062 D3D9     		bls	.L6
+ 179 0064 F5E7     		b	.L7
+ 180              	.LVL20:
+ 181              	.L10:
+ 123:Core/Src/sd.c ****     {
+ 182              		.loc 1 123 5 view .LVU41
+ 183 0066 9520     		movs	r0, #149
+ 184 0068 E6E7     		b	.L8
+ 185              	.L11:
+ 133:Core/Src/sd.c ****     }
+ 186              		.loc 1 133 13 view .LVU42
+ 187 006a 0120     		movs	r0, #1
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 7
+
+
+ 188 006c E4E7     		b	.L8
+ 189              		.cfi_endproc
+ 190              	.LFE136:
+ 192              		.section	.text.sd_wait_ready,"ax",%progbits
+ 193              		.align	1
+ 194              		.global	sd_wait_ready
+ 195              		.syntax unified
+ 196              		.thumb
+ 197              		.thumb_func
+ 198              		.fpu fpv4-sp-d16
+ 200              	sd_wait_ready:
+ 201              	.LFB133:
+  55:Core/Src/sd.c ****     UINT16 timeout = 0xFFF;
+ 202              		.loc 1 55 1 is_stmt 1 view -0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 0
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206 0000 10B5     		push	{r4, lr}
+ 207              	.LCFI4:
+ 208              		.cfi_def_cfa_offset 8
+ 209              		.cfi_offset 4, -8
+ 210              		.cfi_offset 14, -4
+  56:Core/Src/sd.c ****     UINT8 data;
+ 211              		.loc 1 56 5 view .LVU44
+ 212              	.LVL21:
+  56:Core/Src/sd.c ****     UINT8 data;
+ 213              		.loc 1 56 12 is_stmt 0 view .LVU45
+ 214 0002 40F6FF74 		movw	r4, #4095
+ 215              	.LVL22:
+ 216              	.L16:
+  57:Core/Src/sd.c ****     do
+ 217              		.loc 1 57 5 is_stmt 1 discriminator 2 view .LVU46
+  58:Core/Src/sd.c ****     {
+ 218              		.loc 1 58 5 discriminator 2 view .LVU47
+  60:Core/Src/sd.c ****     } while (data != 0xFF && --timeout);
+ 219              		.loc 1 60 9 discriminator 2 view .LVU48
+  60:Core/Src/sd.c ****     } while (data != 0xFF && --timeout);
+ 220              		.loc 1 60 16 is_stmt 0 discriminator 2 view .LVU49
+ 221 0006 FF20     		movs	r0, #255
+ 222 0008 FFF7FEFF 		bl	xchg_byte
+ 223              	.LVL23:
+  61:Core/Src/sd.c ****     return (data == 0xFF) ? 1 : 0;
+ 224              		.loc 1 61 13 is_stmt 1 discriminator 2 view .LVU50
+  61:Core/Src/sd.c ****     return (data == 0xFF) ? 1 : 0;
+ 225              		.loc 1 61 5 is_stmt 0 discriminator 2 view .LVU51
+ 226 000c FF28     		cmp	r0, #255
+ 227 000e 03D0     		beq	.L15
+  61:Core/Src/sd.c ****     return (data == 0xFF) ? 1 : 0;
+ 228              		.loc 1 61 27 discriminator 1 view .LVU52
+ 229 0010 013C     		subs	r4, r4, #1
+ 230              	.LVL24:
+  61:Core/Src/sd.c ****     return (data == 0xFF) ? 1 : 0;
+ 231              		.loc 1 61 27 discriminator 1 view .LVU53
+ 232 0012 A4B2     		uxth	r4, r4
+ 233              	.LVL25:
+  61:Core/Src/sd.c ****     return (data == 0xFF) ? 1 : 0;
+ 234              		.loc 1 61 27 discriminator 1 view .LVU54
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 8
+
+
+ 235 0014 002C     		cmp	r4, #0
+ 236 0016 F6D1     		bne	.L16
+ 237              	.L15:
+  62:Core/Src/sd.c **** }
+ 238              		.loc 1 62 5 is_stmt 1 view .LVU55
+  63:Core/Src/sd.c **** 
+ 239              		.loc 1 63 1 is_stmt 0 view .LVU56
+ 240 0018 FF28     		cmp	r0, #255
+ 241 001a 14BF     		ite	ne
+ 242 001c 0020     		movne	r0, #0
+ 243              	.LVL26:
+  63:Core/Src/sd.c **** 
+ 244              		.loc 1 63 1 view .LVU57
+ 245 001e 0120     		moveq	r0, #1
+ 246 0020 10BD     		pop	{r4, pc}
+  63:Core/Src/sd.c **** 
+ 247              		.loc 1 63 1 view .LVU58
+ 248              		.cfi_endproc
+ 249              	.LFE133:
+ 251              		.section	.text.sd_deselect,"ax",%progbits
+ 252              		.align	1
+ 253              		.global	sd_deselect
+ 254              		.syntax unified
+ 255              		.thumb
+ 256              		.thumb_func
+ 257              		.fpu fpv4-sp-d16
+ 259              	sd_deselect:
+ 260              	.LFB134:
+  67:Core/Src/sd.c ****     CS_HIGH();
+ 261              		.loc 1 67 1 is_stmt 1 view -0
+ 262              		.cfi_startproc
+ 263              		@ args = 0, pretend = 0, frame = 0
+ 264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 265 0000 08B5     		push	{r3, lr}
+ 266              	.LCFI5:
+ 267              		.cfi_def_cfa_offset 8
+ 268              		.cfi_offset 3, -8
+ 269              		.cfi_offset 14, -4
+  68:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 270              		.loc 1 68 5 view .LVU60
+ 271 0002 0122     		movs	r2, #1
+ 272 0004 4FF48051 		mov	r1, #4096
+ 273 0008 0348     		ldr	r0, .L20
+ 274 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 275              	.LVL27:
+  68:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 276              		.loc 1 68 14 view .LVU61
+  69:Core/Src/sd.c **** }
+ 277              		.loc 1 69 5 view .LVU62
+ 278 000e FF20     		movs	r0, #255
+ 279 0010 FFF7FEFF 		bl	xchg_byte
+ 280              	.LVL28:
+  70:Core/Src/sd.c **** 
+ 281              		.loc 1 70 1 is_stmt 0 view .LVU63
+ 282 0014 08BD     		pop	{r3, pc}
+ 283              	.L21:
+ 284 0016 00BF     		.align	2
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 9
+
+
+ 285              	.L20:
+ 286 0018 00040048 		.word	1207960576
+ 287              		.cfi_endproc
+ 288              	.LFE134:
+ 290              		.section	.text.sd_select,"ax",%progbits
+ 291              		.align	1
+ 292              		.global	sd_select
+ 293              		.syntax unified
+ 294              		.thumb
+ 295              		.thumb_func
+ 296              		.fpu fpv4-sp-d16
+ 298              	sd_select:
+ 299              	.LFB135:
+  74:Core/Src/sd.c ****     /*pull down the CS to select the sd card*/
+ 300              		.loc 1 74 1 is_stmt 1 view -0
+ 301              		.cfi_startproc
+ 302              		@ args = 0, pretend = 0, frame = 0
+ 303              		@ frame_needed = 0, uses_anonymous_args = 0
+ 304 0000 10B5     		push	{r4, lr}
+ 305              	.LCFI6:
+ 306              		.cfi_def_cfa_offset 8
+ 307              		.cfi_offset 4, -8
+ 308              		.cfi_offset 14, -4
+  76:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 309              		.loc 1 76 5 view .LVU65
+ 310 0002 0022     		movs	r2, #0
+ 311 0004 4FF48051 		mov	r1, #4096
+ 312 0008 0748     		ldr	r0, .L27
+ 313 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 314              	.LVL29:
+  76:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 315              		.loc 1 76 13 view .LVU66
+  77:Core/Src/sd.c ****     if (sd_wait_ready())
+ 316              		.loc 1 77 5 view .LVU67
+ 317 000e FF20     		movs	r0, #255
+ 318 0010 FFF7FEFF 		bl	xchg_byte
+ 319              	.LVL30:
+  78:Core/Src/sd.c ****     {
+ 320              		.loc 1 78 5 view .LVU68
+  78:Core/Src/sd.c ****     {
+ 321              		.loc 1 78 9 is_stmt 0 view .LVU69
+ 322 0014 FFF7FEFF 		bl	sd_wait_ready
+ 323              	.LVL31:
+  78:Core/Src/sd.c ****     {
+ 324              		.loc 1 78 8 view .LVU70
+ 325 0018 10B1     		cbz	r0, .L26
+  80:Core/Src/sd.c ****     }
+ 326              		.loc 1 80 16 view .LVU71
+ 327 001a 0124     		movs	r4, #1
+ 328              	.L23:
+  88:Core/Src/sd.c **** 
+ 329              		.loc 1 88 1 view .LVU72
+ 330 001c 2046     		mov	r0, r4
+ 331 001e 10BD     		pop	{r4, pc}
+ 332              	.L26:
+ 333 0020 0446     		mov	r4, r0
+  85:Core/Src/sd.c ****         return 0;
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 10
+
+
+ 334              		.loc 1 85 9 is_stmt 1 view .LVU73
+ 335 0022 FFF7FEFF 		bl	sd_deselect
+ 336              	.LVL32:
+  86:Core/Src/sd.c ****     }
+ 337              		.loc 1 86 9 view .LVU74
+  86:Core/Src/sd.c ****     }
+ 338              		.loc 1 86 16 is_stmt 0 view .LVU75
+ 339 0026 F9E7     		b	.L23
+ 340              	.L28:
+ 341              		.align	2
+ 342              	.L27:
+ 343 0028 00040048 		.word	1207960576
+ 344              		.cfi_endproc
+ 345              	.LFE135:
+ 347              		.section	.text.SD_GoIdleState,"ax",%progbits
+ 348              		.align	1
+ 349              		.global	SD_GoIdleState
+ 350              		.syntax unified
+ 351              		.thumb
+ 352              		.thumb_func
+ 353              		.fpu fpv4-sp-d16
+ 355              	SD_GoIdleState:
+ 356              	.LFB137:
+ 150:Core/Src/sd.c **** 
+ 151:Core/Src/sd.c **** __R1_Res_Status SD_GoIdleState(void)
+ 152:Core/Src/sd.c **** {
+ 357              		.loc 1 152 1 is_stmt 1 view -0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 0, uses_anonymous_args = 0
+ 361 0000 10B5     		push	{r4, lr}
+ 362              	.LCFI7:
+ 363              		.cfi_def_cfa_offset 8
+ 364              		.cfi_offset 4, -8
+ 365              		.cfi_offset 14, -4
+ 153:Core/Src/sd.c ****     __R1_Res_Status res;
+ 366              		.loc 1 153 5 view .LVU77
+ 154:Core/Src/sd.c ****     /*Pull down the CS voltage*/
+ 155:Core/Src/sd.c ****     res = send_cmd(CMD0, 0);
+ 367              		.loc 1 155 5 view .LVU78
+ 368              		.loc 1 155 11 is_stmt 0 view .LVU79
+ 369 0002 0021     		movs	r1, #0
+ 370 0004 0846     		mov	r0, r1
+ 371 0006 FFF7FEFF 		bl	send_cmd
+ 372              	.LVL33:
+ 373 000a 0446     		mov	r4, r0
+ 374              	.LVL34:
+ 156:Core/Src/sd.c ****     /*R1 response in idle state*/
+ 157:Core/Src/sd.c ****     if (res == IDLE_STATE)
+ 375              		.loc 1 157 5 is_stmt 1 view .LVU80
+ 376              		.loc 1 157 8 is_stmt 0 view .LVU81
+ 377 000c 0128     		cmp	r0, #1
+ 378 000e 01D0     		beq	.L32
+ 379              	.LVL35:
+ 380              	.L30:
+ 158:Core/Src/sd.c ****     {
+ 159:Core/Src/sd.c ****         CS_HIGH();
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 11
+
+
+ 160:Core/Src/sd.c ****         xchg_byte(SD_DUMMY_BYTE);
+ 161:Core/Src/sd.c ****     }
+ 162:Core/Src/sd.c ****     return res;
+ 381              		.loc 1 162 5 is_stmt 1 view .LVU82
+ 163:Core/Src/sd.c **** }
+ 382              		.loc 1 163 1 is_stmt 0 view .LVU83
+ 383 0010 2046     		mov	r0, r4
+ 384 0012 10BD     		pop	{r4, pc}
+ 385              	.LVL36:
+ 386              	.L32:
+ 159:Core/Src/sd.c ****         xchg_byte(SD_DUMMY_BYTE);
+ 387              		.loc 1 159 9 is_stmt 1 view .LVU84
+ 388 0014 0122     		movs	r2, #1
+ 389 0016 4FF48051 		mov	r1, #4096
+ 390 001a 0348     		ldr	r0, .L33
+ 391              	.LVL37:
+ 159:Core/Src/sd.c ****         xchg_byte(SD_DUMMY_BYTE);
+ 392              		.loc 1 159 9 is_stmt 0 view .LVU85
+ 393 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 394              	.LVL38:
+ 159:Core/Src/sd.c ****         xchg_byte(SD_DUMMY_BYTE);
+ 395              		.loc 1 159 18 is_stmt 1 view .LVU86
+ 160:Core/Src/sd.c ****     }
+ 396              		.loc 1 160 9 view .LVU87
+ 397 0020 FF20     		movs	r0, #255
+ 398 0022 FFF7FEFF 		bl	xchg_byte
+ 399              	.LVL39:
+ 400 0026 F3E7     		b	.L30
+ 401              	.L34:
+ 402              		.align	2
+ 403              	.L33:
+ 404 0028 00040048 		.word	1207960576
+ 405              		.cfi_endproc
+ 406              	.LFE137:
+ 408              		.section	.text.SD_Init,"ax",%progbits
+ 409              		.align	1
+ 410              		.global	SD_Init
+ 411              		.syntax unified
+ 412              		.thumb
+ 413              		.thumb_func
+ 414              		.fpu fpv4-sp-d16
+ 416              	SD_Init:
+ 417              	.LFB138:
+ 164:Core/Src/sd.c **** 
+ 165:Core/Src/sd.c **** __R1_Res_Status SD_Init(void)
+ 166:Core/Src/sd.c **** {
+ 418              		.loc 1 166 1 view -0
+ 419              		.cfi_startproc
+ 420              		@ args = 0, pretend = 0, frame = 0
+ 421              		@ frame_needed = 0, uses_anonymous_args = 0
+ 422 0000 10B5     		push	{r4, lr}
+ 423              	.LCFI8:
+ 424              		.cfi_def_cfa_offset 8
+ 425              		.cfi_offset 4, -8
+ 426              		.cfi_offset 14, -4
+ 167:Core/Src/sd.c ****     __R1_Res_Status res;
+ 427              		.loc 1 167 5 view .LVU89
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 12
+
+
+ 168:Core/Src/sd.c ****     FCLK_SLOW();
+ 428              		.loc 1 168 5 view .LVU90
+ 429 0002 0C4B     		ldr	r3, .L39
+ 430 0004 1A68     		ldr	r2, [r3]
+ 431 0006 1368     		ldr	r3, [r2]
+ 432 0008 23F03803 		bic	r3, r3, #56
+ 433 000c 43F03003 		orr	r3, r3, #48
+ 434 0010 1360     		str	r3, [r2]
+ 435              		.loc 1 168 16 view .LVU91
+ 169:Core/Src/sd.c **** 
+ 170:Core/Src/sd.c ****     /*Pull up MOSI and CS voltage high in at least 74 clock*/
+ 171:Core/Src/sd.c ****     CS_HIGH();
+ 436              		.loc 1 171 5 view .LVU92
+ 437 0012 0122     		movs	r2, #1
+ 438 0014 4FF48051 		mov	r1, #4096
+ 439 0018 0748     		ldr	r0, .L39+4
+ 440 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 441              	.LVL40:
+ 442              		.loc 1 171 14 view .LVU93
+ 172:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ 443              		.loc 1 172 5 view .LVU94
+ 444              	.LBB2:
+ 445              		.loc 1 172 10 view .LVU95
+ 446              		.loc 1 172 14 is_stmt 0 view .LVU96
+ 447 001e 0024     		movs	r4, #0
+ 448              		.loc 1 172 5 view .LVU97
+ 449 0020 03E0     		b	.L36
+ 450              	.LVL41:
+ 451              	.L37:
+ 173:Core/Src/sd.c ****     {
+ 174:Core/Src/sd.c ****         /*send at least 80 dummy byte*/
+ 175:Core/Src/sd.c ****         xchg_byte(SD_DUMMY_BYTE);
+ 452              		.loc 1 175 9 is_stmt 1 discriminator 3 view .LVU98
+ 453 0022 FF20     		movs	r0, #255
+ 454 0024 FFF7FEFF 		bl	xchg_byte
+ 455              	.LVL42:
+ 172:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ 456              		.loc 1 172 29 discriminator 3 view .LVU99
+ 172:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ 457              		.loc 1 172 30 is_stmt 0 discriminator 3 view .LVU100
+ 458 0028 0134     		adds	r4, r4, #1
+ 459              	.LVL43:
+ 460              	.L36:
+ 172:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ 461              		.loc 1 172 21 is_stmt 1 discriminator 1 view .LVU101
+ 172:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ 462              		.loc 1 172 5 is_stmt 0 discriminator 1 view .LVU102
+ 463 002a 092C     		cmp	r4, #9
+ 464 002c F9DD     		ble	.L37
+ 465              	.LBE2:
+ 176:Core/Src/sd.c ****     }
+ 177:Core/Src/sd.c ****     res = SD_GoIdleState();
+ 466              		.loc 1 177 5 is_stmt 1 view .LVU103
+ 467              		.loc 1 177 11 is_stmt 0 view .LVU104
+ 468 002e FFF7FEFF 		bl	SD_GoIdleState
+ 469              	.LVL44:
+ 178:Core/Src/sd.c ****     return res;
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 13
+
+
+ 470              		.loc 1 178 5 is_stmt 1 view .LVU105
+ 179:Core/Src/sd.c **** }
+ 471              		.loc 1 179 1 is_stmt 0 view .LVU106
+ 472 0032 10BD     		pop	{r4, pc}
+ 473              	.LVL45:
+ 474              	.L40:
+ 475              		.loc 1 179 1 view .LVU107
+ 476              		.align	2
+ 477              	.L39:
+ 478 0034 00000000 		.word	hspi2
+ 479 0038 00040048 		.word	1207960576
+ 480              		.cfi_endproc
+ 481              	.LFE138:
+ 483              		.text
+ 484              	.Letext0:
+ 485              		.file 2 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 486              		.file 3 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 487              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
+ 488              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 489              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 490              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 491              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 492              		.file 9 "Core/Inc/sd.h"
+ 493              		.file 10 "Core/Inc/main.h"
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 sd.c
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:18     .text.xchg_byte:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:26     .text.xchg_byte:0000000000000000 xchg_byte
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:68     .text.xchg_byte:0000000000000028 $d
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:73     .text.send_cmd:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:79     .text.send_cmd:0000000000000000 send_cmd
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:193    .text.sd_wait_ready:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:200    .text.sd_wait_ready:0000000000000000 sd_wait_ready
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:252    .text.sd_deselect:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:259    .text.sd_deselect:0000000000000000 sd_deselect
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:286    .text.sd_deselect:0000000000000018 $d
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:291    .text.sd_select:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:298    .text.sd_select:0000000000000000 sd_select
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:343    .text.sd_select:0000000000000028 $d
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:348    .text.SD_GoIdleState:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:355    .text.SD_GoIdleState:0000000000000000 SD_GoIdleState
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:404    .text.SD_GoIdleState:0000000000000028 $d
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:409    .text.SD_Init:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:416    .text.SD_Init:0000000000000000 SD_Init
+C:\Users\Falle\AppData\Local\Temp\ccGEl6X9.s:478    .text.SD_Init:0000000000000034 $d
+
+UNDEFINED SYMBOLS
+HAL_SPI_TransmitReceive
+hspi2
+HAL_GPIO_WritePin
