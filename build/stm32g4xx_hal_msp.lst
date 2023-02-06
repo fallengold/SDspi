@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 1
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 1
   28:Core/Src/stm32g4xx_hal_msp.c **** /* USER CODE BEGIN TD */
   29:Core/Src/stm32g4xx_hal_msp.c **** 
   30:Core/Src/stm32g4xx_hal_msp.c **** /* USER CODE END TD */
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 2
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s 			page 2
 
 
   31:Core/Src/stm32g4xx_hal_msp.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 1
   44 0004 0B4B     		ldr	r3, .L3
   45 0006 1A6E     		ldr	r2, [r3, #96]
   46 0008 42F00102 		orr	r2, r2, #1
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 3
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s 			page 3
 
 
   47 000c 1A66     		str	r2, [r3, #96]
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 1
   90              		.syntax unified
   91              		.thumb
   92              		.thumb_func
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 4
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s 			page 4
 
 
   93              		.fpu fpv4-sp-d16
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 1
  103:Core/Src/stm32g4xx_hal_msp.c ****     PB14     ------> SPI2_MISO
  104:Core/Src/stm32g4xx_hal_msp.c ****     PB15     ------> SPI2_MOSI
  105:Core/Src/stm32g4xx_hal_msp.c ****     */
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 5
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s 			page 5
 
 
  106:Core/Src/stm32g4xx_hal_msp.c ****     GPIO_InitStruct.Pin = GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 1
  159 0036 42F00202 		orr	r2, r2, #2
  160 003a DA64     		str	r2, [r3, #76]
  100:Core/Src/stm32g4xx_hal_msp.c ****     /**SPI2 GPIO Configuration
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 6
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s 			page 6
 
 
  161              		.loc 1 100 5 view .LVU32
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 1
  204              		.thumb
  205              		.thumb_func
  206              		.fpu fpv4-sp-d16
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 7
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s 			page 7
 
 
  208              	HAL_SPI_MspDeInit:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 1
  232              	.LVL8:
  233              	.L14:
  134:Core/Src/stm32g4xx_hal_msp.c **** 
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 8
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s 			page 8
 
 
  234              		.loc 1 134 5 is_stmt 1 view .LVU52
@@ -455,20 +455,20 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 1
  264              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
  265              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
  266              		.file 9 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h"
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s 			page 9
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32g4xx_hal_msp.c
-C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s:18     .text.HAL_MspInit:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s:26     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s:83     .text.HAL_MspInit:0000000000000034 $d
-C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s:88     .text.HAL_SPI_MspInit:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s:95     .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
-C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s:195    .text.HAL_SPI_MspInit:0000000000000060 $d
-C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s:201    .text.HAL_SPI_MspDeInit:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s:208    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
-C:\Users\Falle\AppData\Local\Temp\cccLvvHh.s:251    .text.HAL_SPI_MspDeInit:0000000000000024 $d
+C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s:18     .text.HAL_MspInit:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s:26     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s:83     .text.HAL_MspInit:0000000000000034 $d
+C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s:88     .text.HAL_SPI_MspInit:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s:95     .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
+C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s:195    .text.HAL_SPI_MspInit:0000000000000060 $d
+C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s:201    .text.HAL_SPI_MspDeInit:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s:208    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
+C:\Users\Falle\AppData\Local\Temp\ccwh1ZNx.s:251    .text.HAL_SPI_MspDeInit:0000000000000024 $d
 
 UNDEFINED SYMBOLS
 HAL_PWREx_DisableUCPDDeadBattery

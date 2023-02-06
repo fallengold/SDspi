@@ -56,15 +56,13 @@ static void MX_SPI2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+UINT8 temp_res;
 /* USER CODE END 0 */
 
 /**
  * @brief  The application entry point.
  * @retval int
  */
-
-__R1_Res_Status res;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -91,7 +89,10 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  res = SD_Init();
+
+  // HAL_Delay(1);
+
+  temp_res = SD_Init();
 
   /* USER CODE END 2 */
 

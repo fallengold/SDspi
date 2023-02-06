@@ -68,7 +68,6 @@ void sd_deselect(void)
     CS_HIGH();
     xchg_byte(SD_DUMMY_BYTE);
 }
-
 /*activate spi communication*/
 UINT8 sd_select(void)
 {
@@ -81,14 +80,14 @@ UINT8 sd_select(void)
     }
     else
     {
-        /*select fail with no valid response*/
+        /*select fail with no valid wait-ready response*/
         sd_deselect();
         return 0;
     }
 }
 
 /*return command response token*/
-static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
+static UINT8 send_cmd(UINT8 cmd, UINT32 arg)
 {
     UINT8 res;
     UINT8 crc;
@@ -100,17 +99,17 @@ static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
         if (res > 1)
         {
             /*Illegal command response not 0*/
-            return (__R1_Res_Status)res;
+            return (UINT8)res;
         }
     }
 
-    // /*reset communication status*/
-    // sd_deselect();
-    // if (!sd_select())
-    // {
-    //     /*Select fail*/
-    //     return WAITING_NO_RESPONSE;
-    // }
+    /*reset communication status*/
+    sd_deselect();
+    if (!sd_select())
+    {
+        /*Select fail*/
+        return WAITING_NO_RESPONSE;
+    }
 
     /*Send command packet*/
     xchg_byte(0x40 | cmd);
@@ -123,14 +122,14 @@ static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
     switch (cmd)
     {
     case CMD0:
-        crc = 0X95;
+        crc = (UINT8)0x95;
         break;
     case CMD8:
-        crc = 0x87;
+        crc = (UINT8)0x87;
         break;
     /*dummy crc + stop byte*/
     default:
-        crc = 0x01;
+        crc = (UINT8)0x01;
     }
     /*send crc + stop byte*/
     xchg_byte(crc);
@@ -143,14 +142,14 @@ static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
         /*wait for response by sending dummy byte*/
         res = xchg_byte(SD_DUMMY_BYTE);
         /*The left bit(MSB) of R1 response is always 0*/
-    } while ((res & 0x80) && --cnt);
+    } while ((res & (UINT8)0x80) && --cnt);
 
-    return (__R1_Res_Status)res;
+    return res;
 }
 
-__R1_Res_Status SD_GoIdleState(void)
+UINT8 SD_GoIdleState(void)
 {
-    __R1_Res_Status res;
+    UINT8 res;
     /*Pull down the CS voltage*/
     res = send_cmd(CMD0, 0);
     /*R1 response in idle state*/
@@ -162,18 +161,65 @@ __R1_Res_Status SD_GoIdleState(void)
     return res;
 }
 
-__R1_Res_Status SD_Init(void)
+UINT8 SD_Init(void)
 {
-    __R1_Res_Status res;
-    FCLK_SLOW();
+    //__R1_Res_Status res;
+    UINT8 res;
 
     /*Pull up MOSI and CS voltage high in at least 74 clock*/
     CS_HIGH();
     for (int i = 0; i < 10; i++)
     {
         /*send at least 80 dummy byte*/
-        xchg_byte(SD_DUMMY_BYTE);
+        xchg_byte(0xFF);
     }
-    res = SD_GoIdleState();
+    /*[temp] Test code for sending CMD0*/
+
+    CS_HIGH();
+    xchg_byte(0xFF);
+
+    /*send cmd0*/
+    /*set CS low*/
+    CS_LOW();
+    xchg_byte(0xFF);
+    /*Wait for sd card status ready*/
+    UINT16 timeout = 0XFFF;
+    do
+    {
+        res = xchg_byte(0xFF);
+    } while (--timeout && (res != 0xFF));
+
+    if (res != 0xFF)
+    {
+        return res;
+    }
+
+    /*send cmd0*/
+
+    UINT8 cmd_bus[6] = {0};
+    cmd_bus[0] = CMD0 | 0x40;
+    cmd_bus[1] = 0;
+    cmd_bus[2] = 0;
+    cmd_bus[3] = 0;
+    cmd_bus[4] = 0;
+    cmd_bus[5] = 0x95;
+
+    for (int i = 0; i < 6; i++)
+    {
+        xchg_byte(cmd_bus[i]);
+    }
+    UINT8 cnt;
+    cnt = 10;
+
+    do
+    {
+        /*Keep setting CS low and MOSI high */
+        res = xchg_byte(SD_DUMMY_BYTE);
+    } while (--cnt && (res & 0x80));
+
     return res;
+    /*[temp]*/
+
+    // res = SD_GoIdleState();
+    // return res;
 }
