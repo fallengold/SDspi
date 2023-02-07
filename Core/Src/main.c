@@ -64,7 +64,7 @@ static void MX_SPI2_Init(void);
  * @retval int
  */
 
-__R1_Res_Status res;
+Res_Status res;
 int main(void)
 {
   /* USER CODE BEGIN 1 */

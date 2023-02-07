@@ -89,7 +89,8 @@ UINT8 sd_select(void)
 }
 
 /*return command response token*/
-static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
+/*CS toggle to select or deslect is already included*/
+static Res_Status send_cmd(UINT8 cmd, UINT32 arg)
 {
     UINT8 res;
     UINT8 crc;
@@ -101,7 +102,7 @@ static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
         if (res > 1)
         {
             /*Illegal command response not 0*/
-            return (__R1_Res_Status)res;
+            return (Res_Status)res;
         }
     }
 
@@ -110,7 +111,7 @@ static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
     if (!sd_select())
     {
         /*Select fail*/
-        return WAITING_NO_RESPONSE;
+        return TIMEOUT;
     }
 
     /*Send command packet*/
@@ -146,36 +147,108 @@ static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
         /*The left bit(MSB) of R1 response is always 0*/
     } while ((res & 0x80) && --cnt);
 
-    return (__R1_Res_Status)res;
+    return (Res_Status)res;
 }
 
-__R1_Res_Status SD_GoIdleState(void)
+Res_Status SD_GoIdleState(void)
 {
-    __R1_Res_Status res;
+    static Res_Status res;
     /*Pull down the CS voltage*/
     res = send_cmd(CMD0, 0);
     /*R1 response in idle state*/
     if (res == IDLE_STATE)
     {
-        CS_HIGH();
-        xchg_byte(SD_DUMMY_BYTE);
+        sd_deselect();
     }
     return res;
 }
 
-__R1_Res_Status SD_Init(void)
+// #define VOLTAGE_ACC_27_33   0b00000001
+// #define VOLTAGE_ACC_LOW     0b00000010
+// #define VOLTAGE_ACC_RES1    0b00000100
+// #define VOLTAGE_ACC_RES2    0b00001000
+
+Res_Status SD_CheckVersion(void)
 {
-    __R1_Res_Status res;
+    static Res_Status res;
+    /*If receive idle state, it means version 2.00*/
+    /*CMD8 will response first byte(MSB) identical to R1; */
+    /*The next 4 bytes implies command version[31:28], reserved bit[27:12], voltage accepted[11:8], check-pattern(echo)[7:0]*/
+    if ((res = send_cmd(CMD8, 0x1AA)) == IDLE_STATE)
+    {
+        UINT8 R7_Response[5];
+        R7_Response[0] = res;
+        for (int i = 1; i < 5; i++)
+        {
+            R7_Response[i] = xchg_byte(SD_DUMMY_BYTE);
+        }
+        /*Analyze the R7 response data*/
+        /*If you want, you can get more data, even output these information*/
+        UINT8 cv, vol, echo;
+        cv = (R7_Response[1] >> 4);
+        vol = (R7_Response[3] & 0x1F);
+        echo = R7_Response[4];
+
+        /*Valid voltage(2.7V - 3.6V)*/
+        /*Valid echo 0xAA*/
+
+        if (vol == 0x01 && echo == 0xAA)
+        {
+            /*suitable sd-status check pass*/
+            return res;
+        }
+        else
+        {
+            /*These sd card is not well-defined*/
+            return OTHER_ERROR;
+        }
+    }
+    /*Version 1.0*/
+    else if (res == (ILL_COMMAND | IDLE_STATE))
+    {
+        UINT16 timeout;
+        timeout = 0XFFF;
+        /*do something*/
+        do
+        {
+            res = send_cmd(CMD1, 0);
+        } while (res == SD_NO_ERROR && --timeout);
+        /*Time out*/
+        if (timeout < 0)
+        {
+            return TIMEOUT;
+        }
+        return res;
+    }
+    else
+    {
+        return res;
+    }
+}
+
+Res_Status SD_Init(void)
+{
+    static Res_Status res;
     FCLK_SLOW();
 
     /*Pull up MOSI and CS voltage high in at least 74 clock*/
-    HAL_Delay(1);
+    HAL_Delay(1); // Delay to give sd card enough time to power up
     CS_HIGH();
     for (int i = 0; i < 10; i++)
     {
         /*send at least 80 dummy byte*/
         xchg_byte(SD_DUMMY_BYTE);
     }
-    res = SD_GoIdleState();
-    return res;
+
+    if ((res = SD_GoIdleState()) == IDLE_STATE) // CMD0 succeed;
+    {
+        if ((res = SD_CheckVersion()) == IDLE_STATE) // CMD8 check pass
+        {
+            return res;
+        }
+    }
+    else
+    {
+        return res;
+    }
 }

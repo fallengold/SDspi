@@ -18,7 +18,8 @@ typedef enum
     ERASE_SEQUENCE = 16,
     ADDRESS_ERROR = 32,
     PARAMETER_ERROR = 64,
-    WAITING_NO_RESPONSE = 128,
-} __R1_Res_Status;
+    TIMEOUT = 128,
+    OTHER_ERROR = 256,
+} Res_Status;
 
-__R1_Res_Status SD_Init(void);
+Res_Status SD_Init(void);
