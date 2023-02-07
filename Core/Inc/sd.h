@@ -6,10 +6,6 @@ typedef unsigned short UINT16;
 typedef unsigned int UINT32;
 typedef unsigned long long UINT64;
 
-#define SD_SPI_HANDLE hspi2
-#define SD_CS_PIN SPI2_CS_Pin
-#define SD_CS_GPIO_PORT GPIOB
-
 #define SD_DUMMY_BYTE (UINT8)(0xFF)
 
 typedef enum

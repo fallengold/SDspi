@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s 			page 1
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s 			page 1
   28:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****     [..] RAM functions are defined using a specific toolchain keyword "__ramfunc".
   29:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** 
   30:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****     *** GNU Compiler ***
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s 			page 2
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s 			page 2
 
 
   31:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****     --------------------
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s 			page 1
   85:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   */
   86:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** 
   87:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** /**
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s 			page 3
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s 			page 3
 
 
   88:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   * @brief  Enable the Power down in Run Mode
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s 			page 1
  104:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   * @retval None
  105:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c ****   */
  106:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** __RAM_FUNC HAL_StatusTypeDef HAL_FLASHEx_DisableRunPowerDown(void)
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s 			page 4
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s 			page 4
 
 
  107:Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c **** {
@@ -223,16 +223,16 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s 			page 1
  103              		.file 3 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\sys\\_stdint.h"
  104              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
  105              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s 			page 5
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32g4xx_hal_flash_ramfunc.c
-C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s:18     .RamFunc:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s:26     .RamFunc:0000000000000000 HAL_FLASHEx_EnableRunPowerDown
-C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s:54     .RamFunc:0000000000000018 $d
-C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s:60     .RamFunc:0000000000000024 $t
-C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s:67     .RamFunc:0000000000000024 HAL_FLASHEx_DisableRunPowerDown
-C:\Users\Falle\AppData\Local\Temp\ccaAuASN.s:94     .RamFunc:000000000000003c $d
+C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s:18     .RamFunc:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s:26     .RamFunc:0000000000000000 HAL_FLASHEx_EnableRunPowerDown
+C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s:54     .RamFunc:0000000000000018 $d
+C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s:60     .RamFunc:0000000000000024 $t
+C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s:67     .RamFunc:0000000000000024 HAL_FLASHEx_DisableRunPowerDown
+C:\Users\Falle\AppData\Local\Temp\ccJ5x9zf.s:94     .RamFunc:000000000000003c $d
 
 NO UNDEFINED SYMBOLS

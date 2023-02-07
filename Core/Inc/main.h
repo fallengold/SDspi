@@ -53,15 +53,17 @@ extern "C"
   /* Exported functions prototypes ---------------------------------------------*/
   void Error_Handler(void);
 
-/* USER CODE BEGIN EFP */
-
+  /* USER CODE BEGIN EFP */
+  extern SPI_HandleTypeDef hspi2;
 /* USER CODE END EFP */
 
-/* Private defines -----------------------------------------------------------*/
+/* Private defines --------------------f---------------------------------------*/
 #define SPI2_CS_Pin GPIO_PIN_12
 #define SPI2_CS_GPIO_Port GPIOB
-  /* USER CODE BEGIN Private defines */
-  extern SPI_HandleTypeDef hspi2;
+/* USER CODE BEGIN Private defines */
+#define SD_CS_GPIO_Port SPI2_CS_GPIO_Port
+#define SD_CS_Pin SPI2_CS_Pin
+#define SD_SPI_HANDLE hspi2
 
   /* USER CODE END Private defines */
 

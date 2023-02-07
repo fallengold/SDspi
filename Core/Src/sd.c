@@ -26,11 +26,11 @@
 /*Fetch SPI_CS_PIN high or low*/
 #define CS_HIGH()                                                    \
     {                                                                \
-        HAL_GPIO_WritePin(SD_CS_GPIO_PORT, SD_CS_PIN, GPIO_PIN_SET); \
+        HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET); \
     }
 #define CS_LOW()                                                       \
     {                                                                  \
-        HAL_GPIO_WritePin(SD_CS_GPIO_PORT, SD_CS_PIN, GPIO_PIN_RESET); \
+        HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_RESET); \
     }
 //(Note that the _256 is used as a mask to clear the prescalar bits as it provides binary 111 in the correct position)
 #define FCLK_SLOW()                                                                                    \
@@ -46,7 +46,7 @@
 UINT8 xchg_byte(UINT8 xmitData)
 {
     UINT8 rcvData;
-    rcvData = HAL_SPI_TransmitReceive(&SD_SPI_HANDLE, &xmitData, &rcvData, 1, 50);
+    HAL_SPI_TransmitReceive(&SD_SPI_HANDLE, &xmitData, &rcvData, 1, 50);
     return rcvData;
 }
 
@@ -82,6 +82,7 @@ UINT8 sd_select(void)
     else
     {
         /*select fail with no valid response*/
+        /*timeout*/
         sd_deselect();
         return 0;
     }
@@ -104,13 +105,13 @@ static __R1_Res_Status send_cmd(UINT8 cmd, UINT32 arg)
         }
     }
 
-    // /*reset communication status*/
-    // sd_deselect();
-    // if (!sd_select())
-    // {
-    //     /*Select fail*/
-    //     return WAITING_NO_RESPONSE;
-    // }
+    /*reset communication status*/
+    sd_deselect();
+    if (!sd_select())
+    {
+        /*Select fail*/
+        return WAITING_NO_RESPONSE;
+    }
 
     /*Send command packet*/
     xchg_byte(0x40 | cmd);
@@ -168,6 +169,7 @@ __R1_Res_Status SD_Init(void)
     FCLK_SLOW();
 
     /*Pull up MOSI and CS voltage high in at least 74 clock*/
+    HAL_Delay(1);
     CS_HIGH();
     for (int i = 0; i < 10; i++)
     {
