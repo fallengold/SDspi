@@ -42,6 +42,10 @@
         MODIFY_REG(SD_SPI_HANDLE.Instance->CR1, SPI_BAUDRATEPRESCALER_256, SPI_BAUDRATEPRESCALER_8); \
     } /* Set SCLK = fast, approx 4.5 MBits/s */
 
+/*Begin global variable define*/
+SD_Info sd_Info;
+/*End global variable define*/
+
 /*Exchange a single byte through spi communication */
 UINT8 xchg_byte(UINT8 xmitData)
 {
@@ -92,17 +96,17 @@ UINT8 sd_select(void)
 /*CS toggle to select or deslect is already included*/
 static Res_Status send_cmd(UINT8 cmd, UINT32 arg)
 {
-    UINT8 res;
+    UINT8 rs;
     UINT8 crc;
     if (cmd & 0x80)
     {
         /*ACMD commands*/
         cmd &= 0x7F;
-        res = send_cmd(CMD55, 0);
-        if (res > 1)
+        rs = send_cmd(CMD55, 0);
+        if (rs > 1)
         {
             /*Illegal command response not 0*/
-            return (Res_Status)res;
+            return (Res_Status)rs;
         }
     }
 
@@ -143,11 +147,11 @@ static Res_Status send_cmd(UINT8 cmd, UINT32 arg)
     do
     {
         /*wait for response by sending dummy byte*/
-        res = xchg_byte(SD_DUMMY_BYTE);
+        rs = xchg_byte(SD_DUMMY_BYTE);
         /*The left bit(MSB) of R1 response is always 0*/
-    } while ((res & 0x80) && --cnt);
+    } while ((rs & 0x80) && --cnt);
 
-    return (Res_Status)res;
+    return (Res_Status)rs;
 }
 
 Res_Status SD_GoIdleState(void)
@@ -170,14 +174,15 @@ Res_Status SD_GoIdleState(void)
 
 Res_Status SD_CheckVersion(void)
 {
-    static Res_Status res;
+    Res_Status rs;
     /*If receive idle state, it means version 2.00*/
     /*CMD8 will response first byte(MSB) identical to R1; */
     /*The next 4 bytes implies command version[31:28], reserved bit[27:12], voltage accepted[11:8], check-pattern(echo)[7:0]*/
-    if ((res = send_cmd(CMD8, 0x1AA)) == IDLE_STATE)
+    if ((rs = send_cmd(CMD8, 0x1AA)) == IDLE_STATE)
     {
+        sd_Info.sd_version = SDC_VER2;
         UINT8 R7_Response[5];
-        R7_Response[0] = res;
+        R7_Response[0] = rs;
         for (int i = 1; i < 5; i++)
         {
             R7_Response[i] = xchg_byte(SD_DUMMY_BYTE);
@@ -189,46 +194,91 @@ Res_Status SD_CheckVersion(void)
         vol = (R7_Response[3] & 0x1F);
         echo = R7_Response[4];
 
+        sd_Info.cmd_version = cv;
+        sd_Info.support_voltage = vol;
+
         /*Valid voltage(2.7V - 3.6V)*/
         /*Valid echo 0xAA*/
 
         if (vol == 0x01 && echo == 0xAA)
         {
             /*suitable sd-status check pass*/
-            return res;
+            return rs;
         }
         else
         {
             /*These sd card is not well-defined*/
+            /*Or some error happen when receiving R7*/
             return OTHER_ERROR;
         }
     }
     /*Version 1.0*/
-    else if (res == (ILL_COMMAND | IDLE_STATE))
+    else if (rs == (ILL_COMMAND | IDLE_STATE))
     {
+        sd_Info.sd_version = SDC_VER1_VER3;
         UINT16 timeout;
         timeout = 0XFFF;
         /*do something*/
         do
         {
-            res = send_cmd(CMD1, 0);
-        } while (res == SD_NO_ERROR && --timeout);
+            rs = send_cmd(CMD1, 0);
+        } while (rs == SD_NO_ERROR && --timeout);
         /*Time out*/
         if (timeout < 0)
         {
             return TIMEOUT;
         }
-        return res;
+        return rs;
     }
     else
     {
-        return res;
+        return rs;
+    }
+}
+
+/*To check SDHC or SDSC*/
+Res_Status SD_getCardType(void)
+{
+    Res_Status rs;
+    /*We should first send ACMD41 to activate sd card's initialization*/
+    UINT16 timeout = 0xFFF;
+    while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
+        ;
+    if (!timeout)
+        return TIMEOUT; // timeout
+    if (rs != SD_NO_ERROR)
+        return rs; // get other illegal response
+
+    /*send CMD58 to get OCR info*/
+    rs = send_cmd(CMD58, 0);
+    if (rs != SD_NO_ERROR)
+    {
+        return rs;
+    }
+    /*Send succeed, getting R3 response*/
+    UINT8 R3_res[5];
+    R3_res[0] = (UINT8)rs;
+    for (int i = 1; i < 5; i++)
+    {
+        R3_res[i] = xchg_byte(SD_DUMMY_BYTE);
+    }
+    /*Get ocr CCS(bit30)*/
+    /*1 -> SDHC; 0-> SDSC*/
+    if (R3_res[1] & 0x40)
+    {
+        sd_Info.sd_cardType = SDHC;
+        return SD_NO_ERROR;
+    }
+    else
+    {
+        sd_Info.sd_cardType = SDSC;
+        return SD_NO_ERROR;
     }
 }
 
 Res_Status SD_Init(void)
 {
-    static Res_Status res;
+    Res_Status res;
     FCLK_SLOW();
 
     /*Pull up MOSI and CS voltage high in at least 74 clock*/
@@ -240,15 +290,23 @@ Res_Status SD_Init(void)
         xchg_byte(SD_DUMMY_BYTE);
     }
 
-    if ((res = SD_GoIdleState()) == IDLE_STATE) // CMD0 succeed;
+    if ((res = SD_GoIdleState()) != IDLE_STATE) // CMD0 check pass;
     {
-        if ((res = SD_CheckVersion()) == IDLE_STATE) // CMD8 check pass
-        {
-            return res;
-        }
+        return res;
+    }
+    if ((res = SD_CheckVersion()) != IDLE_STATE) // CMD8 check pass
+    {
+        return res;
+    }
+    /*Deselect sd card*/
+    sd_deselect();
+
+    if ((res = SD_getCardType()) != SD_NO_ERROR)
+    {
+        return res;
     }
     else
     {
-        return res;
+        return SD_NO_ERROR;
     }
 }
