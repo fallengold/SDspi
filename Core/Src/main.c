@@ -92,6 +92,7 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   res = SD_Init();
+  res = SD_getCSDRegister();
 
   /* USER CODE END 2 */
 

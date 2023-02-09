@@ -7,6 +7,7 @@ typedef unsigned int UINT32;
 typedef unsigned long long UINT64;
 
 #define SD_DUMMY_BYTE (UINT8)(0xFF)
+#define SD_READ_TOKEN (UINT8)(0XFE)
 
 typedef enum
 {
@@ -111,3 +112,4 @@ typedef struct
 extern SD_Info sd_Info;
 
 Res_Status SD_Init(void);
+Res_Status SD_getCSDRegister(void);

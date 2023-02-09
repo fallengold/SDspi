@@ -250,8 +250,7 @@ Res_Status SD_getCardType(void)
         return rs; // get other illegal response
 
     /*send CMD58 to get OCR info*/
-    rs = send_cmd(CMD58, 0);
-    if (rs != SD_NO_ERROR)
+    if ((rs = send_cmd(CMD58, 0)) != SD_NO_ERROR)
     {
         return rs;
     }
@@ -264,7 +263,7 @@ Res_Status SD_getCardType(void)
     }
     /*Get ocr CCS(bit30)*/
     /*1 -> SDHC; 0-> SDSC*/
-    if (R3_res[1] & 0x40)
+    if (R3_res[1] & 0x80)
     {
         sd_Info.sd_cardType = SDHC;
         return SD_NO_ERROR;
@@ -276,13 +275,45 @@ Res_Status SD_getCardType(void)
     }
 }
 
+Res_Status SD_getCSDRegister(void)
+{
+    Res_Status rs;
+    /*Send cmd9 to get CSD Register's information*/
+    /*wait for the R1 response from CMD9*/
+    if ((rs = send_cmd(CMD9, 0)) != SD_NO_ERROR)
+    {
+        return rs;
+    }
+
+    /*Get read-block token*/
+    UINT8 read_token, timeout;
+    timeout = 0xFF;
+    while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != 0xFE && --timeout)
+        ;
+    if (!timeout)
+        return TIMEOUT;
+
+    /*token valid, then try to get 16bits bytes from the sd card */
+    UINT8 csd[16] = {0};
+    for (int i = 0; i < 16; i++)
+    {
+        csd[i] = xchg_byte(SD_DUMMY_BYTE);
+    }
+
+    /*read two dummy crc check bit*/
+    xchg_byte(SD_DUMMY_BYTE);
+    xchg_byte(SD_DUMMY_BYTE);
+
+    return rs;
+}
+
 Res_Status SD_Init(void)
 {
     Res_Status res;
     FCLK_SLOW();
 
     /*Pull up MOSI and CS voltage high in at least 74 clock*/
-    HAL_Delay(1); // Delay to give sd card enough time to power up
+    // HAL_Delay(10); // Delay to give sd card enough time to power up
     CS_HIGH();
     for (int i = 0; i < 10; i++)
     {
@@ -307,6 +338,6 @@ Res_Status SD_Init(void)
     }
     else
     {
-        return SD_NO_ERROR;
+        return res;
     }
 }
