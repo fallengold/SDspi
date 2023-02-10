@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
   27:Core/Src/sd.c **** #define CS_HIGH()                                                    \
   28:Core/Src/sd.c ****     {                                                                \
   29:Core/Src/sd.c ****         HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET); \
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 2
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 2
 
 
   30:Core/Src/sd.c ****     }
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
   58 0020 07B0     		add	sp, sp, #28
   59              	.LCFI2:
   60              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 3
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 3
 
 
   61              		@ sp needed
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
  110              		.loc 1 62 20 discriminator 3 view .LVU15
  111 0010 3055     		strb	r0, [r6, r4]
   60:Core/Src/sd.c ****     for (int i = 0; i < len; i++)
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 4
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 4
 
 
  112              		.loc 1 60 30 is_stmt 1 discriminator 3 view .LVU16
@@ -227,8 +227,8 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
  148              		.cfi_offset 5, -12
  149              		.cfi_offset 6, -8
  150              		.cfi_offset 14, -4
- 151 0002 0646     		mov	r6, r0
- 152 0004 0D46     		mov	r5, r1
+ 151 0002 0546     		mov	r5, r0
+ 152 0004 0E46     		mov	r6, r1
   69:Core/Src/sd.c ****     for (int i = 0; i < len; i++)
  153              		.loc 1 69 5 is_stmt 1 view .LVU24
  154              	.LBB3:
@@ -237,209 +237,214 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
  157              		.loc 1 69 14 is_stmt 0 view .LVU26
  158 0006 0024     		movs	r4, #0
  159              		.loc 1 69 5 view .LVU27
- 160 0008 03E0     		b	.L10
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 5
+ 160 0008 04E0     		b	.L10
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 5
 
 
  161              	.LVL10:
  162              	.L11:
   70:Core/Src/sd.c ****     {
-  71:Core/Src/sd.c ****         xchg_byte(xmitData[i]);
+  71:Core/Src/sd.c ****         xchg_byte(*(++xmitData));
  163              		.loc 1 71 9 is_stmt 1 discriminator 3 view .LVU28
- 164 000a 305D     		ldrb	r0, [r6, r4]	@ zero_extendqisi2
- 165 000c FFF7FEFF 		bl	xchg_byte
+ 164              		.loc 1 71 9 is_stmt 0 discriminator 3 view .LVU29
+ 165 000a 15F8010F 		ldrb	r0, [r5, #1]!	@ zero_extendqisi2
  166              	.LVL11:
+ 167              		.loc 1 71 9 discriminator 3 view .LVU30
+ 168 000e FFF7FEFF 		bl	xchg_byte
+ 169              	.LVL12:
   69:Core/Src/sd.c ****     for (int i = 0; i < len; i++)
- 167              		.loc 1 69 30 discriminator 3 view .LVU29
+ 170              		.loc 1 69 30 is_stmt 1 discriminator 3 view .LVU31
   69:Core/Src/sd.c ****     for (int i = 0; i < len; i++)
- 168              		.loc 1 69 31 is_stmt 0 discriminator 3 view .LVU30
- 169 0010 0134     		adds	r4, r4, #1
- 170              	.LVL12:
- 171              	.L10:
+ 171              		.loc 1 69 31 is_stmt 0 discriminator 3 view .LVU32
+ 172 0012 0134     		adds	r4, r4, #1
+ 173              	.LVL13:
+ 174              	.L10:
   69:Core/Src/sd.c ****     for (int i = 0; i < len; i++)
- 172              		.loc 1 69 21 is_stmt 1 discriminator 1 view .LVU31
+ 175              		.loc 1 69 21 is_stmt 1 discriminator 1 view .LVU33
   69:Core/Src/sd.c ****     for (int i = 0; i < len; i++)
- 173              		.loc 1 69 5 is_stmt 0 discriminator 1 view .LVU32
- 174 0012 A542     		cmp	r5, r4
- 175 0014 F9DC     		bgt	.L11
- 176              	.LBE3:
+ 176              		.loc 1 69 5 is_stmt 0 discriminator 1 view .LVU34
+ 177 0014 A642     		cmp	r6, r4
+ 178 0016 F8DC     		bgt	.L11
+  69:Core/Src/sd.c ****     for (int i = 0; i < len; i++)
+ 179              		.loc 1 69 5 discriminator 1 view .LVU35
+ 180              	.LBE3:
   72:Core/Src/sd.c ****     }
   73:Core/Src/sd.c **** }
- 177              		.loc 1 73 1 view .LVU33
- 178 0016 70BD     		pop	{r4, r5, r6, pc}
- 179              		.loc 1 73 1 view .LVU34
- 180              		.cfi_endproc
- 181              	.LFE134:
- 183              		.section	.text.sd_wait_ready,"ax",%progbits
- 184              		.align	1
- 185              		.global	sd_wait_ready
- 186              		.syntax unified
- 187              		.thumb
- 188              		.thumb_func
- 189              		.fpu fpv4-sp-d16
- 191              	sd_wait_ready:
- 192              	.LFB135:
+ 181              		.loc 1 73 1 view .LVU36
+ 182 0018 70BD     		pop	{r4, r5, r6, pc}
+ 183              		.loc 1 73 1 view .LVU37
+ 184              		.cfi_endproc
+ 185              	.LFE134:
+ 187              		.section	.text.sd_wait_ready,"ax",%progbits
+ 188              		.align	1
+ 189              		.global	sd_wait_ready
+ 190              		.syntax unified
+ 191              		.thumb
+ 192              		.thumb_func
+ 193              		.fpu fpv4-sp-d16
+ 195              	sd_wait_ready:
+ 196              	.LFB135:
   74:Core/Src/sd.c **** 
   75:Core/Src/sd.c **** /*Wait until the sd card is ready or timeout*/
   76:Core/Src/sd.c **** UINT8 sd_wait_ready(void)
   77:Core/Src/sd.c **** {
- 193              		.loc 1 77 1 is_stmt 1 view -0
- 194              		.cfi_startproc
- 195              		@ args = 0, pretend = 0, frame = 0
- 196              		@ frame_needed = 0, uses_anonymous_args = 0
- 197 0000 10B5     		push	{r4, lr}
- 198              	.LCFI5:
- 199              		.cfi_def_cfa_offset 8
- 200              		.cfi_offset 4, -8
- 201              		.cfi_offset 14, -4
+ 197              		.loc 1 77 1 is_stmt 1 view -0
+ 198              		.cfi_startproc
+ 199              		@ args = 0, pretend = 0, frame = 0
+ 200              		@ frame_needed = 0, uses_anonymous_args = 0
+ 201 0000 10B5     		push	{r4, lr}
+ 202              	.LCFI5:
+ 203              		.cfi_def_cfa_offset 8
+ 204              		.cfi_offset 4, -8
+ 205              		.cfi_offset 14, -4
   78:Core/Src/sd.c ****     UINT16 timeout = 0xFFF;
- 202              		.loc 1 78 5 view .LVU36
- 203              	.LVL13:
- 204              		.loc 1 78 12 is_stmt 0 view .LVU37
- 205 0002 40F6FF74 		movw	r4, #4095
- 206              	.LVL14:
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 6
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 6
 
 
- 207              	.L15:
+ 206              		.loc 1 78 5 view .LVU39
+ 207              	.LVL14:
+ 208              		.loc 1 78 12 is_stmt 0 view .LVU40
+ 209 0002 40F6FF74 		movw	r4, #4095
+ 210              	.LVL15:
+ 211              	.L15:
   79:Core/Src/sd.c ****     UINT8 data;
- 208              		.loc 1 79 5 is_stmt 1 discriminator 2 view .LVU38
+ 212              		.loc 1 79 5 is_stmt 1 discriminator 2 view .LVU41
   80:Core/Src/sd.c ****     do
- 209              		.loc 1 80 5 discriminator 2 view .LVU39
+ 213              		.loc 1 80 5 discriminator 2 view .LVU42
   81:Core/Src/sd.c ****     {
   82:Core/Src/sd.c ****         data = xchg_byte(SD_DUMMY_BYTE);
- 210              		.loc 1 82 9 discriminator 2 view .LVU40
- 211              		.loc 1 82 16 is_stmt 0 discriminator 2 view .LVU41
- 212 0006 FF20     		movs	r0, #255
- 213 0008 FFF7FEFF 		bl	xchg_byte
- 214              	.LVL15:
+ 214              		.loc 1 82 9 discriminator 2 view .LVU43
+ 215              		.loc 1 82 16 is_stmt 0 discriminator 2 view .LVU44
+ 216 0006 FF20     		movs	r0, #255
+ 217 0008 FFF7FEFF 		bl	xchg_byte
+ 218              	.LVL16:
   83:Core/Src/sd.c ****     } while (data != 0xFF && --timeout);
- 215              		.loc 1 83 13 is_stmt 1 discriminator 2 view .LVU42
- 216              		.loc 1 83 5 is_stmt 0 discriminator 2 view .LVU43
- 217 000c FF28     		cmp	r0, #255
- 218 000e 03D0     		beq	.L14
- 219              		.loc 1 83 27 discriminator 1 view .LVU44
- 220 0010 013C     		subs	r4, r4, #1
- 221              	.LVL16:
- 222              		.loc 1 83 27 discriminator 1 view .LVU45
- 223 0012 A4B2     		uxth	r4, r4
- 224              	.LVL17:
- 225              		.loc 1 83 27 discriminator 1 view .LVU46
- 226 0014 002C     		cmp	r4, #0
- 227 0016 F6D1     		bne	.L15
- 228              	.L14:
+ 219              		.loc 1 83 13 is_stmt 1 discriminator 2 view .LVU45
+ 220              		.loc 1 83 5 is_stmt 0 discriminator 2 view .LVU46
+ 221 000c FF28     		cmp	r0, #255
+ 222 000e 03D0     		beq	.L14
+ 223              		.loc 1 83 27 discriminator 1 view .LVU47
+ 224 0010 013C     		subs	r4, r4, #1
+ 225              	.LVL17:
+ 226              		.loc 1 83 27 discriminator 1 view .LVU48
+ 227 0012 A4B2     		uxth	r4, r4
+ 228              	.LVL18:
+ 229              		.loc 1 83 27 discriminator 1 view .LVU49
+ 230 0014 002C     		cmp	r4, #0
+ 231 0016 F6D1     		bne	.L15
+ 232              	.L14:
   84:Core/Src/sd.c ****     return (data == 0xFF) ? 1 : 0;
- 229              		.loc 1 84 5 is_stmt 1 view .LVU47
+ 233              		.loc 1 84 5 is_stmt 1 view .LVU50
   85:Core/Src/sd.c **** }
- 230              		.loc 1 85 1 is_stmt 0 view .LVU48
- 231 0018 FF28     		cmp	r0, #255
- 232 001a 14BF     		ite	ne
- 233 001c 0020     		movne	r0, #0
- 234              	.LVL18:
- 235              		.loc 1 85 1 view .LVU49
- 236 001e 0120     		moveq	r0, #1
- 237 0020 10BD     		pop	{r4, pc}
- 238              		.loc 1 85 1 view .LVU50
- 239              		.cfi_endproc
- 240              	.LFE135:
- 242              		.section	.text.sd_deselect,"ax",%progbits
- 243              		.align	1
- 244              		.global	sd_deselect
- 245              		.syntax unified
- 246              		.thumb
- 247              		.thumb_func
- 248              		.fpu fpv4-sp-d16
- 250              	sd_deselect:
- 251              	.LFB136:
+ 234              		.loc 1 85 1 is_stmt 0 view .LVU51
+ 235 0018 FF28     		cmp	r0, #255
+ 236 001a 14BF     		ite	ne
+ 237 001c 0020     		movne	r0, #0
+ 238              	.LVL19:
+ 239              		.loc 1 85 1 view .LVU52
+ 240 001e 0120     		moveq	r0, #1
+ 241 0020 10BD     		pop	{r4, pc}
+ 242              		.loc 1 85 1 view .LVU53
+ 243              		.cfi_endproc
+ 244              	.LFE135:
+ 246              		.section	.text.sd_deselect,"ax",%progbits
+ 247              		.align	1
+ 248              		.global	sd_deselect
+ 249              		.syntax unified
+ 250              		.thumb
+ 251              		.thumb_func
+ 252              		.fpu fpv4-sp-d16
+ 254              	sd_deselect:
+ 255              	.LFB136:
   86:Core/Src/sd.c **** 
   87:Core/Src/sd.c **** /*inactivate spi communication*/
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 7
+
+
   88:Core/Src/sd.c **** void sd_deselect(void)
   89:Core/Src/sd.c **** {
- 252              		.loc 1 89 1 is_stmt 1 view -0
- 253              		.cfi_startproc
- 254              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 7
-
-
- 255              		@ frame_needed = 0, uses_anonymous_args = 0
- 256 0000 08B5     		push	{r3, lr}
- 257              	.LCFI6:
- 258              		.cfi_def_cfa_offset 8
- 259              		.cfi_offset 3, -8
- 260              		.cfi_offset 14, -4
+ 256              		.loc 1 89 1 is_stmt 1 view -0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260 0000 08B5     		push	{r3, lr}
+ 261              	.LCFI6:
+ 262              		.cfi_def_cfa_offset 8
+ 263              		.cfi_offset 3, -8
+ 264              		.cfi_offset 14, -4
   90:Core/Src/sd.c ****     CS_HIGH();
- 261              		.loc 1 90 5 view .LVU52
- 262 0002 0122     		movs	r2, #1
- 263 0004 4FF48051 		mov	r1, #4096
- 264 0008 0348     		ldr	r0, .L19
- 265 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 266              	.LVL19:
- 267              		.loc 1 90 14 view .LVU53
+ 265              		.loc 1 90 5 view .LVU55
+ 266 0002 0122     		movs	r2, #1
+ 267 0004 4FF48051 		mov	r1, #4096
+ 268 0008 0348     		ldr	r0, .L19
+ 269 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 270              	.LVL20:
+ 271              		.loc 1 90 14 view .LVU56
   91:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
- 268              		.loc 1 91 5 view .LVU54
- 269 000e FF20     		movs	r0, #255
- 270 0010 FFF7FEFF 		bl	xchg_byte
- 271              	.LVL20:
+ 272              		.loc 1 91 5 view .LVU57
+ 273 000e FF20     		movs	r0, #255
+ 274 0010 FFF7FEFF 		bl	xchg_byte
+ 275              	.LVL21:
   92:Core/Src/sd.c **** }
- 272              		.loc 1 92 1 is_stmt 0 view .LVU55
- 273 0014 08BD     		pop	{r3, pc}
- 274              	.L20:
- 275 0016 00BF     		.align	2
- 276              	.L19:
- 277 0018 00040048 		.word	1207960576
- 278              		.cfi_endproc
- 279              	.LFE136:
- 281              		.section	.text.sd_select,"ax",%progbits
- 282              		.align	1
- 283              		.global	sd_select
- 284              		.syntax unified
- 285              		.thumb
- 286              		.thumb_func
- 287              		.fpu fpv4-sp-d16
- 289              	sd_select:
- 290              	.LFB137:
+ 276              		.loc 1 92 1 is_stmt 0 view .LVU58
+ 277 0014 08BD     		pop	{r3, pc}
+ 278              	.L20:
+ 279 0016 00BF     		.align	2
+ 280              	.L19:
+ 281 0018 00040048 		.word	1207960576
+ 282              		.cfi_endproc
+ 283              	.LFE136:
+ 285              		.section	.text.sd_select,"ax",%progbits
+ 286              		.align	1
+ 287              		.global	sd_select
+ 288              		.syntax unified
+ 289              		.thumb
+ 290              		.thumb_func
+ 291              		.fpu fpv4-sp-d16
+ 293              	sd_select:
+ 294              	.LFB137:
   93:Core/Src/sd.c **** 
   94:Core/Src/sd.c **** /*activate spi communication*/
   95:Core/Src/sd.c **** UINT8 sd_select(void)
   96:Core/Src/sd.c **** {
- 291              		.loc 1 96 1 is_stmt 1 view -0
- 292              		.cfi_startproc
- 293              		@ args = 0, pretend = 0, frame = 0
- 294              		@ frame_needed = 0, uses_anonymous_args = 0
- 295 0000 10B5     		push	{r4, lr}
- 296              	.LCFI7:
- 297              		.cfi_def_cfa_offset 8
- 298              		.cfi_offset 4, -8
- 299              		.cfi_offset 14, -4
+ 295              		.loc 1 96 1 is_stmt 1 view -0
+ 296              		.cfi_startproc
+ 297              		@ args = 0, pretend = 0, frame = 0
+ 298              		@ frame_needed = 0, uses_anonymous_args = 0
+ 299 0000 10B5     		push	{r4, lr}
+ 300              	.LCFI7:
+ 301              		.cfi_def_cfa_offset 8
+ 302              		.cfi_offset 4, -8
+ 303              		.cfi_offset 14, -4
   97:Core/Src/sd.c ****     /*pull down the CS to select the sd card*/
   98:Core/Src/sd.c ****     CS_LOW();
- 300              		.loc 1 98 5 view .LVU57
- 301 0002 0022     		movs	r2, #0
- 302 0004 4FF48051 		mov	r1, #4096
- 303 0008 0748     		ldr	r0, .L26
- 304 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 8
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 8
 
 
- 305              	.LVL21:
- 306              		.loc 1 98 13 view .LVU58
+ 304              		.loc 1 98 5 view .LVU60
+ 305 0002 0022     		movs	r2, #0
+ 306 0004 4FF48051 		mov	r1, #4096
+ 307 0008 0748     		ldr	r0, .L26
+ 308 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 309              	.LVL22:
+ 310              		.loc 1 98 13 view .LVU61
   99:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
- 307              		.loc 1 99 5 view .LVU59
- 308 000e FF20     		movs	r0, #255
- 309 0010 FFF7FEFF 		bl	xchg_byte
- 310              	.LVL22:
- 100:Core/Src/sd.c ****     if (sd_wait_ready())
- 311              		.loc 1 100 5 view .LVU60
- 312              		.loc 1 100 9 is_stmt 0 view .LVU61
- 313 0014 FFF7FEFF 		bl	sd_wait_ready
+ 311              		.loc 1 99 5 view .LVU62
+ 312 000e FF20     		movs	r0, #255
+ 313 0010 FFF7FEFF 		bl	xchg_byte
  314              	.LVL23:
- 315              		.loc 1 100 8 view .LVU62
- 316 0018 10B1     		cbz	r0, .L25
+ 100:Core/Src/sd.c ****     if (sd_wait_ready())
+ 315              		.loc 1 100 5 view .LVU63
+ 316              		.loc 1 100 9 is_stmt 0 view .LVU64
+ 317 0014 FFF7FEFF 		bl	sd_wait_ready
+ 318              	.LVL24:
+ 319              		.loc 1 100 8 view .LVU65
+ 320 0018 10B1     		cbz	r0, .L25
  101:Core/Src/sd.c ****     {
  102:Core/Src/sd.c ****         return 1;
- 317              		.loc 1 102 16 view .LVU63
- 318 001a 0124     		movs	r4, #1
- 319              	.L22:
+ 321              		.loc 1 102 16 view .LVU66
+ 322 001a 0124     		movs	r4, #1
+ 323              	.L22:
  103:Core/Src/sd.c ****     }
  104:Core/Src/sd.c ****     else
  105:Core/Src/sd.c ****     {
@@ -449,68 +454,68 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
  109:Core/Src/sd.c ****         return 0;
  110:Core/Src/sd.c ****     }
  111:Core/Src/sd.c **** }
- 320              		.loc 1 111 1 view .LVU64
- 321 001c 2046     		mov	r0, r4
- 322 001e 10BD     		pop	{r4, pc}
- 323              	.L25:
- 324 0020 0446     		mov	r4, r0
+ 324              		.loc 1 111 1 view .LVU67
+ 325 001c 2046     		mov	r0, r4
+ 326 001e 10BD     		pop	{r4, pc}
+ 327              	.L25:
+ 328 0020 0446     		mov	r4, r0
  108:Core/Src/sd.c ****         return 0;
- 325              		.loc 1 108 9 is_stmt 1 view .LVU65
- 326 0022 FFF7FEFF 		bl	sd_deselect
- 327              	.LVL24:
+ 329              		.loc 1 108 9 is_stmt 1 view .LVU68
+ 330 0022 FFF7FEFF 		bl	sd_deselect
+ 331              	.LVL25:
  109:Core/Src/sd.c ****     }
- 328              		.loc 1 109 9 view .LVU66
+ 332              		.loc 1 109 9 view .LVU69
  109:Core/Src/sd.c ****     }
- 329              		.loc 1 109 16 is_stmt 0 view .LVU67
- 330 0026 F9E7     		b	.L22
- 331              	.L27:
- 332              		.align	2
- 333              	.L26:
- 334 0028 00040048 		.word	1207960576
- 335              		.cfi_endproc
- 336              	.LFE137:
- 338              		.section	.text.send_cmd,"ax",%progbits
- 339              		.align	1
- 340              		.syntax unified
- 341              		.thumb
- 342              		.thumb_func
- 343              		.fpu fpv4-sp-d16
- 345              	send_cmd:
- 346              	.LVL25:
- 347              	.LFB138:
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 9
+ 333              		.loc 1 109 16 is_stmt 0 view .LVU70
+ 334 0026 F9E7     		b	.L22
+ 335              	.L27:
+ 336              		.align	2
+ 337              	.L26:
+ 338 0028 00040048 		.word	1207960576
+ 339              		.cfi_endproc
+ 340              	.LFE137:
+ 342              		.section	.text.send_cmd,"ax",%progbits
+ 343              		.align	1
+ 344              		.syntax unified
+ 345              		.thumb
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 9
 
 
+ 346              		.thumb_func
+ 347              		.fpu fpv4-sp-d16
+ 349              	send_cmd:
+ 350              	.LVL26:
+ 351              	.LFB138:
  112:Core/Src/sd.c **** 
  113:Core/Src/sd.c **** /*return command response token*/
  114:Core/Src/sd.c **** /*CS toggle to select or deslect is already included*/
  115:Core/Src/sd.c **** static Res_Status send_cmd(UINT8 cmd, UINT32 arg)
  116:Core/Src/sd.c **** {
- 348              		.loc 1 116 1 is_stmt 1 view -0
- 349              		.cfi_startproc
- 350              		@ args = 0, pretend = 0, frame = 0
- 351              		@ frame_needed = 0, uses_anonymous_args = 0
- 352              		.loc 1 116 1 is_stmt 0 view .LVU69
- 353 0000 38B5     		push	{r3, r4, r5, lr}
- 354              	.LCFI8:
- 355              		.cfi_def_cfa_offset 16
- 356              		.cfi_offset 3, -16
- 357              		.cfi_offset 4, -12
- 358              		.cfi_offset 5, -8
- 359              		.cfi_offset 14, -4
- 360 0002 0446     		mov	r4, r0
- 361 0004 0D46     		mov	r5, r1
+ 352              		.loc 1 116 1 is_stmt 1 view -0
+ 353              		.cfi_startproc
+ 354              		@ args = 0, pretend = 0, frame = 0
+ 355              		@ frame_needed = 0, uses_anonymous_args = 0
+ 356              		.loc 1 116 1 is_stmt 0 view .LVU72
+ 357 0000 38B5     		push	{r3, r4, r5, lr}
+ 358              	.LCFI8:
+ 359              		.cfi_def_cfa_offset 16
+ 360              		.cfi_offset 3, -16
+ 361              		.cfi_offset 4, -12
+ 362              		.cfi_offset 5, -8
+ 363              		.cfi_offset 14, -4
+ 364 0002 0446     		mov	r4, r0
+ 365 0004 0D46     		mov	r5, r1
  117:Core/Src/sd.c ****     UINT8 rs;
- 362              		.loc 1 117 5 is_stmt 1 view .LVU70
+ 366              		.loc 1 117 5 is_stmt 1 view .LVU73
  118:Core/Src/sd.c ****     UINT8 crc;
- 363              		.loc 1 118 5 view .LVU71
+ 367              		.loc 1 118 5 view .LVU74
  119:Core/Src/sd.c ****     if (cmd & 0x80)
- 364              		.loc 1 119 5 view .LVU72
- 365              		.loc 1 119 8 is_stmt 0 view .LVU73
- 366 0006 10F0800F 		tst	r0, #128
- 367 000a 29D1     		bne	.L38
- 368              	.LVL26:
- 369              	.L29:
+ 368              		.loc 1 119 5 view .LVU75
+ 369              		.loc 1 119 8 is_stmt 0 view .LVU76
+ 370 0006 10F0800F 		tst	r0, #128
+ 371 000a 29D1     		bne	.L38
+ 372              	.LVL27:
+ 373              	.L29:
  120:Core/Src/sd.c ****     {
  121:Core/Src/sd.c ****         /*ACMD commands*/
  122:Core/Src/sd.c ****         cmd &= 0x7F;
@@ -524,67 +529,67 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
  130:Core/Src/sd.c **** 
  131:Core/Src/sd.c ****     /*reset communication status*/
  132:Core/Src/sd.c ****     sd_deselect();
- 370              		.loc 1 132 5 is_stmt 1 view .LVU74
- 371 000c FFF7FEFF 		bl	sd_deselect
- 372              	.LVL27:
- 133:Core/Src/sd.c ****     if (!sd_select())
- 373              		.loc 1 133 5 view .LVU75
- 374              		.loc 1 133 10 is_stmt 0 view .LVU76
- 375 0010 FFF7FEFF 		bl	sd_select
+ 374              		.loc 1 132 5 is_stmt 1 view .LVU77
+ 375 000c FFF7FEFF 		bl	sd_deselect
  376              	.LVL28:
- 377              		.loc 1 133 8 view .LVU77
- 378 0014 98B3     		cbz	r0, .L34
+ 133:Core/Src/sd.c ****     if (!sd_select())
+ 377              		.loc 1 133 5 view .LVU78
+ 378              		.loc 1 133 10 is_stmt 0 view .LVU79
+ 379 0010 FFF7FEFF 		bl	sd_select
+ 380              	.LVL29:
+ 381              		.loc 1 133 8 view .LVU80
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 10
+
+
+ 382 0014 98B3     		cbz	r0, .L34
  134:Core/Src/sd.c ****     {
  135:Core/Src/sd.c ****         /*Select fail*/
  136:Core/Src/sd.c ****         return TIMEOUT;
  137:Core/Src/sd.c ****     }
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 10
-
-
  138:Core/Src/sd.c **** 
  139:Core/Src/sd.c ****     /*Send command packet*/
  140:Core/Src/sd.c ****     xchg_byte(0x40 | cmd);
- 379              		.loc 1 140 5 is_stmt 1 view .LVU78
- 380 0016 44F04000 		orr	r0, r4, #64
- 381 001a FFF7FEFF 		bl	xchg_byte
- 382              	.LVL29:
- 141:Core/Src/sd.c ****     xchg_byte((UINT8)(arg >> 24));
- 383              		.loc 1 141 5 view .LVU79
- 384 001e 280E     		lsrs	r0, r5, #24
- 385 0020 FFF7FEFF 		bl	xchg_byte
+ 383              		.loc 1 140 5 is_stmt 1 view .LVU81
+ 384 0016 44F04000 		orr	r0, r4, #64
+ 385 001a FFF7FEFF 		bl	xchg_byte
  386              	.LVL30:
- 142:Core/Src/sd.c ****     xchg_byte((UINT8)(arg >> 16));
- 387              		.loc 1 142 5 view .LVU80
- 388 0024 C5F30740 		ubfx	r0, r5, #16, #8
- 389 0028 FFF7FEFF 		bl	xchg_byte
+ 141:Core/Src/sd.c ****     xchg_byte((UINT8)(arg >> 24));
+ 387              		.loc 1 141 5 view .LVU82
+ 388 001e 280E     		lsrs	r0, r5, #24
+ 389 0020 FFF7FEFF 		bl	xchg_byte
  390              	.LVL31:
- 143:Core/Src/sd.c ****     xchg_byte((UINT8)(arg >> 8));
- 391              		.loc 1 143 5 view .LVU81
- 392 002c C5F30720 		ubfx	r0, r5, #8, #8
- 393 0030 FFF7FEFF 		bl	xchg_byte
+ 142:Core/Src/sd.c ****     xchg_byte((UINT8)(arg >> 16));
+ 391              		.loc 1 142 5 view .LVU83
+ 392 0024 C5F30740 		ubfx	r0, r5, #16, #8
+ 393 0028 FFF7FEFF 		bl	xchg_byte
  394              	.LVL32:
- 144:Core/Src/sd.c ****     xchg_byte((UINT8)arg);
- 395              		.loc 1 144 5 view .LVU82
- 396 0034 E8B2     		uxtb	r0, r5
- 397 0036 FFF7FEFF 		bl	xchg_byte
+ 143:Core/Src/sd.c ****     xchg_byte((UINT8)(arg >> 8));
+ 395              		.loc 1 143 5 view .LVU84
+ 396 002c C5F30720 		ubfx	r0, r5, #8, #8
+ 397 0030 FFF7FEFF 		bl	xchg_byte
  398              	.LVL33:
+ 144:Core/Src/sd.c ****     xchg_byte((UINT8)arg);
+ 399              		.loc 1 144 5 view .LVU85
+ 400 0034 E8B2     		uxtb	r0, r5
+ 401 0036 FFF7FEFF 		bl	xchg_byte
+ 402              	.LVL34:
  145:Core/Src/sd.c **** 
  146:Core/Src/sd.c ****     /*crc + stop byte*/
  147:Core/Src/sd.c ****     switch (cmd)
- 399              		.loc 1 147 5 view .LVU83
- 400 003a E4B1     		cbz	r4, .L35
- 401 003c 082C     		cmp	r4, #8
- 402 003e 1CD1     		bne	.L36
+ 403              		.loc 1 147 5 view .LVU86
+ 404 003a E4B1     		cbz	r4, .L35
+ 405 003c 082C     		cmp	r4, #8
+ 406 003e 1CD1     		bne	.L36
  148:Core/Src/sd.c ****     {
  149:Core/Src/sd.c ****     case CMD0:
  150:Core/Src/sd.c ****         crc = 0X95;
  151:Core/Src/sd.c ****         break;
  152:Core/Src/sd.c ****     case CMD8:
  153:Core/Src/sd.c ****         crc = 0x87;
- 403              		.loc 1 153 13 is_stmt 0 view .LVU84
- 404 0040 8720     		movs	r0, #135
- 405              	.L31:
- 406              	.LVL34:
+ 407              		.loc 1 153 13 is_stmt 0 view .LVU87
+ 408 0040 8720     		movs	r0, #135
+ 409              	.L31:
+ 410              	.LVL35:
  154:Core/Src/sd.c ****         break;
  155:Core/Src/sd.c ****     /*dummy crc + stop byte*/
  156:Core/Src/sd.c ****     default:
@@ -592,228 +597,228 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
  158:Core/Src/sd.c ****     }
  159:Core/Src/sd.c ****     /*send crc + stop byte*/
  160:Core/Src/sd.c ****     xchg_byte(crc);
- 407              		.loc 1 160 5 is_stmt 1 view .LVU85
- 408 0042 FFF7FEFF 		bl	xchg_byte
- 409              	.LVL35:
+ 411              		.loc 1 160 5 is_stmt 1 view .LVU88
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 11
+
+
+ 412 0042 FFF7FEFF 		bl	xchg_byte
+ 413              	.LVL36:
  161:Core/Src/sd.c **** 
  162:Core/Src/sd.c ****     /*recieve  R1 response*/
  163:Core/Src/sd.c ****     UINT8 cnt;
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 11
-
-
- 410              		.loc 1 163 5 view .LVU86
+ 414              		.loc 1 163 5 view .LVU89
  164:Core/Src/sd.c ****     cnt = 10;
- 411              		.loc 1 164 5 view .LVU87
- 412              		.loc 1 164 9 is_stmt 0 view .LVU88
- 413 0046 0A24     		movs	r4, #10
- 414              	.LVL36:
- 415              	.L33:
+ 415              		.loc 1 164 5 view .LVU90
+ 416              		.loc 1 164 9 is_stmt 0 view .LVU91
+ 417 0046 0A24     		movs	r4, #10
+ 418              	.LVL37:
+ 419              	.L33:
  165:Core/Src/sd.c ****     do
- 416              		.loc 1 165 5 is_stmt 1 discriminator 2 view .LVU89
+ 420              		.loc 1 165 5 is_stmt 1 discriminator 2 view .LVU92
  166:Core/Src/sd.c ****     {
  167:Core/Src/sd.c ****         /*wait for response by sending dummy byte*/
  168:Core/Src/sd.c ****         rs = xchg_byte(SD_DUMMY_BYTE);
- 417              		.loc 1 168 9 discriminator 2 view .LVU90
- 418              		.loc 1 168 14 is_stmt 0 discriminator 2 view .LVU91
- 419 0048 FF20     		movs	r0, #255
- 420 004a FFF7FEFF 		bl	xchg_byte
- 421              	.LVL37:
+ 421              		.loc 1 168 9 discriminator 2 view .LVU93
+ 422              		.loc 1 168 14 is_stmt 0 discriminator 2 view .LVU94
+ 423 0048 FF20     		movs	r0, #255
+ 424 004a FFF7FEFF 		bl	xchg_byte
+ 425              	.LVL38:
  169:Core/Src/sd.c ****         /*The left bit(MSB) of R1 response is always 0*/
  170:Core/Src/sd.c ****     } while ((rs & 0x80) && --cnt);
- 422              		.loc 1 170 13 is_stmt 1 discriminator 2 view .LVU92
- 423              		.loc 1 170 5 is_stmt 0 discriminator 2 view .LVU93
- 424 004e 10F0800F 		tst	r0, #128
- 425 0052 03D0     		beq	.L32
- 426              		.loc 1 170 26 discriminator 1 view .LVU94
- 427 0054 631E     		subs	r3, r4, #1
- 428              	.LVL38:
- 429              		.loc 1 170 26 discriminator 1 view .LVU95
- 430 0056 13F0FF04 		ands	r4, r3, #255
- 431 005a F5D1     		bne	.L33
+ 426              		.loc 1 170 13 is_stmt 1 discriminator 2 view .LVU95
+ 427              		.loc 1 170 5 is_stmt 0 discriminator 2 view .LVU96
+ 428 004e 10F0800F 		tst	r0, #128
+ 429 0052 03D0     		beq	.L32
+ 430              		.loc 1 170 26 discriminator 1 view .LVU97
+ 431 0054 631E     		subs	r3, r4, #1
  432              	.LVL39:
- 433              	.L32:
+ 433              		.loc 1 170 26 discriminator 1 view .LVU98
+ 434 0056 13F0FF04 		ands	r4, r3, #255
+ 435 005a F5D1     		bne	.L33
+ 436              	.LVL40:
+ 437              	.L32:
  171:Core/Src/sd.c **** 
  172:Core/Src/sd.c ****     return (Res_Status)rs;
- 434              		.loc 1 172 5 is_stmt 1 view .LVU96
- 435              		.loc 1 172 12 is_stmt 0 view .LVU97
- 436 005c 80B2     		uxth	r0, r0
- 437              	.LVL40:
- 438              	.L30:
- 173:Core/Src/sd.c **** }
- 439              		.loc 1 173 1 view .LVU98
- 440 005e 38BD     		pop	{r3, r4, r5, pc}
+ 438              		.loc 1 172 5 is_stmt 1 view .LVU99
+ 439              		.loc 1 172 12 is_stmt 0 view .LVU100
+ 440 005c 80B2     		uxth	r0, r0
  441              	.LVL41:
- 442              	.L38:
+ 442              	.L30:
+ 173:Core/Src/sd.c **** }
+ 443              		.loc 1 173 1 view .LVU101
+ 444 005e 38BD     		pop	{r3, r4, r5, pc}
+ 445              	.LVL42:
+ 446              	.L38:
  122:Core/Src/sd.c ****         rs = send_cmd(CMD55, 0);
- 443              		.loc 1 122 9 is_stmt 1 view .LVU99
+ 447              		.loc 1 122 9 is_stmt 1 view .LVU102
  122:Core/Src/sd.c ****         rs = send_cmd(CMD55, 0);
- 444              		.loc 1 122 13 is_stmt 0 view .LVU100
- 445 0060 00F07F04 		and	r4, r0, #127
- 446              	.LVL42:
- 123:Core/Src/sd.c ****         if (rs > 1)
- 447              		.loc 1 123 9 is_stmt 1 view .LVU101
- 123:Core/Src/sd.c ****         if (rs > 1)
- 448              		.loc 1 123 14 is_stmt 0 view .LVU102
- 449 0064 0021     		movs	r1, #0
+ 448              		.loc 1 122 13 is_stmt 0 view .LVU103
+ 449 0060 00F07F04 		and	r4, r0, #127
  450              	.LVL43:
  123:Core/Src/sd.c ****         if (rs > 1)
- 451              		.loc 1 123 14 view .LVU103
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 12
+ 451              		.loc 1 123 9 is_stmt 1 view .LVU104
+ 123:Core/Src/sd.c ****         if (rs > 1)
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 12
 
 
- 452 0066 3720     		movs	r0, #55
- 453 0068 FFF7CAFF 		bl	send_cmd
+ 452              		.loc 1 123 14 is_stmt 0 view .LVU105
+ 453 0064 0021     		movs	r1, #0
  454              	.LVL44:
  123:Core/Src/sd.c ****         if (rs > 1)
- 455              		.loc 1 123 12 view .LVU104
- 456 006c C3B2     		uxtb	r3, r0
- 457              	.LVL45:
+ 455              		.loc 1 123 14 view .LVU106
+ 456 0066 3720     		movs	r0, #55
+ 457 0068 FFF7CAFF 		bl	send_cmd
+ 458              	.LVL45:
+ 123:Core/Src/sd.c ****         if (rs > 1)
+ 459              		.loc 1 123 12 view .LVU107
+ 460 006c C3B2     		uxtb	r3, r0
+ 461              	.LVL46:
  124:Core/Src/sd.c ****         {
- 458              		.loc 1 124 9 is_stmt 1 view .LVU105
+ 462              		.loc 1 124 9 is_stmt 1 view .LVU108
  124:Core/Src/sd.c ****         {
- 459              		.loc 1 124 12 is_stmt 0 view .LVU106
- 460 006e 012B     		cmp	r3, #1
- 461 0070 CCD9     		bls	.L29
+ 463              		.loc 1 124 12 is_stmt 0 view .LVU109
+ 464 006e 012B     		cmp	r3, #1
+ 465 0070 CCD9     		bls	.L29
  127:Core/Src/sd.c ****         }
- 462              		.loc 1 127 13 is_stmt 1 view .LVU107
- 463 0072 1846     		mov	r0, r3
+ 466              		.loc 1 127 13 is_stmt 1 view .LVU110
+ 467 0072 1846     		mov	r0, r3
  127:Core/Src/sd.c ****         }
- 464              		.loc 1 127 20 is_stmt 0 view .LVU108
- 465 0074 F3E7     		b	.L30
- 466              	.LVL46:
- 467              	.L35:
+ 468              		.loc 1 127 20 is_stmt 0 view .LVU111
+ 469 0074 F3E7     		b	.L30
+ 470              	.LVL47:
+ 471              	.L35:
  147:Core/Src/sd.c ****     {
- 468              		.loc 1 147 5 view .LVU109
- 469 0076 9520     		movs	r0, #149
- 470 0078 E3E7     		b	.L31
- 471              	.L36:
+ 472              		.loc 1 147 5 view .LVU112
+ 473 0076 9520     		movs	r0, #149
+ 474 0078 E3E7     		b	.L31
+ 475              	.L36:
  157:Core/Src/sd.c ****     }
- 472              		.loc 1 157 13 view .LVU110
- 473 007a 0120     		movs	r0, #1
- 474 007c E1E7     		b	.L31
- 475              	.L34:
+ 476              		.loc 1 157 13 view .LVU113
+ 477 007a 0120     		movs	r0, #1
+ 478 007c E1E7     		b	.L31
+ 479              	.L34:
  136:Core/Src/sd.c ****     }
- 476              		.loc 1 136 16 view .LVU111
- 477 007e 8020     		movs	r0, #128
- 478 0080 EDE7     		b	.L30
- 479              		.cfi_endproc
- 480              	.LFE138:
- 482              		.section	.text.SD_GoIdleState,"ax",%progbits
- 483              		.align	1
- 484              		.global	SD_GoIdleState
- 485              		.syntax unified
- 486              		.thumb
- 487              		.thumb_func
- 488              		.fpu fpv4-sp-d16
- 490              	SD_GoIdleState:
- 491              	.LFB139:
+ 480              		.loc 1 136 16 view .LVU114
+ 481 007e 4120     		movs	r0, #65
+ 482 0080 EDE7     		b	.L30
+ 483              		.cfi_endproc
+ 484              	.LFE138:
+ 486              		.section	.text.SD_GoIdleState,"ax",%progbits
+ 487              		.align	1
+ 488              		.global	SD_GoIdleState
+ 489              		.syntax unified
+ 490              		.thumb
+ 491              		.thumb_func
+ 492              		.fpu fpv4-sp-d16
+ 494              	SD_GoIdleState:
+ 495              	.LFB139:
  174:Core/Src/sd.c **** 
  175:Core/Src/sd.c **** Res_Status SD_GoIdleState(void)
  176:Core/Src/sd.c **** {
- 492              		.loc 1 176 1 is_stmt 1 view -0
- 493              		.cfi_startproc
- 494              		@ args = 0, pretend = 0, frame = 0
- 495              		@ frame_needed = 0, uses_anonymous_args = 0
- 496 0000 08B5     		push	{r3, lr}
- 497              	.LCFI9:
- 498              		.cfi_def_cfa_offset 8
- 499              		.cfi_offset 3, -8
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 13
+ 496              		.loc 1 176 1 is_stmt 1 view -0
+ 497              		.cfi_startproc
+ 498              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 13
 
 
- 500              		.cfi_offset 14, -4
+ 499              		@ frame_needed = 0, uses_anonymous_args = 0
+ 500 0000 08B5     		push	{r3, lr}
+ 501              	.LCFI9:
+ 502              		.cfi_def_cfa_offset 8
+ 503              		.cfi_offset 3, -8
+ 504              		.cfi_offset 14, -4
  177:Core/Src/sd.c ****     static Res_Status res;
- 501              		.loc 1 177 5 view .LVU113
+ 505              		.loc 1 177 5 view .LVU116
  178:Core/Src/sd.c ****     /*Pull down the CS voltage*/
  179:Core/Src/sd.c ****     res = send_cmd(CMD0, 0);
- 502              		.loc 1 179 5 view .LVU114
- 503              		.loc 1 179 11 is_stmt 0 view .LVU115
- 504 0002 0021     		movs	r1, #0
- 505 0004 0846     		mov	r0, r1
- 506 0006 FFF7FEFF 		bl	send_cmd
- 507              	.LVL47:
- 508              		.loc 1 179 9 view .LVU116
- 509 000a 054B     		ldr	r3, .L43
- 510 000c 1880     		strh	r0, [r3]	@ movhi
+ 506              		.loc 1 179 5 view .LVU117
+ 507              		.loc 1 179 11 is_stmt 0 view .LVU118
+ 508 0002 0021     		movs	r1, #0
+ 509 0004 0846     		mov	r0, r1
+ 510 0006 FFF7FEFF 		bl	send_cmd
+ 511              	.LVL48:
+ 512              		.loc 1 179 9 view .LVU119
+ 513 000a 054B     		ldr	r3, .L43
+ 514 000c 1880     		strh	r0, [r3]	@ movhi
  180:Core/Src/sd.c ****     /*R1 response in idle state*/
  181:Core/Src/sd.c ****     if (res == IDLE_STATE)
- 511              		.loc 1 181 5 is_stmt 1 view .LVU117
- 512              		.loc 1 181 8 is_stmt 0 view .LVU118
- 513 000e 0128     		cmp	r0, #1
- 514 0010 02D0     		beq	.L42
- 515              	.L40:
+ 515              		.loc 1 181 5 is_stmt 1 view .LVU120
+ 516              		.loc 1 181 8 is_stmt 0 view .LVU121
+ 517 000e 0128     		cmp	r0, #1
+ 518 0010 02D0     		beq	.L42
+ 519              	.L40:
  182:Core/Src/sd.c ****     {
  183:Core/Src/sd.c ****         sd_deselect();
  184:Core/Src/sd.c ****     }
  185:Core/Src/sd.c ****     return res;
- 516              		.loc 1 185 5 is_stmt 1 view .LVU119
+ 520              		.loc 1 185 5 is_stmt 1 view .LVU122
  186:Core/Src/sd.c **** }
- 517              		.loc 1 186 1 is_stmt 0 view .LVU120
- 518 0012 034B     		ldr	r3, .L43
- 519 0014 1888     		ldrh	r0, [r3]
- 520 0016 08BD     		pop	{r3, pc}
- 521              	.L42:
+ 521              		.loc 1 186 1 is_stmt 0 view .LVU123
+ 522 0012 034B     		ldr	r3, .L43
+ 523 0014 1888     		ldrh	r0, [r3]
+ 524 0016 08BD     		pop	{r3, pc}
+ 525              	.L42:
  183:Core/Src/sd.c ****     }
- 522              		.loc 1 183 9 is_stmt 1 view .LVU121
- 523 0018 FFF7FEFF 		bl	sd_deselect
- 524              	.LVL48:
- 525 001c F9E7     		b	.L40
- 526              	.L44:
- 527 001e 00BF     		.align	2
- 528              	.L43:
- 529 0020 00000000 		.word	.LANCHOR0
- 530              		.cfi_endproc
- 531              	.LFE139:
- 533              		.section	.text.SD_CheckVersion,"ax",%progbits
- 534              		.align	1
- 535              		.global	SD_CheckVersion
- 536              		.syntax unified
- 537              		.thumb
- 538              		.thumb_func
- 539              		.fpu fpv4-sp-d16
- 541              	SD_CheckVersion:
- 542              	.LFB140:
+ 526              		.loc 1 183 9 is_stmt 1 view .LVU124
+ 527 0018 FFF7FEFF 		bl	sd_deselect
+ 528              	.LVL49:
+ 529 001c F9E7     		b	.L40
+ 530              	.L44:
+ 531 001e 00BF     		.align	2
+ 532              	.L43:
+ 533 0020 00000000 		.word	.LANCHOR0
+ 534              		.cfi_endproc
+ 535              	.LFE139:
+ 537              		.section	.text.SD_CheckVersion,"ax",%progbits
+ 538              		.align	1
+ 539              		.global	SD_CheckVersion
+ 540              		.syntax unified
+ 541              		.thumb
+ 542              		.thumb_func
+ 543              		.fpu fpv4-sp-d16
+ 545              	SD_CheckVersion:
+ 546              	.LFB140:
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 14
+
+
  187:Core/Src/sd.c **** 
  188:Core/Src/sd.c **** // #define VOLTAGE_ACC_27_33   0b00000001
  189:Core/Src/sd.c **** // #define VOLTAGE_ACC_LOW     0b00000010
  190:Core/Src/sd.c **** // #define VOLTAGE_ACC_RES1    0b00000100
  191:Core/Src/sd.c **** // #define VOLTAGE_ACC_RES2    0b00001000
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 14
-
-
  192:Core/Src/sd.c **** 
  193:Core/Src/sd.c **** Res_Status SD_CheckVersion(void)
  194:Core/Src/sd.c **** {
- 543              		.loc 1 194 1 view -0
- 544              		.cfi_startproc
- 545              		@ args = 0, pretend = 0, frame = 8
- 546              		@ frame_needed = 0, uses_anonymous_args = 0
- 547 0000 30B5     		push	{r4, r5, lr}
- 548              	.LCFI10:
- 549              		.cfi_def_cfa_offset 12
- 550              		.cfi_offset 4, -12
- 551              		.cfi_offset 5, -8
- 552              		.cfi_offset 14, -4
- 553 0002 83B0     		sub	sp, sp, #12
- 554              	.LCFI11:
- 555              		.cfi_def_cfa_offset 24
+ 547              		.loc 1 194 1 view -0
+ 548              		.cfi_startproc
+ 549              		@ args = 0, pretend = 0, frame = 8
+ 550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 551 0000 30B5     		push	{r4, r5, lr}
+ 552              	.LCFI10:
+ 553              		.cfi_def_cfa_offset 12
+ 554              		.cfi_offset 4, -12
+ 555              		.cfi_offset 5, -8
+ 556              		.cfi_offset 14, -4
+ 557 0002 83B0     		sub	sp, sp, #12
+ 558              	.LCFI11:
+ 559              		.cfi_def_cfa_offset 24
  195:Core/Src/sd.c ****     Res_Status rs;
- 556              		.loc 1 195 5 view .LVU123
+ 560              		.loc 1 195 5 view .LVU126
  196:Core/Src/sd.c ****     /*If receive idle state, it means version 2.00*/
  197:Core/Src/sd.c ****     /*CMD8 will response first byte(MSB) identical to R1; */
  198:Core/Src/sd.c ****     /*The next 4 bytes implies command version[31:28], reserved bit[27:12], voltage accepted[11:8],
  199:Core/Src/sd.c ****     if ((rs = send_cmd(CMD8, 0x1AA)) == IDLE_STATE)
- 557              		.loc 1 199 5 view .LVU124
- 558              		.loc 1 199 15 is_stmt 0 view .LVU125
- 559 0004 4FF4D571 		mov	r1, #426
- 560 0008 0820     		movs	r0, #8
- 561 000a FFF7FEFF 		bl	send_cmd
- 562              	.LVL49:
- 563 000e 0546     		mov	r5, r0
- 564              	.LVL50:
- 565              		.loc 1 199 8 view .LVU126
- 566 0010 0128     		cmp	r0, #1
- 567 0012 04D0     		beq	.L54
+ 561              		.loc 1 199 5 view .LVU127
+ 562              		.loc 1 199 15 is_stmt 0 view .LVU128
+ 563 0004 4FF4D571 		mov	r1, #426
+ 564 0008 0820     		movs	r0, #8
+ 565 000a FFF7FEFF 		bl	send_cmd
+ 566              	.LVL50:
+ 567 000e 0546     		mov	r5, r0
+ 568              	.LVL51:
+ 569              		.loc 1 199 8 view .LVU129
+ 570 0010 0128     		cmp	r0, #1
+ 571 0012 05D0     		beq	.L55
  200:Core/Src/sd.c ****     {
  201:Core/Src/sd.c ****         sd_Info.sd_version = SDC_VER2;
  202:Core/Src/sd.c ****         UINT8 R7_Response[5];
@@ -833,1198 +838,1496 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 1
  216:Core/Src/sd.c ****         sd_Info.support_voltage = vol;
  217:Core/Src/sd.c **** 
  218:Core/Src/sd.c ****         /*Valid voltage(2.7V - 3.6V)*/
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 15
+
+
  219:Core/Src/sd.c ****         /*Valid echo 0xAA*/
  220:Core/Src/sd.c **** 
  221:Core/Src/sd.c ****         if (vol == 0x01 && echo == 0xAA)
  222:Core/Src/sd.c ****         {
  223:Core/Src/sd.c ****             /*suitable sd-status check pass*/
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 15
-
-
  224:Core/Src/sd.c ****             return rs;
  225:Core/Src/sd.c ****         }
  226:Core/Src/sd.c ****         else
  227:Core/Src/sd.c ****         {
  228:Core/Src/sd.c ****             /*These sd card is not well-defined*/
  229:Core/Src/sd.c ****             /*Or some error happen when receiving R7*/
- 230:Core/Src/sd.c ****             return OTHER_ERROR;
- 231:Core/Src/sd.c ****         }
- 232:Core/Src/sd.c ****     }
- 233:Core/Src/sd.c ****     /*Version 1.0*/
- 234:Core/Src/sd.c ****     else if (rs == (ILL_COMMAND | IDLE_STATE))
- 568              		.loc 1 234 10 is_stmt 1 view .LVU127
- 569              		.loc 1 234 13 is_stmt 0 view .LVU128
- 570 0014 0528     		cmp	r0, #5
- 571 0016 29D0     		beq	.L55
- 572              	.LVL51:
- 573              	.L50:
- 235:Core/Src/sd.c ****     {
- 236:Core/Src/sd.c ****         sd_Info.sd_version = SDC_VER1;
- 237:Core/Src/sd.c ****         UINT16 timeout;
- 238:Core/Src/sd.c ****         timeout = 0XFFF;
- 239:Core/Src/sd.c ****         /*do something*/
- 240:Core/Src/sd.c ****         do
- 241:Core/Src/sd.c ****         {
- 242:Core/Src/sd.c ****             rs = send_cmd(CMD1, 0);
- 243:Core/Src/sd.c ****         } while (rs == SD_NO_ERROR && --timeout);
- 244:Core/Src/sd.c ****         /*Time out*/
- 245:Core/Src/sd.c ****         if (timeout < 0)
- 246:Core/Src/sd.c ****         {
- 247:Core/Src/sd.c ****             return TIMEOUT;
- 248:Core/Src/sd.c ****         }
- 249:Core/Src/sd.c ****         return rs;
- 250:Core/Src/sd.c ****     }
- 251:Core/Src/sd.c ****     else
- 252:Core/Src/sd.c ****     {
- 253:Core/Src/sd.c ****         return rs;
- 254:Core/Src/sd.c ****     }
- 255:Core/Src/sd.c **** }
- 574              		.loc 1 255 1 discriminator 1 view .LVU129
- 575 0018 2846     		mov	r0, r5
- 576 001a 03B0     		add	sp, sp, #12
- 577              	.LCFI12:
- 578              		.cfi_remember_state
- 579              		.cfi_def_cfa_offset 12
- 580              		@ sp needed
- 581 001c 30BD     		pop	{r4, r5, pc}
- 582              	.LVL52:
- 583              	.L54:
- 584              	.LCFI13:
- 585              		.cfi_restore_state
- 586              	.LBB4:
- 201:Core/Src/sd.c ****         UINT8 R7_Response[5];
- 587              		.loc 1 201 9 is_stmt 1 view .LVU130
- 201:Core/Src/sd.c ****         UINT8 R7_Response[5];
- 588              		.loc 1 201 28 is_stmt 0 view .LVU131
- 589 001e 1C4B     		ldr	r3, .L56
- 590 0020 0022     		movs	r2, #0
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 16
+ 230:Core/Src/sd.c ****             sd_deselect();
+ 231:Core/Src/sd.c ****             return OTHER_ERROR;
+ 232:Core/Src/sd.c ****         }
+ 233:Core/Src/sd.c ****     }
+ 234:Core/Src/sd.c ****     /*Version 1.0*/ /*UNTESTED*/
+ 235:Core/Src/sd.c ****     else if (rs == (ILL_COMMAND | IDLE_STATE))
+ 572              		.loc 1 235 10 is_stmt 1 view .LVU130
+ 573              		.loc 1 235 13 is_stmt 0 view .LVU131
+ 574 0014 0528     		cmp	r0, #5
+ 575 0016 29D0     		beq	.L56
+ 236:Core/Src/sd.c ****     {
+ 237:Core/Src/sd.c ****         sd_Info.sd_version = SDC_VER1;
+ 238:Core/Src/sd.c ****         UINT16 timeout;
+ 239:Core/Src/sd.c ****         timeout = 0XFFF;
+ 240:Core/Src/sd.c ****         /*do something*/
+ 241:Core/Src/sd.c ****         do
+ 242:Core/Src/sd.c ****         {
+ 243:Core/Src/sd.c ****             rs = send_cmd(CMD1, 0);
+ 244:Core/Src/sd.c ****         } while (rs == SD_NO_ERROR && --timeout);
+ 245:Core/Src/sd.c ****         /*Time out*/
+ 246:Core/Src/sd.c ****         if (timeout < 0)
+ 247:Core/Src/sd.c ****         {
+ 248:Core/Src/sd.c ****             sd_deselect();
+ 249:Core/Src/sd.c ****             return TIMEOUT;
+ 250:Core/Src/sd.c ****         }
+ 251:Core/Src/sd.c ****         return rs;
+ 252:Core/Src/sd.c ****     }
+ 253:Core/Src/sd.c ****     else
+ 254:Core/Src/sd.c ****     {
+ 255:Core/Src/sd.c ****         return SD_NO_ERROR;
+ 576              		.loc 1 255 16 view .LVU132
+ 577 0018 0025     		movs	r5, #0
+ 578              	.LVL52:
+ 579              	.L51:
+ 256:Core/Src/sd.c ****     }
+ 257:Core/Src/sd.c **** }
+ 580              		.loc 1 257 1 discriminator 1 view .LVU133
+ 581 001a 2846     		mov	r0, r5
+ 582 001c 03B0     		add	sp, sp, #12
+ 583              	.LCFI12:
+ 584              		.cfi_remember_state
+ 585              		.cfi_def_cfa_offset 12
+ 586              		@ sp needed
+ 587 001e 30BD     		pop	{r4, r5, pc}
+ 588              	.LVL53:
+ 589              	.L55:
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 16
 
 
- 591 0022 DA71     		strb	r2, [r3, #7]
+ 590              	.LCFI13:
+ 591              		.cfi_restore_state
+ 592              	.LBB4:
+ 201:Core/Src/sd.c ****         UINT8 R7_Response[5];
+ 593              		.loc 1 201 9 is_stmt 1 view .LVU134
+ 201:Core/Src/sd.c ****         UINT8 R7_Response[5];
+ 594              		.loc 1 201 28 is_stmt 0 view .LVU135
+ 595 0020 1B4B     		ldr	r3, .L57
+ 596 0022 0022     		movs	r2, #0
+ 597 0024 DA71     		strb	r2, [r3, #7]
  202:Core/Src/sd.c ****         R7_Response[0] = rs;
- 592              		.loc 1 202 9 is_stmt 1 view .LVU132
+ 598              		.loc 1 202 9 is_stmt 1 view .LVU136
  203:Core/Src/sd.c ****         for (int i = 1; i < 5; i++)
- 593              		.loc 1 203 9 view .LVU133
+ 599              		.loc 1 203 9 view .LVU137
  203:Core/Src/sd.c ****         for (int i = 1; i < 5; i++)
- 594              		.loc 1 203 24 is_stmt 0 view .LVU134
- 595 0024 8DF80000 		strb	r0, [sp]
+ 600              		.loc 1 203 24 is_stmt 0 view .LVU138
+ 601 0026 8DF80000 		strb	r0, [sp]
  204:Core/Src/sd.c ****         {
- 596              		.loc 1 204 9 is_stmt 1 view .LVU135
- 597              	.LBB5:
+ 602              		.loc 1 204 9 is_stmt 1 view .LVU139
+ 603              	.LBB5:
  204:Core/Src/sd.c ****         {
- 598              		.loc 1 204 14 view .LVU136
- 599              	.LVL53:
+ 604              		.loc 1 204 14 view .LVU140
+ 605              	.LVL54:
  204:Core/Src/sd.c ****         {
- 600              		.loc 1 204 18 is_stmt 0 view .LVU137
- 601 0028 0124     		movs	r4, #1
+ 606              		.loc 1 204 18 is_stmt 0 view .LVU141
+ 607 002a 0124     		movs	r4, #1
  204:Core/Src/sd.c ****         {
- 602              		.loc 1 204 9 view .LVU138
- 603 002a 07E0     		b	.L47
- 604              	.LVL54:
- 605              	.L48:
- 206:Core/Src/sd.c ****         }
- 606              		.loc 1 206 13 is_stmt 1 discriminator 3 view .LVU139
- 206:Core/Src/sd.c ****         }
- 607              		.loc 1 206 30 is_stmt 0 discriminator 3 view .LVU140
- 608 002c FF20     		movs	r0, #255
- 609 002e FFF7FEFF 		bl	xchg_byte
+ 608              		.loc 1 204 9 view .LVU142
+ 609 002c 07E0     		b	.L47
  610              	.LVL55:
+ 611              	.L48:
  206:Core/Src/sd.c ****         }
- 611              		.loc 1 206 28 discriminator 3 view .LVU141
- 612 0032 02AB     		add	r3, sp, #8
- 613 0034 2344     		add	r3, r3, r4
- 614 0036 03F8080C 		strb	r0, [r3, #-8]
+ 612              		.loc 1 206 13 is_stmt 1 discriminator 3 view .LVU143
+ 206:Core/Src/sd.c ****         }
+ 613              		.loc 1 206 30 is_stmt 0 discriminator 3 view .LVU144
+ 614 002e FF20     		movs	r0, #255
+ 615 0030 FFF7FEFF 		bl	xchg_byte
+ 616              	.LVL56:
+ 206:Core/Src/sd.c ****         }
+ 617              		.loc 1 206 28 discriminator 3 view .LVU145
+ 618 0034 02AB     		add	r3, sp, #8
+ 619 0036 2344     		add	r3, r3, r4
+ 620 0038 03F8080C 		strb	r0, [r3, #-8]
  204:Core/Src/sd.c ****         {
- 615              		.loc 1 204 32 is_stmt 1 discriminator 3 view .LVU142
+ 621              		.loc 1 204 32 is_stmt 1 discriminator 3 view .LVU146
  204:Core/Src/sd.c ****         {
- 616              		.loc 1 204 33 is_stmt 0 discriminator 3 view .LVU143
- 617 003a 0134     		adds	r4, r4, #1
- 618              	.LVL56:
- 619              	.L47:
+ 622              		.loc 1 204 33 is_stmt 0 discriminator 3 view .LVU147
+ 623 003c 0134     		adds	r4, r4, #1
+ 624              	.LVL57:
+ 625              	.L47:
  204:Core/Src/sd.c ****         {
- 620              		.loc 1 204 25 is_stmt 1 discriminator 1 view .LVU144
+ 626              		.loc 1 204 25 is_stmt 1 discriminator 1 view .LVU148
  204:Core/Src/sd.c ****         {
- 621              		.loc 1 204 9 is_stmt 0 discriminator 1 view .LVU145
- 622 003c 042C     		cmp	r4, #4
- 623 003e F5DD     		ble	.L48
- 624              	.LBE5:
+ 627              		.loc 1 204 9 is_stmt 0 discriminator 1 view .LVU149
+ 628 003e 042C     		cmp	r4, #4
+ 629 0040 F5DD     		ble	.L48
+ 630              	.LBE5:
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 17
+
+
  210:Core/Src/sd.c ****         cv = (R7_Response[1] >> 4);
- 625              		.loc 1 210 9 is_stmt 1 view .LVU146
+ 631              		.loc 1 210 9 is_stmt 1 view .LVU150
  211:Core/Src/sd.c ****         vol = (R7_Response[3] & 0x1F);
- 626              		.loc 1 211 9 view .LVU147
+ 632              		.loc 1 211 9 view .LVU151
  211:Core/Src/sd.c ****         vol = (R7_Response[3] & 0x1F);
- 627              		.loc 1 211 26 is_stmt 0 view .LVU148
- 628 0040 9DF80120 		ldrb	r2, [sp, #1]	@ zero_extendqisi2
+ 633              		.loc 1 211 26 is_stmt 0 view .LVU152
+ 634 0042 9DF80120 		ldrb	r2, [sp, #1]	@ zero_extendqisi2
  211:Core/Src/sd.c ****         vol = (R7_Response[3] & 0x1F);
- 629              		.loc 1 211 12 view .LVU149
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 17
-
-
- 630 0044 1209     		lsrs	r2, r2, #4
- 631              	.LVL57:
- 212:Core/Src/sd.c ****         echo = R7_Response[4];
- 632              		.loc 1 212 9 is_stmt 1 view .LVU150
- 212:Core/Src/sd.c ****         echo = R7_Response[4];
- 633              		.loc 1 212 27 is_stmt 0 view .LVU151
- 634 0046 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
- 212:Core/Src/sd.c ****         echo = R7_Response[4];
- 635              		.loc 1 212 13 view .LVU152
- 636 004a 03F01F03 		and	r3, r3, #31
+ 635              		.loc 1 211 12 view .LVU153
+ 636 0046 1209     		lsrs	r2, r2, #4
  637              	.LVL58:
+ 212:Core/Src/sd.c ****         echo = R7_Response[4];
+ 638              		.loc 1 212 9 is_stmt 1 view .LVU154
+ 212:Core/Src/sd.c ****         echo = R7_Response[4];
+ 639              		.loc 1 212 27 is_stmt 0 view .LVU155
+ 640 0048 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 212:Core/Src/sd.c ****         echo = R7_Response[4];
+ 641              		.loc 1 212 13 view .LVU156
+ 642 004c 03F01F03 		and	r3, r3, #31
+ 643              	.LVL59:
  213:Core/Src/sd.c **** 
- 638              		.loc 1 213 9 is_stmt 1 view .LVU153
+ 644              		.loc 1 213 9 is_stmt 1 view .LVU157
  213:Core/Src/sd.c **** 
- 639              		.loc 1 213 14 is_stmt 0 view .LVU154
- 640 004e 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
- 641              	.LVL59:
+ 645              		.loc 1 213 14 is_stmt 0 view .LVU158
+ 646 0050 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+ 647              	.LVL60:
  215:Core/Src/sd.c ****         sd_Info.support_voltage = vol;
- 642              		.loc 1 215 9 is_stmt 1 view .LVU155
+ 648              		.loc 1 215 9 is_stmt 1 view .LVU159
  215:Core/Src/sd.c ****         sd_Info.support_voltage = vol;
- 643              		.loc 1 215 29 is_stmt 0 view .LVU156
- 644 0052 0F49     		ldr	r1, .L56
- 645 0054 8A71     		strb	r2, [r1, #6]
+ 649              		.loc 1 215 29 is_stmt 0 view .LVU160
+ 650 0054 0E49     		ldr	r1, .L57
+ 651 0056 8A71     		strb	r2, [r1, #6]
  216:Core/Src/sd.c **** 
- 646              		.loc 1 216 9 is_stmt 1 view .LVU157
+ 652              		.loc 1 216 9 is_stmt 1 view .LVU161
  216:Core/Src/sd.c **** 
- 647              		.loc 1 216 33 is_stmt 0 view .LVU158
- 648 0056 4B72     		strb	r3, [r1, #9]
+ 653              		.loc 1 216 33 is_stmt 0 view .LVU162
+ 654 0058 4B72     		strb	r3, [r1, #9]
  221:Core/Src/sd.c ****         {
- 649              		.loc 1 221 9 is_stmt 1 view .LVU159
+ 655              		.loc 1 221 9 is_stmt 1 view .LVU163
  221:Core/Src/sd.c ****         {
- 650              		.loc 1 221 12 is_stmt 0 view .LVU160
- 651 0058 012B     		cmp	r3, #1
- 652 005a 04D1     		bne	.L52
+ 656              		.loc 1 221 12 is_stmt 0 view .LVU164
+ 657 005a 012B     		cmp	r3, #1
+ 658 005c 01D1     		bne	.L49
  221:Core/Src/sd.c ****         {
- 653              		.loc 1 221 25 discriminator 1 view .LVU161
- 654 005c AA28     		cmp	r0, #170
- 655 005e DBD0     		beq	.L50
- 230:Core/Src/sd.c ****         }
- 656              		.loc 1 230 20 view .LVU162
- 657 0060 4FF48075 		mov	r5, #256
- 658 0064 D8E7     		b	.L50
- 659              	.L52:
- 660 0066 4FF48075 		mov	r5, #256
- 661 006a D5E7     		b	.L50
- 662              	.LVL60:
- 663              	.L55:
- 230:Core/Src/sd.c ****         }
- 664              		.loc 1 230 20 view .LVU163
- 665              	.LBE4:
- 666              	.LBB6:
- 236:Core/Src/sd.c ****         UINT16 timeout;
- 667              		.loc 1 236 9 is_stmt 1 view .LVU164
- 236:Core/Src/sd.c ****         UINT16 timeout;
- 668              		.loc 1 236 28 is_stmt 0 view .LVU165
- 669 006c 084B     		ldr	r3, .L56
- 670 006e 0122     		movs	r2, #1
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 18
+ 659              		.loc 1 221 25 discriminator 1 view .LVU165
+ 660 005e AA28     		cmp	r0, #170
+ 661 0060 DBD0     		beq	.L51
+ 662              	.L49:
+ 230:Core/Src/sd.c ****             return OTHER_ERROR;
+ 663              		.loc 1 230 13 is_stmt 1 view .LVU166
+ 664 0062 FFF7FEFF 		bl	sd_deselect
+ 665              	.LVL61:
+ 231:Core/Src/sd.c ****         }
+ 666              		.loc 1 231 13 view .LVU167
+ 231:Core/Src/sd.c ****         }
+ 667              		.loc 1 231 20 is_stmt 0 view .LVU168
+ 668 0066 4FF48075 		mov	r5, #256
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 18
 
 
- 671 0070 DA71     		strb	r2, [r3, #7]
- 237:Core/Src/sd.c ****         timeout = 0XFFF;
- 672              		.loc 1 237 9 is_stmt 1 view .LVU166
- 238:Core/Src/sd.c ****         /*do something*/
- 673              		.loc 1 238 9 view .LVU167
- 674              	.LVL61:
- 238:Core/Src/sd.c ****         /*do something*/
- 675              		.loc 1 238 17 is_stmt 0 view .LVU168
- 676 0072 40F6FF74 		movw	r4, #4095
- 677              	.LVL62:
- 678              	.L51:
- 240:Core/Src/sd.c ****         {
- 679              		.loc 1 240 9 is_stmt 1 discriminator 2 view .LVU169
- 242:Core/Src/sd.c ****         } while (rs == SD_NO_ERROR && --timeout);
- 680              		.loc 1 242 13 discriminator 2 view .LVU170
- 242:Core/Src/sd.c ****         } while (rs == SD_NO_ERROR && --timeout);
- 681              		.loc 1 242 18 is_stmt 0 discriminator 2 view .LVU171
- 682 0076 0021     		movs	r1, #0
- 683 0078 0120     		movs	r0, #1
- 684              	.LVL63:
- 242:Core/Src/sd.c ****         } while (rs == SD_NO_ERROR && --timeout);
- 685              		.loc 1 242 18 discriminator 2 view .LVU172
- 686 007a FFF7FEFF 		bl	send_cmd
- 687              	.LVL64:
- 243:Core/Src/sd.c ****         /*Time out*/
- 688              		.loc 1 243 17 is_stmt 1 discriminator 2 view .LVU173
- 243:Core/Src/sd.c ****         /*Time out*/
- 689              		.loc 1 243 9 is_stmt 0 discriminator 2 view .LVU174
- 690 007e 0546     		mov	r5, r0
- 691 0080 0028     		cmp	r0, #0
- 692 0082 C9D1     		bne	.L50
- 243:Core/Src/sd.c ****         /*Time out*/
- 693              		.loc 1 243 36 discriminator 1 view .LVU175
- 694 0084 013C     		subs	r4, r4, #1
- 695              	.LVL65:
- 243:Core/Src/sd.c ****         /*Time out*/
- 696              		.loc 1 243 36 discriminator 1 view .LVU176
- 697 0086 A4B2     		uxth	r4, r4
- 698              	.LVL66:
- 243:Core/Src/sd.c ****         /*Time out*/
- 699              		.loc 1 243 36 discriminator 1 view .LVU177
- 700 0088 002C     		cmp	r4, #0
- 701 008a F4D1     		bne	.L51
- 702 008c C4E7     		b	.L50
- 703              	.L57:
- 704 008e 00BF     		.align	2
- 705              	.L56:
- 706 0090 00000000 		.word	.LANCHOR1
- 707              	.LBE6:
- 708              		.cfi_endproc
- 709              	.LFE140:
- 711              		.section	.text.SD_getCardType,"ax",%progbits
- 712              		.align	1
- 713              		.global	SD_getCardType
- 714              		.syntax unified
- 715              		.thumb
- 716              		.thumb_func
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 19
+ 669 006a D6E7     		b	.L51
+ 670              	.LVL62:
+ 671              	.L56:
+ 231:Core/Src/sd.c ****         }
+ 672              		.loc 1 231 20 view .LVU169
+ 673              	.LBE4:
+ 674              	.LBB6:
+ 237:Core/Src/sd.c ****         UINT16 timeout;
+ 675              		.loc 1 237 9 is_stmt 1 view .LVU170
+ 237:Core/Src/sd.c ****         UINT16 timeout;
+ 676              		.loc 1 237 28 is_stmt 0 view .LVU171
+ 677 006c 084B     		ldr	r3, .L57
+ 678 006e 0122     		movs	r2, #1
+ 679 0070 DA71     		strb	r2, [r3, #7]
+ 238:Core/Src/sd.c ****         timeout = 0XFFF;
+ 680              		.loc 1 238 9 is_stmt 1 view .LVU172
+ 239:Core/Src/sd.c ****         /*do something*/
+ 681              		.loc 1 239 9 view .LVU173
+ 682              	.LVL63:
+ 239:Core/Src/sd.c ****         /*do something*/
+ 683              		.loc 1 239 17 is_stmt 0 view .LVU174
+ 684 0072 40F6FF74 		movw	r4, #4095
+ 685              	.LVL64:
+ 686              	.L52:
+ 241:Core/Src/sd.c ****         {
+ 687              		.loc 1 241 9 is_stmt 1 discriminator 2 view .LVU175
+ 243:Core/Src/sd.c ****         } while (rs == SD_NO_ERROR && --timeout);
+ 688              		.loc 1 243 13 discriminator 2 view .LVU176
+ 243:Core/Src/sd.c ****         } while (rs == SD_NO_ERROR && --timeout);
+ 689              		.loc 1 243 18 is_stmt 0 discriminator 2 view .LVU177
+ 690 0076 0021     		movs	r1, #0
+ 691 0078 0120     		movs	r0, #1
+ 692              	.LVL65:
+ 243:Core/Src/sd.c ****         } while (rs == SD_NO_ERROR && --timeout);
+ 693              		.loc 1 243 18 discriminator 2 view .LVU178
+ 694 007a FFF7FEFF 		bl	send_cmd
+ 695              	.LVL66:
+ 244:Core/Src/sd.c ****         /*Time out*/
+ 696              		.loc 1 244 17 is_stmt 1 discriminator 2 view .LVU179
+ 244:Core/Src/sd.c ****         /*Time out*/
+ 697              		.loc 1 244 9 is_stmt 0 discriminator 2 view .LVU180
+ 698 007e 0546     		mov	r5, r0
+ 699 0080 0028     		cmp	r0, #0
+ 700 0082 CAD1     		bne	.L51
+ 244:Core/Src/sd.c ****         /*Time out*/
+ 701              		.loc 1 244 36 discriminator 1 view .LVU181
+ 702 0084 013C     		subs	r4, r4, #1
+ 703              	.LVL67:
+ 244:Core/Src/sd.c ****         /*Time out*/
+ 704              		.loc 1 244 36 discriminator 1 view .LVU182
+ 705 0086 A4B2     		uxth	r4, r4
+ 706              	.LVL68:
+ 244:Core/Src/sd.c ****         /*Time out*/
+ 707              		.loc 1 244 36 discriminator 1 view .LVU183
+ 708 0088 002C     		cmp	r4, #0
+ 709 008a F4D1     		bne	.L52
+ 710 008c C5E7     		b	.L51
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 19
 
 
- 717              		.fpu fpv4-sp-d16
- 719              	SD_getCardType:
- 720              	.LFB141:
- 256:Core/Src/sd.c **** 
- 257:Core/Src/sd.c **** /*To check SDHC or SDSC*/
- 258:Core/Src/sd.c **** Res_Status SD_getCardType(void)
- 259:Core/Src/sd.c **** {
- 721              		.loc 1 259 1 is_stmt 1 view -0
- 722              		.cfi_startproc
- 723              		@ args = 0, pretend = 0, frame = 8
- 724              		@ frame_needed = 0, uses_anonymous_args = 0
- 725 0000 30B5     		push	{r4, r5, lr}
- 726              	.LCFI14:
- 727              		.cfi_def_cfa_offset 12
- 728              		.cfi_offset 4, -12
- 729              		.cfi_offset 5, -8
- 730              		.cfi_offset 14, -4
- 731 0002 83B0     		sub	sp, sp, #12
- 732              	.LCFI15:
- 733              		.cfi_def_cfa_offset 24
- 260:Core/Src/sd.c ****     Res_Status rs;
- 734              		.loc 1 260 5 view .LVU179
- 261:Core/Src/sd.c ****     /*We should first send ACMD41 to activate sd card's initialization*/
- 262:Core/Src/sd.c ****     UINT16 timeout = 0xFFF;
- 735              		.loc 1 262 5 view .LVU180
- 736              	.LVL67:
- 263:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
- 737              		.loc 1 263 5 view .LVU181
- 262:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
- 738              		.loc 1 262 12 is_stmt 0 view .LVU182
- 739 0004 40F6FF74 		movw	r4, #4095
- 740              	.LVL68:
- 741              	.L60:
- 264:Core/Src/sd.c ****         ;
- 742              		.loc 1 264 9 is_stmt 1 discriminator 2 view .LVU183
- 263:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
- 743              		.loc 1 263 11 discriminator 2 view .LVU184
- 263:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
- 744              		.loc 1 263 18 is_stmt 0 discriminator 2 view .LVU185
- 745 0008 4FF08041 		mov	r1, #1073741824
- 746 000c A920     		movs	r0, #169
- 747 000e FFF7FEFF 		bl	send_cmd
- 748              	.LVL69:
- 263:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
- 749              		.loc 1 263 11 discriminator 2 view .LVU186
- 750 0012 0546     		mov	r5, r0
- 751 0014 18B1     		cbz	r0, .L59
- 263:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
- 752              		.loc 1 263 62 discriminator 1 view .LVU187
- 753 0016 013C     		subs	r4, r4, #1
- 754              	.LVL70:
- 263:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
- 755              		.loc 1 263 62 discriminator 1 view .LVU188
- 756 0018 A4B2     		uxth	r4, r4
- 757              	.LVL71:
- 263:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
- 758              		.loc 1 263 62 discriminator 1 view .LVU189
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 20
+ 711              	.L58:
+ 712 008e 00BF     		.align	2
+ 713              	.L57:
+ 714 0090 00000000 		.word	.LANCHOR1
+ 715              	.LBE6:
+ 716              		.cfi_endproc
+ 717              	.LFE140:
+ 719              		.section	.text.SD_getCardType,"ax",%progbits
+ 720              		.align	1
+ 721              		.global	SD_getCardType
+ 722              		.syntax unified
+ 723              		.thumb
+ 724              		.thumb_func
+ 725              		.fpu fpv4-sp-d16
+ 727              	SD_getCardType:
+ 728              	.LFB141:
+ 258:Core/Src/sd.c **** 
+ 259:Core/Src/sd.c **** /*To check SDHC or SDSC*/
+ 260:Core/Src/sd.c **** Res_Status SD_getCardType(void)
+ 261:Core/Src/sd.c **** {
+ 729              		.loc 1 261 1 is_stmt 1 view -0
+ 730              		.cfi_startproc
+ 731              		@ args = 0, pretend = 0, frame = 8
+ 732              		@ frame_needed = 0, uses_anonymous_args = 0
+ 733 0000 30B5     		push	{r4, r5, lr}
+ 734              	.LCFI14:
+ 735              		.cfi_def_cfa_offset 12
+ 736              		.cfi_offset 4, -12
+ 737              		.cfi_offset 5, -8
+ 738              		.cfi_offset 14, -4
+ 739 0002 83B0     		sub	sp, sp, #12
+ 740              	.LCFI15:
+ 741              		.cfi_def_cfa_offset 24
+ 262:Core/Src/sd.c ****     Res_Status rs;
+ 742              		.loc 1 262 5 view .LVU185
+ 263:Core/Src/sd.c ****     /*We should first send ACMD41 to activate sd card's initialization*/
+ 264:Core/Src/sd.c ****     UINT8 timeout = 0xFF;
+ 743              		.loc 1 264 5 view .LVU186
+ 744              	.LVL69:
+ 265:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
+ 745              		.loc 1 265 5 view .LVU187
+ 264:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
+ 746              		.loc 1 264 11 is_stmt 0 view .LVU188
+ 747 0004 FF24     		movs	r4, #255
+ 748              	.LVL70:
+ 749              	.L61:
+ 266:Core/Src/sd.c ****         ;
+ 750              		.loc 1 266 9 is_stmt 1 discriminator 2 view .LVU189
+ 265:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
+ 751              		.loc 1 265 11 discriminator 2 view .LVU190
+ 265:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
+ 752              		.loc 1 265 18 is_stmt 0 discriminator 2 view .LVU191
+ 753 0006 4FF08041 		mov	r1, #1073741824
+ 754 000a A920     		movs	r0, #169
+ 755 000c FFF7FEFF 		bl	send_cmd
+ 756              	.LVL71:
+ 265:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 20
 
 
- 759 001a 002C     		cmp	r4, #0
- 760 001c F4D1     		bne	.L60
- 761              	.L59:
- 265:Core/Src/sd.c ****     if (!timeout)
- 762              		.loc 1 265 5 is_stmt 1 view .LVU190
- 763              		.loc 1 265 8 is_stmt 0 view .LVU191
- 764 001e 24B3     		cbz	r4, .L65
- 266:Core/Src/sd.c ****         return TIMEOUT; // timeout
- 267:Core/Src/sd.c ****     if (rs != SD_NO_ERROR)
- 765              		.loc 1 267 5 is_stmt 1 view .LVU192
- 766              		.loc 1 267 8 is_stmt 0 view .LVU193
- 767 0020 15B1     		cbz	r5, .L67
- 768              	.LVL72:
- 769              	.L61:
- 268:Core/Src/sd.c ****         return rs; // get other illegal response
- 269:Core/Src/sd.c **** 
- 270:Core/Src/sd.c ****     /*send CMD58 to get OCR info*/
- 271:Core/Src/sd.c ****     if ((rs = send_cmd(CMD58, 0)) != SD_NO_ERROR)
- 272:Core/Src/sd.c ****     {
- 273:Core/Src/sd.c ****         return rs;
- 274:Core/Src/sd.c ****     }
- 275:Core/Src/sd.c ****     /*Send succeed, getting R3 response*/
- 276:Core/Src/sd.c ****     UINT8 R3_res[5];
- 277:Core/Src/sd.c ****     R3_res[0] = (UINT8)rs;
- 278:Core/Src/sd.c ****     for (int i = 1; i < 5; i++)
- 279:Core/Src/sd.c ****     {
- 280:Core/Src/sd.c ****         R3_res[i] = xchg_byte(SD_DUMMY_BYTE);
- 281:Core/Src/sd.c ****     }
- 282:Core/Src/sd.c ****     /*Get ocr CCS(bit30)*/
- 283:Core/Src/sd.c ****     /*1 -> SDHC; 0-> SDSC*/
- 284:Core/Src/sd.c ****     if (R3_res[1] & 0x80)
- 285:Core/Src/sd.c ****     {
- 286:Core/Src/sd.c ****         sd_Info.sd_V2cardType = SDHC;
- 287:Core/Src/sd.c ****         return SD_NO_ERROR;
- 288:Core/Src/sd.c ****     }
- 289:Core/Src/sd.c ****     else
- 290:Core/Src/sd.c ****     {
- 291:Core/Src/sd.c ****         sd_Info.sd_V2cardType = SDSC;
- 292:Core/Src/sd.c ****         return SD_NO_ERROR;
- 293:Core/Src/sd.c ****     }
- 294:Core/Src/sd.c **** }
- 770              		.loc 1 294 1 view .LVU194
- 771 0022 2846     		mov	r0, r5
- 772 0024 03B0     		add	sp, sp, #12
- 773              	.LCFI16:
- 774              		.cfi_remember_state
- 775              		.cfi_def_cfa_offset 12
- 776              		@ sp needed
- 777 0026 30BD     		pop	{r4, r5, pc}
- 778              	.LVL73:
- 779              	.L67:
- 780              	.LCFI17:
- 781              		.cfi_restore_state
- 271:Core/Src/sd.c ****     {
- 782              		.loc 1 271 5 is_stmt 1 view .LVU195
- 271:Core/Src/sd.c ****     {
- 783              		.loc 1 271 15 is_stmt 0 view .LVU196
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 21
+ 757              		.loc 1 265 11 discriminator 2 view .LVU192
+ 758 0010 0546     		mov	r5, r0
+ 759 0012 18B1     		cbz	r0, .L60
+ 265:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
+ 760              		.loc 1 265 62 discriminator 1 view .LVU193
+ 761 0014 631E     		subs	r3, r4, #1
+ 762              	.LVL72:
+ 265:Core/Src/sd.c ****     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
+ 763              		.loc 1 265 62 discriminator 1 view .LVU194
+ 764 0016 13F0FF04 		ands	r4, r3, #255
+ 765 001a F4D1     		bne	.L61
+ 766              	.LVL73:
+ 767              	.L60:
+ 267:Core/Src/sd.c ****     if (!timeout)
+ 768              		.loc 1 267 5 is_stmt 1 view .LVU195
+ 769              		.loc 1 267 8 is_stmt 0 view .LVU196
+ 770 001c 54B1     		cbz	r4, .L70
+ 268:Core/Src/sd.c ****     {
+ 269:Core/Src/sd.c ****         sd_deselect();
+ 270:Core/Src/sd.c ****         return TIMEOUT; // timeout
+ 271:Core/Src/sd.c ****     }
+ 272:Core/Src/sd.c ****     if (rs != SD_NO_ERROR)
+ 771              		.loc 1 272 5 is_stmt 1 view .LVU197
+ 772              		.loc 1 272 8 is_stmt 0 view .LVU198
+ 773 001e 6DB9     		cbnz	r5, .L71
+ 273:Core/Src/sd.c ****     {
+ 274:Core/Src/sd.c ****         sd_deselect();
+ 275:Core/Src/sd.c ****         return rs; // get other illegal response
+ 276:Core/Src/sd.c ****     }
+ 277:Core/Src/sd.c **** 
+ 278:Core/Src/sd.c ****     /*send CMD58 to get OCR info*/
+ 279:Core/Src/sd.c ****     if ((rs = send_cmd(CMD58, 0)) != SD_NO_ERROR)
+ 774              		.loc 1 279 5 is_stmt 1 view .LVU199
+ 775              		.loc 1 279 15 is_stmt 0 view .LVU200
+ 776 0020 0021     		movs	r1, #0
+ 777 0022 3A20     		movs	r0, #58
+ 778              	.LVL74:
+ 779              		.loc 1 279 15 view .LVU201
+ 780 0024 FFF7FEFF 		bl	send_cmd
+ 781              	.LVL75:
+ 782              		.loc 1 279 8 view .LVU202
+ 783 0028 0546     		mov	r5, r0
+ 784 002a 60B9     		cbnz	r0, .L72
+ 280:Core/Src/sd.c ****     {
+ 281:Core/Src/sd.c ****         sd_deselect();
+ 282:Core/Src/sd.c ****         return rs;
+ 283:Core/Src/sd.c ****     }
+ 284:Core/Src/sd.c ****     /*Send succeed, getting R3 response*/
+ 285:Core/Src/sd.c ****     UINT8 R3_res[5];
+ 785              		.loc 1 285 5 is_stmt 1 view .LVU203
+ 286:Core/Src/sd.c ****     R3_res[0] = (UINT8)rs;
+ 786              		.loc 1 286 5 view .LVU204
+ 787              		.loc 1 286 15 is_stmt 0 view .LVU205
+ 788 002c 8DF80000 		strb	r0, [sp]
+ 287:Core/Src/sd.c ****     for (int i = 1; i < 5; i++)
+ 789              		.loc 1 287 5 is_stmt 1 view .LVU206
+ 790              	.LBB7:
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 21
 
 
- 784 0028 0021     		movs	r1, #0
- 785 002a 3A20     		movs	r0, #58
- 786              	.LVL74:
- 271:Core/Src/sd.c ****     {
- 787              		.loc 1 271 15 view .LVU197
- 788 002c FFF7FEFF 		bl	send_cmd
- 789              	.LVL75:
- 271:Core/Src/sd.c ****     {
- 790              		.loc 1 271 8 view .LVU198
- 791 0030 0546     		mov	r5, r0
- 792 0032 0028     		cmp	r0, #0
- 793 0034 F5D1     		bne	.L61
- 276:Core/Src/sd.c ****     R3_res[0] = (UINT8)rs;
- 794              		.loc 1 276 5 is_stmt 1 view .LVU199
- 277:Core/Src/sd.c ****     for (int i = 1; i < 5; i++)
- 795              		.loc 1 277 5 view .LVU200
- 277:Core/Src/sd.c ****     for (int i = 1; i < 5; i++)
- 796              		.loc 1 277 15 is_stmt 0 view .LVU201
- 797 0036 8DF80000 		strb	r0, [sp]
- 278:Core/Src/sd.c ****     {
- 798              		.loc 1 278 5 is_stmt 1 view .LVU202
- 799              	.LBB7:
- 278:Core/Src/sd.c ****     {
- 800              		.loc 1 278 10 view .LVU203
- 801              	.LVL76:
- 278:Core/Src/sd.c ****     {
- 802              		.loc 1 278 14 is_stmt 0 view .LVU204
- 803 003a 0124     		movs	r4, #1
- 804              	.LVL77:
- 278:Core/Src/sd.c ****     {
- 805              		.loc 1 278 5 view .LVU205
- 806 003c 07E0     		b	.L62
- 807              	.LVL78:
- 808              	.L63:
- 280:Core/Src/sd.c ****     }
- 809              		.loc 1 280 9 is_stmt 1 discriminator 3 view .LVU206
- 280:Core/Src/sd.c ****     }
- 810              		.loc 1 280 21 is_stmt 0 discriminator 3 view .LVU207
- 811 003e FF20     		movs	r0, #255
- 812 0040 FFF7FEFF 		bl	xchg_byte
- 813              	.LVL79:
- 280:Core/Src/sd.c ****     }
- 814              		.loc 1 280 19 discriminator 3 view .LVU208
- 815 0044 02AB     		add	r3, sp, #8
- 816 0046 2344     		add	r3, r3, r4
- 817 0048 03F8080C 		strb	r0, [r3, #-8]
- 278:Core/Src/sd.c ****     {
- 818              		.loc 1 278 28 is_stmt 1 discriminator 3 view .LVU209
- 278:Core/Src/sd.c ****     {
- 819              		.loc 1 278 29 is_stmt 0 discriminator 3 view .LVU210
- 820 004c 0134     		adds	r4, r4, #1
- 821              	.LVL80:
- 822              	.L62:
- 278:Core/Src/sd.c ****     {
- 823              		.loc 1 278 21 is_stmt 1 discriminator 1 view .LVU211
- 278:Core/Src/sd.c ****     {
- 824              		.loc 1 278 5 is_stmt 0 discriminator 1 view .LVU212
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 22
+ 791              		.loc 1 287 10 view .LVU207
+ 792              	.LVL76:
+ 793              		.loc 1 287 14 is_stmt 0 view .LVU208
+ 794 0030 0124     		movs	r4, #1
+ 795              	.LVL77:
+ 796              		.loc 1 287 5 view .LVU209
+ 797 0032 13E0     		b	.L66
+ 798              	.LVL78:
+ 799              	.L70:
+ 800              		.loc 1 287 5 view .LVU210
+ 801              	.LBE7:
+ 269:Core/Src/sd.c ****         return TIMEOUT; // timeout
+ 802              		.loc 1 269 9 is_stmt 1 view .LVU211
+ 803 0034 FFF7FEFF 		bl	sd_deselect
+ 804              	.LVL79:
+ 270:Core/Src/sd.c ****     }
+ 805              		.loc 1 270 9 view .LVU212
+ 270:Core/Src/sd.c ****     }
+ 806              		.loc 1 270 16 is_stmt 0 view .LVU213
+ 807 0038 4125     		movs	r5, #65
+ 808 003a 01E0     		b	.L63
+ 809              	.LVL80:
+ 810              	.L71:
+ 274:Core/Src/sd.c ****         return rs; // get other illegal response
+ 811              		.loc 1 274 9 is_stmt 1 view .LVU214
+ 812 003c FFF7FEFF 		bl	sd_deselect
+ 813              	.LVL81:
+ 275:Core/Src/sd.c ****     }
+ 814              		.loc 1 275 9 view .LVU215
+ 815              	.L63:
+ 288:Core/Src/sd.c ****     {
+ 289:Core/Src/sd.c ****         R3_res[i] = xchg_byte(SD_DUMMY_BYTE);
+ 290:Core/Src/sd.c ****     }
+ 291:Core/Src/sd.c ****     /*Get ocr CCS(bit30)*/
+ 292:Core/Src/sd.c ****     /*1 -> SDHC; 0-> SDSC*/
+ 293:Core/Src/sd.c ****     if (R3_res[1] & 0x80)
+ 294:Core/Src/sd.c ****     {
+ 295:Core/Src/sd.c ****         sd_Info.sd_V2cardType = SDHC;
+ 296:Core/Src/sd.c ****         return SD_NO_ERROR;
+ 297:Core/Src/sd.c ****     }
+ 298:Core/Src/sd.c ****     else
+ 299:Core/Src/sd.c ****     {
+ 300:Core/Src/sd.c ****         sd_Info.sd_V2cardType = SDSC;
+ 301:Core/Src/sd.c ****         return SD_NO_ERROR;
+ 302:Core/Src/sd.c ****     }
+ 303:Core/Src/sd.c **** }
+ 816              		.loc 1 303 1 is_stmt 0 view .LVU216
+ 817 0040 2846     		mov	r0, r5
+ 818 0042 03B0     		add	sp, sp, #12
+ 819              	.LCFI16:
+ 820              		.cfi_remember_state
+ 821              		.cfi_def_cfa_offset 12
+ 822              		@ sp needed
+ 823 0044 30BD     		pop	{r4, r5, pc}
+ 824              	.LVL82:
+ 825              	.L72:
+ 826              	.LCFI17:
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 22
 
 
- 825 004e 042C     		cmp	r4, #4
- 826 0050 F5DD     		ble	.L63
- 827              	.LBE7:
- 284:Core/Src/sd.c ****     {
- 828              		.loc 1 284 5 is_stmt 1 view .LVU213
- 284:Core/Src/sd.c ****     {
- 829              		.loc 1 284 9 is_stmt 0 view .LVU214
- 830 0052 9DF90130 		ldrsb	r3, [sp, #1]
- 284:Core/Src/sd.c ****     {
- 831              		.loc 1 284 8 view .LVU215
- 832 0056 002B     		cmp	r3, #0
- 833 0058 03DB     		blt	.L68
- 291:Core/Src/sd.c ****         return SD_NO_ERROR;
- 834              		.loc 1 291 9 is_stmt 1 view .LVU216
- 291:Core/Src/sd.c ****         return SD_NO_ERROR;
- 835              		.loc 1 291 31 is_stmt 0 view .LVU217
- 836 005a 054B     		ldr	r3, .L69
- 837 005c 0022     		movs	r2, #0
- 838 005e 1A72     		strb	r2, [r3, #8]
- 292:Core/Src/sd.c ****     }
- 839              		.loc 1 292 9 is_stmt 1 view .LVU218
- 292:Core/Src/sd.c ****     }
- 840              		.loc 1 292 16 is_stmt 0 view .LVU219
- 841 0060 DFE7     		b	.L61
- 842              	.L68:
- 286:Core/Src/sd.c ****         return SD_NO_ERROR;
- 843              		.loc 1 286 9 is_stmt 1 view .LVU220
- 286:Core/Src/sd.c ****         return SD_NO_ERROR;
- 844              		.loc 1 286 31 is_stmt 0 view .LVU221
- 845 0062 034B     		ldr	r3, .L69
- 846 0064 0122     		movs	r2, #1
- 847 0066 1A72     		strb	r2, [r3, #8]
- 287:Core/Src/sd.c ****     }
- 848              		.loc 1 287 9 is_stmt 1 view .LVU222
- 287:Core/Src/sd.c ****     }
- 849              		.loc 1 287 16 is_stmt 0 view .LVU223
- 850 0068 DBE7     		b	.L61
- 851              	.LVL81:
- 852              	.L65:
- 266:Core/Src/sd.c ****     if (rs != SD_NO_ERROR)
- 853              		.loc 1 266 16 view .LVU224
- 854 006a 8025     		movs	r5, #128
- 855 006c D9E7     		b	.L61
- 856              	.L70:
- 857 006e 00BF     		.align	2
- 858              	.L69:
- 859 0070 00000000 		.word	.LANCHOR1
- 860              		.cfi_endproc
- 861              	.LFE141:
- 863              		.section	.text.SD_getCSDRegister,"ax",%progbits
- 864              		.align	1
- 865              		.global	SD_getCSDRegister
- 866              		.syntax unified
- 867              		.thumb
- 868              		.thumb_func
- 869              		.fpu fpv4-sp-d16
- 871              	SD_getCSDRegister:
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 23
+ 827              		.cfi_restore_state
+ 281:Core/Src/sd.c ****         return rs;
+ 828              		.loc 1 281 9 is_stmt 1 view .LVU217
+ 829 0046 FFF7FEFF 		bl	sd_deselect
+ 830              	.LVL83:
+ 282:Core/Src/sd.c ****     }
+ 831              		.loc 1 282 9 view .LVU218
+ 282:Core/Src/sd.c ****     }
+ 832              		.loc 1 282 16 is_stmt 0 view .LVU219
+ 833 004a F9E7     		b	.L63
+ 834              	.LVL84:
+ 835              	.L67:
+ 836              	.LBB8:
+ 289:Core/Src/sd.c ****     }
+ 837              		.loc 1 289 9 is_stmt 1 discriminator 3 view .LVU220
+ 289:Core/Src/sd.c ****     }
+ 838              		.loc 1 289 21 is_stmt 0 discriminator 3 view .LVU221
+ 839 004c FF20     		movs	r0, #255
+ 840 004e FFF7FEFF 		bl	xchg_byte
+ 841              	.LVL85:
+ 289:Core/Src/sd.c ****     }
+ 842              		.loc 1 289 19 discriminator 3 view .LVU222
+ 843 0052 02AB     		add	r3, sp, #8
+ 844 0054 2344     		add	r3, r3, r4
+ 845 0056 03F8080C 		strb	r0, [r3, #-8]
+ 287:Core/Src/sd.c ****     {
+ 846              		.loc 1 287 28 is_stmt 1 discriminator 3 view .LVU223
+ 287:Core/Src/sd.c ****     {
+ 847              		.loc 1 287 29 is_stmt 0 discriminator 3 view .LVU224
+ 848 005a 0134     		adds	r4, r4, #1
+ 849              	.LVL86:
+ 850              	.L66:
+ 287:Core/Src/sd.c ****     {
+ 851              		.loc 1 287 21 is_stmt 1 discriminator 1 view .LVU225
+ 287:Core/Src/sd.c ****     {
+ 852              		.loc 1 287 5 is_stmt 0 discriminator 1 view .LVU226
+ 853 005c 042C     		cmp	r4, #4
+ 854 005e F5DD     		ble	.L67
+ 855              	.LBE8:
+ 293:Core/Src/sd.c ****     {
+ 856              		.loc 1 293 5 is_stmt 1 view .LVU227
+ 293:Core/Src/sd.c ****     {
+ 857              		.loc 1 293 9 is_stmt 0 view .LVU228
+ 858 0060 9DF90130 		ldrsb	r3, [sp, #1]
+ 293:Core/Src/sd.c ****     {
+ 859              		.loc 1 293 8 view .LVU229
+ 860 0064 002B     		cmp	r3, #0
+ 861 0066 03DB     		blt	.L73
+ 300:Core/Src/sd.c ****         return SD_NO_ERROR;
+ 862              		.loc 1 300 9 is_stmt 1 view .LVU230
+ 300:Core/Src/sd.c ****         return SD_NO_ERROR;
+ 863              		.loc 1 300 31 is_stmt 0 view .LVU231
+ 864 0068 034B     		ldr	r3, .L74
+ 865 006a 0022     		movs	r2, #0
+ 866 006c 1A72     		strb	r2, [r3, #8]
+ 301:Core/Src/sd.c ****     }
+ 867              		.loc 1 301 9 is_stmt 1 view .LVU232
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 23
 
 
- 872              	.LFB142:
- 295:Core/Src/sd.c **** 
- 296:Core/Src/sd.c **** Res_Status SD_getCSDRegister(void)
- 297:Core/Src/sd.c **** {
- 873              		.loc 1 297 1 is_stmt 1 view -0
- 874              		.cfi_startproc
- 875              		@ args = 0, pretend = 0, frame = 16
- 876              		@ frame_needed = 0, uses_anonymous_args = 0
- 877 0000 30B5     		push	{r4, r5, lr}
- 878              	.LCFI18:
- 879              		.cfi_def_cfa_offset 12
- 880              		.cfi_offset 4, -12
- 881              		.cfi_offset 5, -8
- 882              		.cfi_offset 14, -4
- 883 0002 85B0     		sub	sp, sp, #20
- 884              	.LCFI19:
- 885              		.cfi_def_cfa_offset 32
- 298:Core/Src/sd.c ****     Res_Status rs;
- 886              		.loc 1 298 5 view .LVU226
- 299:Core/Src/sd.c ****     /*Send cmd9 to get CSD Register's information*/
- 300:Core/Src/sd.c ****     /*wait for the R1 response from CMD9*/
- 301:Core/Src/sd.c ****     if ((rs = send_cmd(CMD9, 0)) != SD_NO_ERROR)
- 887              		.loc 1 301 5 view .LVU227
- 888              		.loc 1 301 15 is_stmt 0 view .LVU228
- 889 0004 0021     		movs	r1, #0
- 890 0006 0920     		movs	r0, #9
- 891 0008 FFF7FEFF 		bl	send_cmd
- 892              	.LVL82:
- 893              		.loc 1 301 8 view .LVU229
- 894 000c 0546     		mov	r5, r0
- 895 000e 0028     		cmp	r0, #0
- 896 0010 59D1     		bne	.L72
- 302:Core/Src/sd.c ****     {
- 303:Core/Src/sd.c ****         return rs;
- 304:Core/Src/sd.c ****     }
- 305:Core/Src/sd.c **** 
- 306:Core/Src/sd.c ****     /*Get read-block token*/
- 307:Core/Src/sd.c ****     UINT8 read_token, timeout;
- 308:Core/Src/sd.c ****     timeout = 0xFF;
- 897              		.loc 1 308 13 view .LVU230
- 898 0012 FF24     		movs	r4, #255
- 899              	.LVL83:
- 900              	.L74:
- 309:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
- 310:Core/Src/sd.c ****         ;
- 901              		.loc 1 310 9 is_stmt 1 discriminator 2 view .LVU231
- 309:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
- 902              		.loc 1 309 11 discriminator 2 view .LVU232
- 309:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
- 903              		.loc 1 309 26 is_stmt 0 discriminator 2 view .LVU233
- 904 0014 FF20     		movs	r0, #255
- 905 0016 FFF7FEFF 		bl	xchg_byte
- 906              	.LVL84:
- 309:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
- 907              		.loc 1 309 11 discriminator 2 view .LVU234
- 908 001a FE28     		cmp	r0, #254
- 909 001c 03D0     		beq	.L73
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 24
+ 301:Core/Src/sd.c ****     }
+ 868              		.loc 1 301 16 is_stmt 0 view .LVU233
+ 869 006e E7E7     		b	.L63
+ 870              	.L73:
+ 295:Core/Src/sd.c ****         return SD_NO_ERROR;
+ 871              		.loc 1 295 9 is_stmt 1 view .LVU234
+ 295:Core/Src/sd.c ****         return SD_NO_ERROR;
+ 872              		.loc 1 295 31 is_stmt 0 view .LVU235
+ 873 0070 014B     		ldr	r3, .L74
+ 874 0072 0122     		movs	r2, #1
+ 875 0074 1A72     		strb	r2, [r3, #8]
+ 296:Core/Src/sd.c ****     }
+ 876              		.loc 1 296 9 is_stmt 1 view .LVU236
+ 296:Core/Src/sd.c ****     }
+ 877              		.loc 1 296 16 is_stmt 0 view .LVU237
+ 878 0076 E3E7     		b	.L63
+ 879              	.L75:
+ 880              		.align	2
+ 881              	.L74:
+ 882 0078 00000000 		.word	.LANCHOR1
+ 883              		.cfi_endproc
+ 884              	.LFE141:
+ 886              		.section	.text.SD_getCSDRegister,"ax",%progbits
+ 887              		.align	1
+ 888              		.global	SD_getCSDRegister
+ 889              		.syntax unified
+ 890              		.thumb
+ 891              		.thumb_func
+ 892              		.fpu fpv4-sp-d16
+ 894              	SD_getCSDRegister:
+ 895              	.LFB142:
+ 304:Core/Src/sd.c **** 
+ 305:Core/Src/sd.c **** Res_Status SD_getCSDRegister(void)
+ 306:Core/Src/sd.c **** {
+ 896              		.loc 1 306 1 is_stmt 1 view -0
+ 897              		.cfi_startproc
+ 898              		@ args = 0, pretend = 0, frame = 16
+ 899              		@ frame_needed = 0, uses_anonymous_args = 0
+ 900 0000 30B5     		push	{r4, r5, lr}
+ 901              	.LCFI18:
+ 902              		.cfi_def_cfa_offset 12
+ 903              		.cfi_offset 4, -12
+ 904              		.cfi_offset 5, -8
+ 905              		.cfi_offset 14, -4
+ 906 0002 85B0     		sub	sp, sp, #20
+ 907              	.LCFI19:
+ 908              		.cfi_def_cfa_offset 32
+ 307:Core/Src/sd.c ****     Res_Status rs;
+ 909              		.loc 1 307 5 view .LVU239
+ 308:Core/Src/sd.c ****     /*Send cmd9 to get CSD Register's information*/
+ 309:Core/Src/sd.c ****     /*wait for the R1 response from CMD9*/
+ 310:Core/Src/sd.c ****     if ((rs = send_cmd(CMD9, 0)) != SD_NO_ERROR)
+ 910              		.loc 1 310 5 view .LVU240
+ 911              		.loc 1 310 15 is_stmt 0 view .LVU241
+ 912 0004 0021     		movs	r1, #0
+ 913 0006 0920     		movs	r0, #9
+ 914 0008 FFF7FEFF 		bl	send_cmd
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 24
 
 
- 309:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
- 910              		.loc 1 309 82 discriminator 1 view .LVU235
- 911 001e 631E     		subs	r3, r4, #1
- 912              	.LVL85:
- 309:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
- 913              		.loc 1 309 82 discriminator 1 view .LVU236
- 914 0020 13F0FF04 		ands	r4, r3, #255
- 915 0024 F6D1     		bne	.L74
- 916              	.LVL86:
- 917              	.L73:
- 311:Core/Src/sd.c ****     if (!timeout)
- 918              		.loc 1 311 5 is_stmt 1 view .LVU237
- 919              		.loc 1 311 8 is_stmt 0 view .LVU238
- 920 0026 002C     		cmp	r4, #0
- 921 0028 62D0     		beq	.L77
- 312:Core/Src/sd.c ****         return TIMEOUT;
- 313:Core/Src/sd.c **** 
- 314:Core/Src/sd.c ****     /*token valid, then try to get 16bits bytes from the sd card */
- 315:Core/Src/sd.c ****     UINT8 csd[16] = {0};
- 922              		.loc 1 315 5 is_stmt 1 view .LVU239
- 923              		.loc 1 315 11 is_stmt 0 view .LVU240
- 924 002a 0023     		movs	r3, #0
- 925 002c 0093     		str	r3, [sp]
- 926 002e 0193     		str	r3, [sp, #4]
- 927 0030 0293     		str	r3, [sp, #8]
- 928 0032 0393     		str	r3, [sp, #12]
- 316:Core/Src/sd.c ****     rcv_mul_byte(csd, 16);
- 929              		.loc 1 316 5 is_stmt 1 view .LVU241
- 930 0034 1021     		movs	r1, #16
- 931 0036 6846     		mov	r0, sp
- 932              	.LVL87:
- 933              		.loc 1 316 5 is_stmt 0 view .LVU242
- 934 0038 FFF7FEFF 		bl	rcv_mul_byte
- 935              	.LVL88:
- 317:Core/Src/sd.c **** 
- 318:Core/Src/sd.c ****     /*read two dummy crc check bit*/
- 319:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
- 936              		.loc 1 319 5 is_stmt 1 view .LVU243
- 937 003c FF20     		movs	r0, #255
- 938 003e FFF7FEFF 		bl	xchg_byte
- 939              	.LVL89:
- 320:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
- 940              		.loc 1 320 5 view .LVU244
- 941 0042 FF20     		movs	r0, #255
- 942 0044 FFF7FEFF 		bl	xchg_byte
- 943              	.LVL90:
- 321:Core/Src/sd.c **** 
- 322:Core/Src/sd.c ****     /*Calculate card's block's size, card's capacity*/
- 323:Core/Src/sd.c ****     /*SD Ver2.0 (SDHC)*/
- 324:Core/Src/sd.c ****     if (sd_Info.sd_version == SDC_VER2 && sd_Info.sd_V2cardType == SDHC)
- 944              		.loc 1 324 5 view .LVU245
- 945              		.loc 1 324 16 is_stmt 0 view .LVU246
- 946 0048 2A4B     		ldr	r3, .L80
- 947 004a DB79     		ldrb	r3, [r3, #7]	@ zero_extendqisi2
- 948              		.loc 1 324 8 view .LVU247
- 949 004c 1BB9     		cbnz	r3, .L75
- 950              		.loc 1 324 50 discriminator 1 view .LVU248
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 25
+ 915              	.LVL87:
+ 916              		.loc 1 310 8 view .LVU242
+ 917 000c 0546     		mov	r5, r0
+ 918 000e 0028     		cmp	r0, #0
+ 919 0010 5CD1     		bne	.L85
+ 311:Core/Src/sd.c ****     {
+ 312:Core/Src/sd.c ****         sd_deselect();
+ 313:Core/Src/sd.c ****         return rs;
+ 314:Core/Src/sd.c ****     }
+ 315:Core/Src/sd.c **** 
+ 316:Core/Src/sd.c ****     /*Get read-block token*/
+ 317:Core/Src/sd.c ****     UINT8 read_token, timeout;
+ 318:Core/Src/sd.c ****     timeout = 0xFF;
+ 920              		.loc 1 318 13 view .LVU243
+ 921 0012 FF24     		movs	r4, #255
+ 922              	.LVL88:
+ 923              	.L77:
+ 319:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
+ 320:Core/Src/sd.c ****         ;
+ 924              		.loc 1 320 9 is_stmt 1 discriminator 2 view .LVU244
+ 319:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
+ 925              		.loc 1 319 11 discriminator 2 view .LVU245
+ 319:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
+ 926              		.loc 1 319 26 is_stmt 0 discriminator 2 view .LVU246
+ 927 0014 FF20     		movs	r0, #255
+ 928 0016 FFF7FEFF 		bl	xchg_byte
+ 929              	.LVL89:
+ 319:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
+ 930              		.loc 1 319 11 discriminator 2 view .LVU247
+ 931 001a FE28     		cmp	r0, #254
+ 932 001c 03D0     		beq	.L79
+ 319:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
+ 933              		.loc 1 319 82 discriminator 1 view .LVU248
+ 934 001e 631E     		subs	r3, r4, #1
+ 935              	.LVL90:
+ 319:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
+ 936              		.loc 1 319 82 discriminator 1 view .LVU249
+ 937 0020 13F0FF04 		ands	r4, r3, #255
+ 938 0024 F6D1     		bne	.L77
+ 939              	.LVL91:
+ 940              	.L79:
+ 321:Core/Src/sd.c ****     if (!timeout)
+ 941              		.loc 1 321 5 is_stmt 1 view .LVU250
+ 942              		.loc 1 321 8 is_stmt 0 view .LVU251
+ 943 0026 002C     		cmp	r4, #0
+ 944 0028 53D0     		beq	.L86
+ 322:Core/Src/sd.c ****     {
+ 323:Core/Src/sd.c ****         sd_deselect();
+ 324:Core/Src/sd.c ****         return TIMEOUT;
+ 325:Core/Src/sd.c ****     }
+ 326:Core/Src/sd.c **** 
+ 327:Core/Src/sd.c ****     /*token valid, then try to get 16bits bytes from the sd card */
+ 328:Core/Src/sd.c ****     UINT8 csd[16] = {0};
+ 945              		.loc 1 328 5 is_stmt 1 view .LVU252
+ 946              		.loc 1 328 11 is_stmt 0 view .LVU253
+ 947 002a 0023     		movs	r3, #0
+ 948 002c 0093     		str	r3, [sp]
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 25
 
 
- 951 004e 294B     		ldr	r3, .L80
- 952 0050 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
- 953              		.loc 1 324 40 discriminator 1 view .LVU249
- 954 0052 012B     		cmp	r3, #1
- 955 0054 3AD0     		beq	.L79
- 956              	.L75:
- 325:Core/Src/sd.c ****     {
- 326:Core/Src/sd.c ****         sd_Info.CSD.c_size = (UINT32)csd[9] + (UINT32)(csd[8] << 8) + ((UINT32)(csd[7] & 0x3F) << 1
- 327:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
- 328:Core/Src/sd.c ****         sd_Info.sd_capacity = (UINT64)(sd_Info.CSD.c_size + 1) * 512 * 1024; // capacity is measure
- 329:Core/Src/sd.c ****     }
- 330:Core/Src/sd.c ****     /*SDSC*/
- 331:Core/Src/sd.c ****     else
- 332:Core/Src/sd.c ****     {
- 333:Core/Src/sd.c ****         sd_Info.CSD.read_bl_len = csd[5] & 0x1F;
- 957              		.loc 1 333 9 is_stmt 1 view .LVU250
- 958              		.loc 1 333 38 is_stmt 0 view .LVU251
- 959 0056 9DF80500 		ldrb	r0, [sp, #5]	@ zero_extendqisi2
- 960              		.loc 1 333 42 view .LVU252
- 961 005a 00F01F00 		and	r0, r0, #31
- 962              		.loc 1 333 33 view .LVU253
- 963 005e 2549     		ldr	r1, .L80
- 964 0060 0870     		strb	r0, [r1]
- 334:Core/Src/sd.c ****         sd_Info.CSD.c_size = ((UINT16)(csd[6] & 0x02) << 10) + (csd[7] << 2) + ((csd[8] & 0xC0) >> 
- 965              		.loc 1 334 9 is_stmt 1 view .LVU254
- 966              		.loc 1 334 43 is_stmt 0 view .LVU255
- 967 0062 9DF80620 		ldrb	r2, [sp, #6]	@ zero_extendqisi2
- 968              		.loc 1 334 55 view .LVU256
- 969 0066 9202     		lsls	r2, r2, #10
- 970 0068 02F40062 		and	r2, r2, #2048
- 971              		.loc 1 334 68 view .LVU257
- 972 006c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
- 973              		.loc 1 334 62 view .LVU258
- 974 0070 02EB8302 		add	r2, r2, r3, lsl #2
- 975              		.loc 1 334 85 view .LVU259
- 976 0074 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
- 977              		.loc 1 334 78 view .LVU260
- 978 0078 02EB9312 		add	r2, r2, r3, lsr #6
- 979              		.loc 1 334 28 view .LVU261
- 980 007c 4A80     		strh	r2, [r1, #2]	@ movhi
- 335:Core/Src/sd.c ****         sd_Info.CSD.c_size_mult = (csd[9] & 0x02) + ((csd[10] & 0x80) >> 7);
- 981              		.loc 1 335 9 is_stmt 1 view .LVU262
- 982              		.loc 1 335 39 is_stmt 0 view .LVU263
- 983 007e 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
- 984              		.loc 1 335 43 view .LVU264
- 985 0082 03F00203 		and	r3, r3, #2
- 986              		.loc 1 335 58 view .LVU265
- 987 0086 9DF80A40 		ldrb	r4, [sp, #10]	@ zero_extendqisi2
- 988              	.LVL91:
- 989              		.loc 1 335 51 view .LVU266
- 990 008a 03EBD413 		add	r3, r3, r4, lsr #7
- 991              		.loc 1 335 33 view .LVU267
- 992 008e 0B71     		strb	r3, [r1, #4]
- 336:Core/Src/sd.c ****         sd_Info.sd_capacity = (sd_Info.CSD.c_size + 1); // block base count
- 993              		.loc 1 336 9 is_stmt 1 view .LVU268
- 994              		.loc 1 336 51 is_stmt 0 view .LVU269
- 995 0090 0132     		adds	r2, r2, #1
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 26
+ 949 002e 0193     		str	r3, [sp, #4]
+ 950 0030 0293     		str	r3, [sp, #8]
+ 951 0032 0393     		str	r3, [sp, #12]
+ 329:Core/Src/sd.c ****     rcv_mul_byte(csd, 16);
+ 952              		.loc 1 329 5 is_stmt 1 view .LVU254
+ 953 0034 1021     		movs	r1, #16
+ 954 0036 6846     		mov	r0, sp
+ 955              	.LVL92:
+ 956              		.loc 1 329 5 is_stmt 0 view .LVU255
+ 957 0038 FFF7FEFF 		bl	rcv_mul_byte
+ 958              	.LVL93:
+ 330:Core/Src/sd.c **** 
+ 331:Core/Src/sd.c ****     /*read two dummy crc check bit*/
+ 332:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 959              		.loc 1 332 5 is_stmt 1 view .LVU256
+ 960 003c FF20     		movs	r0, #255
+ 961 003e FFF7FEFF 		bl	xchg_byte
+ 962              	.LVL94:
+ 333:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 963              		.loc 1 333 5 view .LVU257
+ 964 0042 FF20     		movs	r0, #255
+ 965 0044 FFF7FEFF 		bl	xchg_byte
+ 966              	.LVL95:
+ 334:Core/Src/sd.c **** 
+ 335:Core/Src/sd.c ****     /*Calculate card's block's size, card's capacity*/
+ 336:Core/Src/sd.c ****     /*SD Ver2.0 (SDHC)*/
+ 337:Core/Src/sd.c ****     if (sd_Info.sd_version == SDC_VER2 && sd_Info.sd_V2cardType == SDHC)
+ 967              		.loc 1 337 5 view .LVU258
+ 968              		.loc 1 337 16 is_stmt 0 view .LVU259
+ 969 0048 2D4B     		ldr	r3, .L88
+ 970 004a DB79     		ldrb	r3, [r3, #7]	@ zero_extendqisi2
+ 971              		.loc 1 337 8 view .LVU260
+ 972 004c 1BB9     		cbnz	r3, .L81
+ 973              		.loc 1 337 50 discriminator 1 view .LVU261
+ 974 004e 2C4B     		ldr	r3, .L88
+ 975 0050 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
+ 976              		.loc 1 337 40 discriminator 1 view .LVU262
+ 977 0052 012B     		cmp	r3, #1
+ 978 0054 41D0     		beq	.L87
+ 979              	.L81:
+ 338:Core/Src/sd.c ****     {
+ 339:Core/Src/sd.c ****         sd_Info.CSD.c_size = (UINT32)csd[9] + (UINT32)(csd[8] << 8) + ((UINT32)(csd[7] & 0x3F) << 1
+ 340:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
+ 341:Core/Src/sd.c ****         sd_Info.sd_capacity = (UINT64)(sd_Info.CSD.c_size + 1) * 512 * 1024; // capacity is measure
+ 342:Core/Src/sd.c ****     }
+ 343:Core/Src/sd.c ****     /*SDSC*/
+ 344:Core/Src/sd.c ****     else
+ 345:Core/Src/sd.c ****     {
+ 346:Core/Src/sd.c ****         sd_Info.CSD.read_bl_len = csd[5] & 0x1F;
+ 980              		.loc 1 346 9 is_stmt 1 view .LVU263
+ 981              		.loc 1 346 38 is_stmt 0 view .LVU264
+ 982 0056 9DF80500 		ldrb	r0, [sp, #5]	@ zero_extendqisi2
+ 983              		.loc 1 346 42 view .LVU265
+ 984 005a 00F01F00 		and	r0, r0, #31
+ 985              		.loc 1 346 33 view .LVU266
+ 986 005e 2849     		ldr	r1, .L88
+ 987 0060 0870     		strb	r0, [r1]
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 26
 
 
- 996              		.loc 1 336 29 view .LVU270
- 997 0092 0A61     		str	r2, [r1, #16]
- 998 0094 0024     		movs	r4, #0
- 999 0096 4C61     		str	r4, [r1, #20]
- 337:Core/Src/sd.c **** 
- 338:Core/Src/sd.c ****         sd_Info.sd_capacity *= (1 << (sd_Info.CSD.c_size_mult + 2)); // block count = block base co
- 1000              		.loc 1 338 9 is_stmt 1 view .LVU271
- 1001              		.loc 1 338 63 is_stmt 0 view .LVU272
- 1002 0098 0233     		adds	r3, r3, #2
- 1003              		.loc 1 338 35 view .LVU273
- 1004 009a 0124     		movs	r4, #1
- 1005 009c 04FA03F3 		lsl	r3, r4, r3
- 1006 00a0 4FEAE37E 		asr	lr, r3, #31
- 1007              		.loc 1 338 29 view .LVU274
- 1008 00a4 A2FB033C 		umull	r3, ip, r2, r3
- 1009 00a8 02FB0EC2 		mla	r2, r2, lr, ip
- 1010 00ac 0B61     		str	r3, [r1, #16]
- 1011 00ae 4A61     		str	r2, [r1, #20]
- 339:Core/Src/sd.c ****         sd_Info.sd_block_size = 1 << (sd_Info.CSD.read_bl_len);      // single block size = 2 ^ (re
- 1012              		.loc 1 339 9 is_stmt 1 view .LVU275
- 1013              		.loc 1 339 35 is_stmt 0 view .LVU276
- 1014 00b0 04FA00F0 		lsl	r0, r4, r0
- 1015              		.loc 1 339 31 view .LVU277
- 1016 00b4 C860     		str	r0, [r1, #12]
- 340:Core/Src/sd.c ****         sd_Info.sd_capacity *= sd_Info.sd_block_size;                // card size = block count * s
- 1017              		.loc 1 340 9 is_stmt 1 view .LVU278
- 1018              		.loc 1 340 29 is_stmt 0 view .LVU279
- 1019 00b6 A3FB0034 		umull	r3, r4, r3, r0
- 1020 00ba 00FB0242 		mla	r2, r0, r2, r4
- 1021 00be 0B61     		str	r3, [r1, #16]
- 1022 00c0 4A61     		str	r2, [r1, #20]
- 1023              	.L76:
+ 347:Core/Src/sd.c ****         sd_Info.CSD.c_size = ((UINT16)(csd[6] & 0x02) << 10) + (csd[7] << 2) + ((csd[8] & 0xC0) >> 
+ 988              		.loc 1 347 9 is_stmt 1 view .LVU267
+ 989              		.loc 1 347 43 is_stmt 0 view .LVU268
+ 990 0062 9DF80620 		ldrb	r2, [sp, #6]	@ zero_extendqisi2
+ 991              		.loc 1 347 55 view .LVU269
+ 992 0066 9202     		lsls	r2, r2, #10
+ 993 0068 02F40062 		and	r2, r2, #2048
+ 994              		.loc 1 347 68 view .LVU270
+ 995 006c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 996              		.loc 1 347 62 view .LVU271
+ 997 0070 02EB8302 		add	r2, r2, r3, lsl #2
+ 998              		.loc 1 347 85 view .LVU272
+ 999 0074 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2
+ 1000              		.loc 1 347 78 view .LVU273
+ 1001 0078 02EB9312 		add	r2, r2, r3, lsr #6
+ 1002              		.loc 1 347 28 view .LVU274
+ 1003 007c 4A80     		strh	r2, [r1, #2]	@ movhi
+ 348:Core/Src/sd.c ****         sd_Info.CSD.c_size_mult = (csd[9] & 0x02) + ((csd[10] & 0x80) >> 7);
+ 1004              		.loc 1 348 9 is_stmt 1 view .LVU275
+ 1005              		.loc 1 348 39 is_stmt 0 view .LVU276
+ 1006 007e 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 1007              		.loc 1 348 43 view .LVU277
+ 1008 0082 03F00203 		and	r3, r3, #2
+ 1009              		.loc 1 348 58 view .LVU278
+ 1010 0086 9DF80A40 		ldrb	r4, [sp, #10]	@ zero_extendqisi2
+ 1011              	.LVL96:
+ 1012              		.loc 1 348 51 view .LVU279
+ 1013 008a 03EBD413 		add	r3, r3, r4, lsr #7
+ 1014              		.loc 1 348 33 view .LVU280
+ 1015 008e 0B71     		strb	r3, [r1, #4]
+ 349:Core/Src/sd.c ****         sd_Info.sd_capacity = (sd_Info.CSD.c_size + 1); // block base count
+ 1016              		.loc 1 349 9 is_stmt 1 view .LVU281
+ 1017              		.loc 1 349 51 is_stmt 0 view .LVU282
+ 1018 0090 0132     		adds	r2, r2, #1
+ 1019              		.loc 1 349 29 view .LVU283
+ 1020 0092 0A61     		str	r2, [r1, #16]
+ 1021 0094 0024     		movs	r4, #0
+ 1022 0096 4C61     		str	r4, [r1, #20]
+ 350:Core/Src/sd.c **** 
+ 351:Core/Src/sd.c ****         sd_Info.sd_capacity *= (1 << (sd_Info.CSD.c_size_mult + 2)); // block count = block base co
+ 1023              		.loc 1 351 9 is_stmt 1 view .LVU284
+ 1024              		.loc 1 351 63 is_stmt 0 view .LVU285
+ 1025 0098 0233     		adds	r3, r3, #2
+ 1026              		.loc 1 351 35 view .LVU286
+ 1027 009a 0124     		movs	r4, #1
+ 1028 009c 04FA03F3 		lsl	r3, r4, r3
+ 1029 00a0 4FEAE37E 		asr	lr, r3, #31
+ 1030              		.loc 1 351 29 view .LVU287
+ 1031 00a4 A2FB033C 		umull	r3, ip, r2, r3
+ 1032 00a8 02FB0EC2 		mla	r2, r2, lr, ip
+ 1033 00ac 0B61     		str	r3, [r1, #16]
+ 1034 00ae 4A61     		str	r2, [r1, #20]
+ 352:Core/Src/sd.c ****         sd_Info.sd_block_size = 1 << (sd_Info.CSD.read_bl_len);      // single block size = 2 ^ (re
+ 1035              		.loc 1 352 9 is_stmt 1 view .LVU288
+ 1036              		.loc 1 352 35 is_stmt 0 view .LVU289
+ 1037 00b0 04FA00F0 		lsl	r0, r4, r0
+ 1038              		.loc 1 352 31 view .LVU290
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 27
+
+
+ 1039 00b4 C860     		str	r0, [r1, #12]
+ 353:Core/Src/sd.c ****         sd_Info.sd_capacity *= sd_Info.sd_block_size;                // card size = block count * s
+ 1040              		.loc 1 353 9 is_stmt 1 view .LVU291
+ 1041              		.loc 1 353 29 is_stmt 0 view .LVU292
+ 1042 00b6 A3FB0034 		umull	r3, r4, r3, r0
+ 1043 00ba 00FB0242 		mla	r2, r0, r2, r4
+ 1044 00be 0B61     		str	r3, [r1, #16]
+ 1045 00c0 4A61     		str	r2, [r1, #20]
+ 1046              	.L82:
+ 354:Core/Src/sd.c ****     }
+ 355:Core/Src/sd.c **** 
+ 356:Core/Src/sd.c ****     sd_deselect();
+ 1047              		.loc 1 356 5 is_stmt 1 view .LVU293
+ 1048 00c2 FFF7FEFF 		bl	sd_deselect
+ 1049              	.LVL97:
+ 357:Core/Src/sd.c ****     return SD_NO_ERROR;
+ 1050              		.loc 1 357 5 view .LVU294
+ 1051              	.L78:
+ 358:Core/Src/sd.c **** }
+ 1052              		.loc 1 358 1 is_stmt 0 view .LVU295
+ 1053 00c6 2846     		mov	r0, r5
+ 1054 00c8 05B0     		add	sp, sp, #20
+ 1055              	.LCFI20:
+ 1056              		.cfi_remember_state
+ 1057              		.cfi_def_cfa_offset 12
+ 1058              		@ sp needed
+ 1059 00ca 30BD     		pop	{r4, r5, pc}
+ 1060              	.LVL98:
+ 1061              	.L85:
+ 1062              	.LCFI21:
+ 1063              		.cfi_restore_state
+ 312:Core/Src/sd.c ****         return rs;
+ 1064              		.loc 1 312 9 is_stmt 1 view .LVU296
+ 1065 00cc FFF7FEFF 		bl	sd_deselect
+ 1066              	.LVL99:
+ 313:Core/Src/sd.c ****     }
+ 1067              		.loc 1 313 9 view .LVU297
+ 313:Core/Src/sd.c ****     }
+ 1068              		.loc 1 313 16 is_stmt 0 view .LVU298
+ 1069 00d0 F9E7     		b	.L78
+ 1070              	.LVL100:
+ 1071              	.L86:
+ 323:Core/Src/sd.c ****         return TIMEOUT;
+ 1072              		.loc 1 323 9 is_stmt 1 view .LVU299
+ 1073 00d2 FFF7FEFF 		bl	sd_deselect
+ 1074              	.LVL101:
+ 324:Core/Src/sd.c ****     }
+ 1075              		.loc 1 324 9 view .LVU300
+ 324:Core/Src/sd.c ****     }
+ 1076              		.loc 1 324 16 is_stmt 0 view .LVU301
+ 1077 00d6 4125     		movs	r5, #65
+ 1078 00d8 F5E7     		b	.L78
+ 1079              	.L87:
+ 339:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
+ 1080              		.loc 1 339 9 is_stmt 1 view .LVU302
+ 339:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
+ 1081              		.loc 1 339 41 is_stmt 0 view .LVU303
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 28
+
+
+ 1082 00da 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 339:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
+ 1083              		.loc 1 339 59 view .LVU304
+ 1084 00de 9DF80820 		ldrb	r2, [sp, #8]	@ zero_extendqisi2
+ 339:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
+ 1085              		.loc 1 339 45 view .LVU305
+ 1086 00e2 03EB0223 		add	r3, r3, r2, lsl #8
+ 1087 00e6 9BB2     		uxth	r3, r3
+ 339:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
+ 1088              		.loc 1 339 28 view .LVU306
+ 1089 00e8 054A     		ldr	r2, .L88
+ 1090 00ea 5380     		strh	r3, [r2, #2]	@ movhi
+ 340:Core/Src/sd.c ****         sd_Info.sd_capacity = (UINT64)(sd_Info.CSD.c_size + 1) * 512 * 1024; // capacity is measure
+ 1091              		.loc 1 340 9 is_stmt 1 view .LVU307
+ 340:Core/Src/sd.c ****         sd_Info.sd_capacity = (UINT64)(sd_Info.CSD.c_size + 1) * 512 * 1024; // capacity is measure
+ 1092              		.loc 1 340 31 is_stmt 0 view .LVU308
+ 1093 00ec 4FF40071 		mov	r1, #512
+ 1094 00f0 D160     		str	r1, [r2, #12]
  341:Core/Src/sd.c ****     }
- 342:Core/Src/sd.c **** 
- 343:Core/Src/sd.c ****     sd_deselect();
- 1024              		.loc 1 343 5 is_stmt 1 view .LVU280
- 1025 00c2 FFF7FEFF 		bl	sd_deselect
- 1026              	.LVL92:
- 344:Core/Src/sd.c ****     return SD_NO_ERROR;
- 1027              		.loc 1 344 5 view .LVU281
- 1028              	.L72:
- 345:Core/Src/sd.c **** }
- 1029              		.loc 1 345 1 is_stmt 0 view .LVU282
- 1030 00c6 2846     		mov	r0, r5
- 1031 00c8 05B0     		add	sp, sp, #20
- 1032              	.LCFI20:
- 1033              		.cfi_remember_state
- 1034              		.cfi_def_cfa_offset 12
- 1035              		@ sp needed
- 1036 00ca 30BD     		pop	{r4, r5, pc}
- 1037              	.LVL93:
- 1038              	.L79:
- 1039              	.LCFI21:
- 1040              		.cfi_restore_state
- 326:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
- 1041              		.loc 1 326 9 is_stmt 1 view .LVU283
- 326:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 27
+ 1095              		.loc 1 341 9 is_stmt 1 view .LVU309
+ 341:Core/Src/sd.c ****     }
+ 1096              		.loc 1 341 59 is_stmt 0 view .LVU310
+ 1097 00f2 0133     		adds	r3, r3, #1
+ 341:Core/Src/sd.c ****     }
+ 1098              		.loc 1 341 70 view .LVU311
+ 1099 00f4 590B     		lsrs	r1, r3, #13
+ 1100 00f6 DB04     		lsls	r3, r3, #19
+ 341:Core/Src/sd.c ****     }
+ 1101              		.loc 1 341 29 view .LVU312
+ 1102 00f8 1361     		str	r3, [r2, #16]
+ 1103 00fa 5161     		str	r1, [r2, #20]
+ 1104 00fc E1E7     		b	.L82
+ 1105              	.L89:
+ 1106 00fe 00BF     		.align	2
+ 1107              	.L88:
+ 1108 0100 00000000 		.word	.LANCHOR1
+ 1109              		.cfi_endproc
+ 1110              	.LFE142:
+ 1112              		.section	.text.SD_readSingleBlock,"ax",%progbits
+ 1113              		.align	1
+ 1114              		.global	SD_readSingleBlock
+ 1115              		.syntax unified
+ 1116              		.thumb
+ 1117              		.thumb_func
+ 1118              		.fpu fpv4-sp-d16
+ 1120              	SD_readSingleBlock:
+ 1121              	.LVL102:
+ 1122              	.LFB143:
+ 359:Core/Src/sd.c **** 
+ 360:Core/Src/sd.c **** /*Read a single block given the address*/
+ 361:Core/Src/sd.c **** Res_Status SD_readSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 size)
+ 362:Core/Src/sd.c **** {
+ 1123              		.loc 1 362 1 is_stmt 1 view -0
+ 1124              		.cfi_startproc
+ 1125              		@ args = 4, pretend = 0, frame = 0
+ 1126              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1127              		.loc 1 362 1 is_stmt 0 view .LVU314
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 29
 
 
- 1042              		.loc 1 326 41 is_stmt 0 view .LVU284
- 1043 00cc 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
- 326:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
- 1044              		.loc 1 326 59 view .LVU285
- 1045 00d0 9DF80820 		ldrb	r2, [sp, #8]	@ zero_extendqisi2
- 326:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
- 1046              		.loc 1 326 45 view .LVU286
- 1047 00d4 03EB0223 		add	r3, r3, r2, lsl #8
- 1048 00d8 9BB2     		uxth	r3, r3
- 326:Core/Src/sd.c ****         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
- 1049              		.loc 1 326 28 view .LVU287
- 1050 00da 064A     		ldr	r2, .L80
- 1051 00dc 5380     		strh	r3, [r2, #2]	@ movhi
- 327:Core/Src/sd.c ****         sd_Info.sd_capacity = (UINT64)(sd_Info.CSD.c_size + 1) * 512 * 1024; // capacity is measure
- 1052              		.loc 1 327 9 is_stmt 1 view .LVU288
- 327:Core/Src/sd.c ****         sd_Info.sd_capacity = (UINT64)(sd_Info.CSD.c_size + 1) * 512 * 1024; // capacity is measure
- 1053              		.loc 1 327 31 is_stmt 0 view .LVU289
- 1054 00de 4FF40071 		mov	r1, #512
- 1055 00e2 D160     		str	r1, [r2, #12]
- 328:Core/Src/sd.c ****     }
- 1056              		.loc 1 328 9 is_stmt 1 view .LVU290
- 328:Core/Src/sd.c ****     }
- 1057              		.loc 1 328 59 is_stmt 0 view .LVU291
- 1058 00e4 0133     		adds	r3, r3, #1
- 328:Core/Src/sd.c ****     }
- 1059              		.loc 1 328 70 view .LVU292
- 1060 00e6 590B     		lsrs	r1, r3, #13
- 1061 00e8 DB04     		lsls	r3, r3, #19
- 328:Core/Src/sd.c ****     }
- 1062              		.loc 1 328 29 view .LVU293
- 1063 00ea 1361     		str	r3, [r2, #16]
- 1064 00ec 5161     		str	r1, [r2, #20]
- 1065 00ee E8E7     		b	.L76
- 1066              	.LVL94:
- 1067              	.L77:
- 312:Core/Src/sd.c **** 
- 1068              		.loc 1 312 16 view .LVU294
- 1069 00f0 8025     		movs	r5, #128
- 1070 00f2 E8E7     		b	.L72
- 1071              	.L81:
- 1072              		.align	2
- 1073              	.L80:
- 1074 00f4 00000000 		.word	.LANCHOR1
- 1075              		.cfi_endproc
- 1076              	.LFE142:
- 1078              		.section	.text.SD_readSingleBlock,"ax",%progbits
- 1079              		.align	1
- 1080              		.global	SD_readSingleBlock
- 1081              		.syntax unified
- 1082              		.thumb
- 1083              		.thumb_func
- 1084              		.fpu fpv4-sp-d16
- 1086              	SD_readSingleBlock:
- 1087              	.LVL95:
- 1088              	.LFB143:
- 346:Core/Src/sd.c **** 
- 347:Core/Src/sd.c **** /*Read a single block given the address*/
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 28
+ 1128 0000 70B5     		push	{r4, r5, r6, lr}
+ 1129              	.LCFI22:
+ 1130              		.cfi_def_cfa_offset 16
+ 1131              		.cfi_offset 4, -16
+ 1132              		.cfi_offset 5, -12
+ 1133              		.cfi_offset 6, -8
+ 1134              		.cfi_offset 14, -4
+ 1135 0002 0546     		mov	r5, r0
+ 1136 0004 1146     		mov	r1, r2
+ 363:Core/Src/sd.c ****     /*Sector count*/
+ 364:Core/Src/sd.c ****     Res_Status rs;
+ 1137              		.loc 1 364 5 is_stmt 1 view .LVU315
+ 365:Core/Src/sd.c ****     /*SDHC and the above sd cards use sector unit to search for the data*/
+ 366:Core/Src/sd.c ****     if (sd_Info.sd_V2cardType == SDHC && sd_Info.sd_version == SDC_VER2)
+ 1138              		.loc 1 366 5 view .LVU316
+ 1139              		.loc 1 366 16 is_stmt 0 view .LVU317
+ 1140 0006 1A4A     		ldr	r2, .L101
+ 1141              	.LVL103:
+ 1142              		.loc 1 366 16 view .LVU318
+ 1143 0008 127A     		ldrb	r2, [r2, #8]	@ zero_extendqisi2
+ 1144              		.loc 1 366 8 view .LVU319
+ 1145 000a 012A     		cmp	r2, #1
+ 1146 000c 1ED0     		beq	.L98
+ 1147              	.LVL104:
+ 1148              	.L91:
+ 367:Core/Src/sd.c ****     {
+ 368:Core/Src/sd.c ****         addr /= SDHC_SINGLE_BLOCK_SIZE;
+ 369:Core/Src/sd.c ****         size = SDHC_SINGLE_BLOCK_SIZE;
+ 370:Core/Src/sd.c ****     }
+ 371:Core/Src/sd.c **** 
+ 372:Core/Src/sd.c ****     /*send cmd17 to read*/
+ 373:Core/Src/sd.c ****     if ((rs = send_cmd(CMD17, addr)) != SD_NO_ERROR)
+ 1149              		.loc 1 373 5 is_stmt 1 view .LVU320
+ 1150              		.loc 1 373 15 is_stmt 0 view .LVU321
+ 1151 000e 1120     		movs	r0, #17
+ 1152              	.LVL105:
+ 1153              		.loc 1 373 15 view .LVU322
+ 1154 0010 FFF7FEFF 		bl	send_cmd
+ 1155              	.LVL106:
+ 1156              		.loc 1 373 8 view .LVU323
+ 1157 0014 0646     		mov	r6, r0
+ 1158 0016 20BB     		cbnz	r0, .L99
+ 374:Core/Src/sd.c ****     {
+ 375:Core/Src/sd.c ****         sd_deselect();
+ 376:Core/Src/sd.c ****         return rs;
+ 377:Core/Src/sd.c ****     }
+ 378:Core/Src/sd.c **** 
+ 379:Core/Src/sd.c ****     /*Get block read token*/
+ 380:Core/Src/sd.c ****     UINT8 timeout = 0xFF;
+ 1159              		.loc 1 380 11 view .LVU324
+ 1160 0018 FF24     		movs	r4, #255
+ 1161              	.LVL107:
+ 1162              	.L92:
+ 381:Core/Src/sd.c ****     UINT8 read_token;
+ 382:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
+ 383:Core/Src/sd.c ****         ;
+ 1163              		.loc 1 383 9 is_stmt 1 discriminator 2 view .LVU325
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 30
 
 
- 348:Core/Src/sd.c **** Res_Status SD_readSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 size)
- 349:Core/Src/sd.c **** {
- 1089              		.loc 1 349 1 is_stmt 1 view -0
- 1090              		.cfi_startproc
- 1091              		@ args = 4, pretend = 0, frame = 0
- 1092              		@ frame_needed = 0, uses_anonymous_args = 0
- 1093              		.loc 1 349 1 is_stmt 0 view .LVU296
- 1094 0000 70B5     		push	{r4, r5, r6, lr}
- 1095              	.LCFI22:
- 1096              		.cfi_def_cfa_offset 16
- 1097              		.cfi_offset 4, -16
- 1098              		.cfi_offset 5, -12
- 1099              		.cfi_offset 6, -8
- 1100              		.cfi_offset 14, -4
- 1101 0002 0546     		mov	r5, r0
- 1102 0004 1146     		mov	r1, r2
- 350:Core/Src/sd.c ****     /*Sector count*/
- 351:Core/Src/sd.c ****     Res_Status rs;
- 1103              		.loc 1 351 5 is_stmt 1 view .LVU297
- 352:Core/Src/sd.c ****     /*SDHC and the above sd cards use sector unit to search for the data*/
- 353:Core/Src/sd.c ****     if (sd_Info.sd_V2cardType == SDHC && sd_Info.sd_version == SDC_VER2)
- 1104              		.loc 1 353 5 view .LVU298
- 1105              		.loc 1 353 16 is_stmt 0 view .LVU299
- 1106 0006 184A     		ldr	r2, .L90
- 1107              	.LVL96:
- 1108              		.loc 1 353 16 view .LVU300
- 1109 0008 127A     		ldrb	r2, [r2, #8]	@ zero_extendqisi2
- 1110              		.loc 1 353 8 view .LVU301
- 1111 000a 012A     		cmp	r2, #1
- 1112 000c 1ED0     		beq	.L89
- 1113              	.LVL97:
- 1114              	.L83:
- 354:Core/Src/sd.c ****     {
- 355:Core/Src/sd.c ****         addr /= SDHC_SINGLE_BLOCK_SIZE;
- 356:Core/Src/sd.c ****         size = SDHC_SINGLE_BLOCK_SIZE;
- 357:Core/Src/sd.c ****     }
- 358:Core/Src/sd.c **** 
- 359:Core/Src/sd.c ****     /*send cmd17 to read*/
- 360:Core/Src/sd.c ****     if ((rs = send_cmd(CMD17, addr)) != SD_NO_ERROR)
- 1115              		.loc 1 360 5 is_stmt 1 view .LVU302
- 1116              		.loc 1 360 15 is_stmt 0 view .LVU303
- 1117 000e 1120     		movs	r0, #17
- 1118              	.LVL98:
- 1119              		.loc 1 360 15 view .LVU304
- 1120 0010 FFF7FEFF 		bl	send_cmd
- 1121              	.LVL99:
- 1122              		.loc 1 360 8 view .LVU305
- 1123 0014 0646     		mov	r6, r0
- 1124 0016 B8B9     		cbnz	r0, .L84
- 361:Core/Src/sd.c ****         return rs;
- 362:Core/Src/sd.c **** 
- 363:Core/Src/sd.c ****     /*Get block read token*/
- 364:Core/Src/sd.c ****     UINT8 timeout = 0xFF;
- 1125              		.loc 1 364 11 view .LVU306
- 1126 0018 FF24     		movs	r4, #255
- 1127              	.LVL100:
- 1128              	.L86:
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 29
-
-
- 365:Core/Src/sd.c ****     UINT8 read_token;
- 366:Core/Src/sd.c ****     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
- 367:Core/Src/sd.c ****         ;
- 1129              		.loc 1 367 9 is_stmt 1 discriminator 2 view .LVU307
- 366:Core/Src/sd.c ****         ;
- 1130              		.loc 1 366 11 discriminator 2 view .LVU308
- 366:Core/Src/sd.c ****         ;
- 1131              		.loc 1 366 26 is_stmt 0 discriminator 2 view .LVU309
- 1132 001a FF20     		movs	r0, #255
- 1133 001c FFF7FEFF 		bl	xchg_byte
- 1134              	.LVL101:
- 366:Core/Src/sd.c ****         ;
- 1135              		.loc 1 366 11 discriminator 2 view .LVU310
- 1136 0020 FE28     		cmp	r0, #254
- 1137 0022 03D0     		beq	.L85
- 366:Core/Src/sd.c ****         ;
- 1138              		.loc 1 366 82 discriminator 1 view .LVU311
- 1139 0024 631E     		subs	r3, r4, #1
- 1140              	.LVL102:
- 366:Core/Src/sd.c ****         ;
- 1141              		.loc 1 366 82 discriminator 1 view .LVU312
- 1142 0026 13F0FF04 		ands	r4, r3, #255
- 1143 002a F6D1     		bne	.L86
- 1144              	.LVL103:
- 1145              	.L85:
- 368:Core/Src/sd.c ****     if (!timeout) // timeout
- 1146              		.loc 1 368 5 is_stmt 1 view .LVU313
- 1147              		.loc 1 368 8 is_stmt 0 view .LVU314
- 1148 002c CCB1     		cbz	r4, .L87
- 369:Core/Src/sd.c ****         return TIMEOUT;
- 370:Core/Src/sd.c **** 
- 371:Core/Src/sd.c ****     /*Read data*/
- 372:Core/Src/sd.c ****     rcv_mul_byte(pbuff, size);
- 1149              		.loc 1 372 5 is_stmt 1 view .LVU315
- 1150 002e 049B     		ldr	r3, [sp, #16]
- 1151 0030 D9B2     		uxtb	r1, r3
- 1152 0032 2846     		mov	r0, r5
- 1153              	.LVL104:
- 1154              		.loc 1 372 5 is_stmt 0 view .LVU316
- 1155 0034 FFF7FEFF 		bl	rcv_mul_byte
- 1156              	.LVL105:
- 373:Core/Src/sd.c ****     /*2 crc bit*/
- 374:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
- 1157              		.loc 1 374 5 is_stmt 1 view .LVU317
- 1158 0038 FF20     		movs	r0, #255
- 1159 003a FFF7FEFF 		bl	xchg_byte
- 1160              	.LVL106:
- 375:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
- 1161              		.loc 1 375 5 view .LVU318
- 1162 003e FF20     		movs	r0, #255
- 1163 0040 FFF7FEFF 		bl	xchg_byte
- 1164              	.LVL107:
- 376:Core/Src/sd.c **** 
- 377:Core/Src/sd.c ****     sd_deselect();
- 1165              		.loc 1 377 5 view .LVU319
- 1166 0044 FFF7FEFF 		bl	sd_deselect
- 1167              	.LVL108:
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 30
-
-
- 378:Core/Src/sd.c ****     return SD_NO_ERROR;
- 1168              		.loc 1 378 5 view .LVU320
- 1169              	.L84:
- 379:Core/Src/sd.c **** }
- 1170              		.loc 1 379 1 is_stmt 0 view .LVU321
- 1171 0048 3046     		mov	r0, r6
- 1172 004a 70BD     		pop	{r4, r5, r6, pc}
- 1173              	.LVL109:
- 1174              	.L89:
- 353:Core/Src/sd.c ****     {
- 1175              		.loc 1 353 49 discriminator 1 view .LVU322
- 1176 004c 064A     		ldr	r2, .L90
- 1177 004e D279     		ldrb	r2, [r2, #7]	@ zero_extendqisi2
- 353:Core/Src/sd.c ****     {
- 1178              		.loc 1 353 39 discriminator 1 view .LVU323
- 1179 0050 002A     		cmp	r2, #0
- 1180 0052 DCD1     		bne	.L83
- 355:Core/Src/sd.c ****         size = SDHC_SINGLE_BLOCK_SIZE;
- 1181              		.loc 1 355 9 is_stmt 1 view .LVU324
- 355:Core/Src/sd.c ****         size = SDHC_SINGLE_BLOCK_SIZE;
- 1182              		.loc 1 355 14 is_stmt 0 view .LVU325
- 1183 0054 490A     		lsrs	r1, r1, #9
- 1184 0056 41EAC351 		orr	r1, r1, r3, lsl #23
- 1185              	.LVL110:
- 356:Core/Src/sd.c ****     }
- 1186              		.loc 1 356 9 is_stmt 1 view .LVU326
- 356:Core/Src/sd.c ****     }
- 1187              		.loc 1 356 14 is_stmt 0 view .LVU327
- 1188 005a 4FF40073 		mov	r3, #512
- 1189              	.LVL111:
- 356:Core/Src/sd.c ****     }
- 1190              		.loc 1 356 14 view .LVU328
- 1191 005e 0493     		str	r3, [sp, #16]
- 1192 0060 D5E7     		b	.L83
- 1193              	.LVL112:
- 1194              	.L87:
- 369:Core/Src/sd.c **** 
- 1195              		.loc 1 369 16 view .LVU329
- 1196 0062 8026     		movs	r6, #128
- 1197 0064 F0E7     		b	.L84
- 1198              	.L91:
- 1199 0066 00BF     		.align	2
- 1200              	.L90:
- 1201 0068 00000000 		.word	.LANCHOR1
- 1202              		.cfi_endproc
- 1203              	.LFE143:
- 1205              		.section	.text.SD_Init,"ax",%progbits
- 1206              		.align	1
- 1207              		.global	SD_Init
- 1208              		.syntax unified
- 1209              		.thumb
- 1210              		.thumb_func
- 1211              		.fpu fpv4-sp-d16
- 1213              	SD_Init:
- 1214              	.LFB144:
- 380:Core/Src/sd.c **** 
- 381:Core/Src/sd.c **** Res_Status SD_Init(void)
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 31
-
-
- 382:Core/Src/sd.c **** {
- 1215              		.loc 1 382 1 is_stmt 1 view -0
- 1216              		.cfi_startproc
- 1217              		@ args = 0, pretend = 0, frame = 0
- 1218              		@ frame_needed = 0, uses_anonymous_args = 0
- 1219 0000 10B5     		push	{r4, lr}
- 1220              	.LCFI23:
- 1221              		.cfi_def_cfa_offset 8
- 1222              		.cfi_offset 4, -8
- 1223              		.cfi_offset 14, -4
- 383:Core/Src/sd.c ****     Res_Status res;
- 1224              		.loc 1 383 5 view .LVU331
- 384:Core/Src/sd.c ****     FCLK_SLOW();
- 1225              		.loc 1 384 5 view .LVU332
- 1226 0002 164B     		ldr	r3, .L98
- 1227 0004 1A68     		ldr	r2, [r3]
- 1228 0006 1368     		ldr	r3, [r2]
- 1229 0008 23F03803 		bic	r3, r3, #56
- 1230 000c 43F03003 		orr	r3, r3, #48
- 1231 0010 1360     		str	r3, [r2]
- 1232              		.loc 1 384 16 view .LVU333
- 385:Core/Src/sd.c **** 
- 386:Core/Src/sd.c ****     /*Pull up MOSI and CS voltage high in at least 74 clock*/
- 387:Core/Src/sd.c ****     // HAL_Delay(10); // Delay to give sd card enough time to power up
- 388:Core/Src/sd.c ****     CS_HIGH();
- 1233              		.loc 1 388 5 view .LVU334
- 1234 0012 0122     		movs	r2, #1
- 1235 0014 4FF48051 		mov	r1, #4096
- 1236 0018 1148     		ldr	r0, .L98+4
- 1237 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 1238              	.LVL113:
- 1239              		.loc 1 388 14 view .LVU335
- 389:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
- 1240              		.loc 1 389 5 view .LVU336
- 1241              	.LBB8:
- 1242              		.loc 1 389 10 view .LVU337
- 1243              		.loc 1 389 14 is_stmt 0 view .LVU338
- 1244 001e 0024     		movs	r4, #0
- 1245              		.loc 1 389 5 view .LVU339
- 1246 0020 03E0     		b	.L93
- 1247              	.LVL114:
- 1248              	.L94:
- 390:Core/Src/sd.c ****     {
- 391:Core/Src/sd.c ****         /*send at least 80 dummy byte*/
- 392:Core/Src/sd.c ****         xchg_byte(SD_DUMMY_BYTE);
- 1249              		.loc 1 392 9 is_stmt 1 discriminator 3 view .LVU340
- 1250 0022 FF20     		movs	r0, #255
- 1251 0024 FFF7FEFF 		bl	xchg_byte
- 1252              	.LVL115:
- 389:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
- 1253              		.loc 1 389 29 discriminator 3 view .LVU341
- 389:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
- 1254              		.loc 1 389 30 is_stmt 0 discriminator 3 view .LVU342
- 1255 0028 0134     		adds	r4, r4, #1
- 1256              	.LVL116:
- 1257              	.L93:
- 389:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 32
-
-
- 1258              		.loc 1 389 21 is_stmt 1 discriminator 1 view .LVU343
- 389:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
- 1259              		.loc 1 389 5 is_stmt 0 discriminator 1 view .LVU344
- 1260 002a 092C     		cmp	r4, #9
- 1261 002c F9DD     		ble	.L94
- 1262              	.LBE8:
- 393:Core/Src/sd.c ****     }
+ 382:Core/Src/sd.c ****         ;
+ 1164              		.loc 1 382 11 discriminator 2 view .LVU326
+ 382:Core/Src/sd.c ****         ;
+ 1165              		.loc 1 382 26 is_stmt 0 discriminator 2 view .LVU327
+ 1166 001a FF20     		movs	r0, #255
+ 1167 001c FFF7FEFF 		bl	xchg_byte
+ 1168              	.LVL108:
+ 382:Core/Src/sd.c ****         ;
+ 1169              		.loc 1 382 11 discriminator 2 view .LVU328
+ 1170 0020 FE28     		cmp	r0, #254
+ 1171 0022 03D0     		beq	.L94
+ 382:Core/Src/sd.c ****         ;
+ 1172              		.loc 1 382 82 discriminator 1 view .LVU329
+ 1173 0024 631E     		subs	r3, r4, #1
+ 1174              	.LVL109:
+ 382:Core/Src/sd.c ****         ;
+ 1175              		.loc 1 382 82 discriminator 1 view .LVU330
+ 1176 0026 13F0FF04 		ands	r4, r3, #255
+ 1177 002a F6D1     		bne	.L92
+ 1178              	.LVL110:
+ 1179              	.L94:
+ 384:Core/Src/sd.c ****     if (!timeout)
+ 1180              		.loc 1 384 5 is_stmt 1 view .LVU331
+ 1181              		.loc 1 384 8 is_stmt 0 view .LVU332
+ 1182 002c E4B1     		cbz	r4, .L100
+ 385:Core/Src/sd.c ****     { // timeout
+ 386:Core/Src/sd.c ****         sd_deselect();
+ 387:Core/Src/sd.c ****         return TIMEOUT;
+ 388:Core/Src/sd.c ****     }
+ 389:Core/Src/sd.c ****     /*Read data*/
+ 390:Core/Src/sd.c ****     rcv_mul_byte(pbuff, size);
+ 1183              		.loc 1 390 5 is_stmt 1 view .LVU333
+ 1184 002e 049B     		ldr	r3, [sp, #16]
+ 1185 0030 D9B2     		uxtb	r1, r3
+ 1186 0032 2846     		mov	r0, r5
+ 1187              	.LVL111:
+ 1188              		.loc 1 390 5 is_stmt 0 view .LVU334
+ 1189 0034 FFF7FEFF 		bl	rcv_mul_byte
+ 1190              	.LVL112:
+ 391:Core/Src/sd.c ****     /*2 crc bit*/
+ 392:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 1191              		.loc 1 392 5 is_stmt 1 view .LVU335
+ 1192 0038 FF20     		movs	r0, #255
+ 1193 003a FFF7FEFF 		bl	xchg_byte
+ 1194              	.LVL113:
+ 393:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 1195              		.loc 1 393 5 view .LVU336
+ 1196 003e FF20     		movs	r0, #255
+ 1197 0040 FFF7FEFF 		bl	xchg_byte
+ 1198              	.LVL114:
  394:Core/Src/sd.c **** 
- 395:Core/Src/sd.c ****     if ((res = SD_GoIdleState()) != IDLE_STATE) // CMD0 check pass;
- 1263              		.loc 1 395 5 is_stmt 1 view .LVU345
- 1264              		.loc 1 395 16 is_stmt 0 view .LVU346
- 1265 002e FFF7FEFF 		bl	SD_GoIdleState
- 1266              	.LVL117:
- 1267 0032 0446     		mov	r4, r0
- 1268              	.LVL118:
- 1269              		.loc 1 395 8 view .LVU347
- 1270 0034 0128     		cmp	r0, #1
- 1271 0036 01D0     		beq	.L97
- 1272              	.LVL119:
- 1273              	.L95:
- 396:Core/Src/sd.c ****     {
- 397:Core/Src/sd.c ****         return res;
- 398:Core/Src/sd.c ****     }
- 399:Core/Src/sd.c ****     if ((res = SD_CheckVersion()) != IDLE_STATE) // CMD8 check pass
- 400:Core/Src/sd.c ****     {
- 401:Core/Src/sd.c ****         return res;
- 402:Core/Src/sd.c ****     }
- 403:Core/Src/sd.c ****     /*Deselect sd card*/
- 404:Core/Src/sd.c ****     sd_deselect();
- 405:Core/Src/sd.c **** 
- 406:Core/Src/sd.c ****     if ((res = SD_getCardType()) != SD_NO_ERROR) // CMD58 check pass
- 407:Core/Src/sd.c ****     {
- 408:Core/Src/sd.c ****         return res;
- 409:Core/Src/sd.c ****     }
- 410:Core/Src/sd.c **** 
- 411:Core/Src/sd.c ****     sd_deselect();
- 412:Core/Src/sd.c ****     return SD_NO_ERROR;
- 413:Core/Src/sd.c **** }
- 1274              		.loc 1 413 1 view .LVU348
- 1275 0038 2046     		mov	r0, r4
- 1276 003a 10BD     		pop	{r4, pc}
- 1277              	.LVL120:
- 1278              	.L97:
- 399:Core/Src/sd.c ****     {
- 1279              		.loc 1 399 5 is_stmt 1 view .LVU349
- 399:Core/Src/sd.c ****     {
- 1280              		.loc 1 399 16 is_stmt 0 view .LVU350
- 1281 003c FFF7FEFF 		bl	SD_CheckVersion
- 1282              	.LVL121:
- 399:Core/Src/sd.c ****     {
- 1283              		.loc 1 399 16 view .LVU351
- 1284 0040 0446     		mov	r4, r0
- 1285              	.LVL122:
- 399:Core/Src/sd.c ****     {
- 1286              		.loc 1 399 8 view .LVU352
- 1287 0042 0128     		cmp	r0, #1
- 1288 0044 F8D1     		bne	.L95
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 33
+ 395:Core/Src/sd.c ****     sd_deselect();
+ 1199              		.loc 1 395 5 view .LVU337
+ 1200 0044 FFF7FEFF 		bl	sd_deselect
+ 1201              	.LVL115:
+ 396:Core/Src/sd.c ****     return SD_NO_ERROR;
+ 1202              		.loc 1 396 5 view .LVU338
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 31
 
 
- 404:Core/Src/sd.c **** 
- 1289              		.loc 1 404 5 is_stmt 1 view .LVU353
- 1290 0046 FFF7FEFF 		bl	sd_deselect
- 1291              	.LVL123:
- 406:Core/Src/sd.c ****     {
- 1292              		.loc 1 406 5 view .LVU354
- 406:Core/Src/sd.c ****     {
- 1293              		.loc 1 406 16 is_stmt 0 view .LVU355
- 1294 004a FFF7FEFF 		bl	SD_getCardType
- 1295              	.LVL124:
- 406:Core/Src/sd.c ****     {
- 1296              		.loc 1 406 8 view .LVU356
- 1297 004e 0446     		mov	r4, r0
- 1298 0050 0028     		cmp	r0, #0
- 1299 0052 F1D1     		bne	.L95
- 411:Core/Src/sd.c ****     return SD_NO_ERROR;
- 1300              		.loc 1 411 5 is_stmt 1 view .LVU357
- 1301 0054 FFF7FEFF 		bl	sd_deselect
- 1302              	.LVL125:
- 412:Core/Src/sd.c **** }
- 1303              		.loc 1 412 5 view .LVU358
- 412:Core/Src/sd.c **** }
- 1304              		.loc 1 412 12 is_stmt 0 view .LVU359
- 1305 0058 EEE7     		b	.L95
- 1306              	.L99:
- 1307 005a 00BF     		.align	2
- 1308              	.L98:
- 1309 005c 00000000 		.word	hspi2
- 1310 0060 00040048 		.word	1207960576
- 1311              		.cfi_endproc
- 1312              	.LFE144:
- 1314              		.global	sd_Info
- 1315              		.section	.bss.res.0,"aw",%nobits
- 1316              		.align	1
- 1317              		.set	.LANCHOR0,. + 0
- 1320              	res.0:
- 1321 0000 0000     		.space	2
- 1322              		.section	.bss.sd_Info,"aw",%nobits
- 1323              		.align	3
- 1324              		.set	.LANCHOR1,. + 0
- 1327              	sd_Info:
- 1328 0000 00000000 		.space	24
- 1328      00000000 
- 1328      00000000 
- 1328      00000000 
- 1328      00000000 
- 1329              		.text
- 1330              	.Letext0:
- 1331              		.file 2 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\machine\\_default_types.h"
- 1332              		.file 3 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\sys\\_stdint.h"
- 1333              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
- 1334              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
- 1335              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
- 1336              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
- 1337              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
- 1338              		.file 9 "Core/Inc/sd.h"
- 1339              		.file 10 "Core/Inc/main.h"
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 34
+ 1203              	.L93:
+ 397:Core/Src/sd.c **** }
+ 1204              		.loc 1 397 1 is_stmt 0 view .LVU339
+ 1205 0048 3046     		mov	r0, r6
+ 1206 004a 70BD     		pop	{r4, r5, r6, pc}
+ 1207              	.LVL116:
+ 1208              	.L98:
+ 366:Core/Src/sd.c ****     {
+ 1209              		.loc 1 366 49 discriminator 1 view .LVU340
+ 1210 004c 084A     		ldr	r2, .L101
+ 1211 004e D279     		ldrb	r2, [r2, #7]	@ zero_extendqisi2
+ 366:Core/Src/sd.c ****     {
+ 1212              		.loc 1 366 39 discriminator 1 view .LVU341
+ 1213 0050 002A     		cmp	r2, #0
+ 1214 0052 DCD1     		bne	.L91
+ 368:Core/Src/sd.c ****         size = SDHC_SINGLE_BLOCK_SIZE;
+ 1215              		.loc 1 368 9 is_stmt 1 view .LVU342
+ 368:Core/Src/sd.c ****         size = SDHC_SINGLE_BLOCK_SIZE;
+ 1216              		.loc 1 368 14 is_stmt 0 view .LVU343
+ 1217 0054 490A     		lsrs	r1, r1, #9
+ 1218 0056 41EAC351 		orr	r1, r1, r3, lsl #23
+ 1219              	.LVL117:
+ 369:Core/Src/sd.c ****     }
+ 1220              		.loc 1 369 9 is_stmt 1 view .LVU344
+ 369:Core/Src/sd.c ****     }
+ 1221              		.loc 1 369 14 is_stmt 0 view .LVU345
+ 1222 005a 4FF40073 		mov	r3, #512
+ 1223              	.LVL118:
+ 369:Core/Src/sd.c ****     }
+ 1224              		.loc 1 369 14 view .LVU346
+ 1225 005e 0493     		str	r3, [sp, #16]
+ 1226 0060 D5E7     		b	.L91
+ 1227              	.LVL119:
+ 1228              	.L99:
+ 375:Core/Src/sd.c ****         return rs;
+ 1229              		.loc 1 375 9 is_stmt 1 view .LVU347
+ 1230 0062 FFF7FEFF 		bl	sd_deselect
+ 1231              	.LVL120:
+ 376:Core/Src/sd.c ****     }
+ 1232              		.loc 1 376 9 view .LVU348
+ 376:Core/Src/sd.c ****     }
+ 1233              		.loc 1 376 16 is_stmt 0 view .LVU349
+ 1234 0066 EFE7     		b	.L93
+ 1235              	.LVL121:
+ 1236              	.L100:
+ 386:Core/Src/sd.c ****         return TIMEOUT;
+ 1237              		.loc 1 386 9 is_stmt 1 view .LVU350
+ 1238 0068 FFF7FEFF 		bl	sd_deselect
+ 1239              	.LVL122:
+ 387:Core/Src/sd.c ****     }
+ 1240              		.loc 1 387 9 view .LVU351
+ 387:Core/Src/sd.c ****     }
+ 1241              		.loc 1 387 16 is_stmt 0 view .LVU352
+ 1242 006c 4126     		movs	r6, #65
+ 1243 006e EBE7     		b	.L93
+ 1244              	.L102:
+ 1245              		.align	2
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 32
 
 
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cch538mr.s 			page 35
+ 1246              	.L101:
+ 1247 0070 00000000 		.word	.LANCHOR1
+ 1248              		.cfi_endproc
+ 1249              	.LFE143:
+ 1251              		.section	.text.SD_writeSingleBlock,"ax",%progbits
+ 1252              		.align	1
+ 1253              		.global	SD_writeSingleBlock
+ 1254              		.syntax unified
+ 1255              		.thumb
+ 1256              		.thumb_func
+ 1257              		.fpu fpv4-sp-d16
+ 1259              	SD_writeSingleBlock:
+ 1260              	.LVL123:
+ 1261              	.LFB144:
+ 398:Core/Src/sd.c **** 
+ 399:Core/Src/sd.c **** /*Write a single block given the address*/
+ 400:Core/Src/sd.c **** Res_Status SD_writeSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 size)
+ 401:Core/Src/sd.c **** {
+ 1262              		.loc 1 401 1 is_stmt 1 view -0
+ 1263              		.cfi_startproc
+ 1264              		@ args = 4, pretend = 0, frame = 0
+ 1265              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1266              		.loc 1 401 1 is_stmt 0 view .LVU354
+ 1267 0000 38B5     		push	{r3, r4, r5, lr}
+ 1268              	.LCFI23:
+ 1269              		.cfi_def_cfa_offset 16
+ 1270              		.cfi_offset 3, -16
+ 1271              		.cfi_offset 4, -12
+ 1272              		.cfi_offset 5, -8
+ 1273              		.cfi_offset 14, -4
+ 1274 0002 0446     		mov	r4, r0
+ 1275 0004 1146     		mov	r1, r2
+ 402:Core/Src/sd.c ****     Res_Status rs;
+ 1276              		.loc 1 402 5 is_stmt 1 view .LVU355
+ 403:Core/Src/sd.c **** 
+ 404:Core/Src/sd.c ****     if (sd_Info.sd_V2cardType == SDHC && sd_Info.sd_version == SDC_VER2)
+ 1277              		.loc 1 404 5 view .LVU356
+ 1278              		.loc 1 404 16 is_stmt 0 view .LVU357
+ 1279 0006 1D4A     		ldr	r2, .L113
+ 1280              	.LVL124:
+ 1281              		.loc 1 404 16 view .LVU358
+ 1282 0008 127A     		ldrb	r2, [r2, #8]	@ zero_extendqisi2
+ 1283              		.loc 1 404 8 view .LVU359
+ 1284 000a 012A     		cmp	r2, #1
+ 1285 000c 23D0     		beq	.L110
+ 1286              	.LVL125:
+ 1287              	.L104:
+ 405:Core/Src/sd.c ****     {
+ 406:Core/Src/sd.c ****         addr /= SDHC_SINGLE_BLOCK_SIZE;
+ 407:Core/Src/sd.c ****         size = SDHC_SINGLE_BLOCK_SIZE;
+ 408:Core/Src/sd.c ****     }
+ 409:Core/Src/sd.c **** 
+ 410:Core/Src/sd.c ****     /*send CMD24*/
+ 411:Core/Src/sd.c ****     if ((rs = send_cmd(CMD24, addr)) != SD_NO_ERROR)
+ 1288              		.loc 1 411 5 is_stmt 1 view .LVU360
+ 1289              		.loc 1 411 15 is_stmt 0 view .LVU361
+ 1290 000e 1820     		movs	r0, #24
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 33
+
+
+ 1291              	.LVL126:
+ 1292              		.loc 1 411 15 view .LVU362
+ 1293 0010 FFF7FEFF 		bl	send_cmd
+ 1294              	.LVL127:
+ 1295              		.loc 1 411 8 view .LVU363
+ 1296 0014 0546     		mov	r5, r0
+ 1297 0016 48BB     		cbnz	r0, .L111
+ 412:Core/Src/sd.c ****     {
+ 413:Core/Src/sd.c ****         sd_deselect();
+ 414:Core/Src/sd.c ****         return rs;
+ 415:Core/Src/sd.c ****     }
+ 416:Core/Src/sd.c **** 
+ 417:Core/Src/sd.c ****     /*Transmit block write token*/
+ 418:Core/Src/sd.c ****     // sd_select();
+ 419:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 1298              		.loc 1 419 5 is_stmt 1 view .LVU364
+ 1299 0018 FF20     		movs	r0, #255
+ 1300              	.LVL128:
+ 1301              		.loc 1 419 5 is_stmt 0 view .LVU365
+ 1302 001a FFF7FEFF 		bl	xchg_byte
+ 1303              	.LVL129:
+ 420:Core/Src/sd.c ****     xchg_byte(SD_START_SINGLE_WRITE_TOKEN);
+ 1304              		.loc 1 420 5 is_stmt 1 view .LVU366
+ 1305 001e FE20     		movs	r0, #254
+ 1306 0020 FFF7FEFF 		bl	xchg_byte
+ 1307              	.LVL130:
+ 421:Core/Src/sd.c **** 
+ 422:Core/Src/sd.c ****     /*Transmit data*/
+ 423:Core/Src/sd.c ****     xmit_mul_byte(pbuff, size);
+ 1308              		.loc 1 423 5 view .LVU367
+ 1309 0024 049B     		ldr	r3, [sp, #16]
+ 1310 0026 D9B2     		uxtb	r1, r3
+ 1311 0028 2046     		mov	r0, r4
+ 1312 002a FFF7FEFF 		bl	xmit_mul_byte
+ 1313              	.LVL131:
+ 424:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE);
+ 1314              		.loc 1 424 5 view .LVU368
+ 1315 002e FF20     		movs	r0, #255
+ 1316 0030 FFF7FEFF 		bl	xchg_byte
+ 1317              	.LVL132:
+ 425:Core/Src/sd.c ****     xchg_byte(SD_DUMMY_BYTE); // CRC
+ 1318              		.loc 1 425 5 view .LVU369
+ 1319 0034 FF20     		movs	r0, #255
+ 1320 0036 FFF7FEFF 		bl	xchg_byte
+ 1321              	.LVL133:
+ 426:Core/Src/sd.c **** 
+ 427:Core/Src/sd.c ****     /*get data response token*/
+ 428:Core/Src/sd.c ****     UINT8 timeout = 0xFF;
+ 1322              		.loc 1 428 5 view .LVU370
+ 429:Core/Src/sd.c ****     while ((rs = xchg_byte(SD_DUMMY_BYTE)) == 0xFF && --timeout)
+ 1323              		.loc 1 429 5 view .LVU371
+ 428:Core/Src/sd.c ****     while ((rs = xchg_byte(SD_DUMMY_BYTE)) == 0xFF && --timeout)
+ 1324              		.loc 1 428 11 is_stmt 0 view .LVU372
+ 1325 003a FF24     		movs	r4, #255
+ 1326              	.LVL134:
+ 1327              	.L108:
+ 430:Core/Src/sd.c ****         ;
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 34
+
+
+ 1328              		.loc 1 430 9 is_stmt 1 discriminator 2 view .LVU373
+ 429:Core/Src/sd.c ****     while ((rs = xchg_byte(SD_DUMMY_BYTE)) == 0xFF && --timeout)
+ 1329              		.loc 1 429 11 discriminator 2 view .LVU374
+ 429:Core/Src/sd.c ****     while ((rs = xchg_byte(SD_DUMMY_BYTE)) == 0xFF && --timeout)
+ 1330              		.loc 1 429 18 is_stmt 0 discriminator 2 view .LVU375
+ 1331 003c FF20     		movs	r0, #255
+ 1332 003e FFF7FEFF 		bl	xchg_byte
+ 1333              	.LVL135:
+ 429:Core/Src/sd.c ****     while ((rs = xchg_byte(SD_DUMMY_BYTE)) == 0xFF && --timeout)
+ 1334              		.loc 1 429 16 discriminator 2 view .LVU376
+ 1335 0042 85B2     		uxth	r5, r0
+ 1336              	.LVL136:
+ 429:Core/Src/sd.c ****     while ((rs = xchg_byte(SD_DUMMY_BYTE)) == 0xFF && --timeout)
+ 1337              		.loc 1 429 11 discriminator 2 view .LVU377
+ 1338 0044 FF2D     		cmp	r5, #255
+ 1339 0046 03D1     		bne	.L107
+ 429:Core/Src/sd.c ****     while ((rs = xchg_byte(SD_DUMMY_BYTE)) == 0xFF && --timeout)
+ 1340              		.loc 1 429 52 discriminator 1 view .LVU378
+ 1341 0048 631E     		subs	r3, r4, #1
+ 1342              	.LVL137:
+ 429:Core/Src/sd.c ****     while ((rs = xchg_byte(SD_DUMMY_BYTE)) == 0xFF && --timeout)
+ 1343              		.loc 1 429 52 discriminator 1 view .LVU379
+ 1344 004a 13F0FF04 		ands	r4, r3, #255
+ 1345 004e F5D1     		bne	.L108
+ 1346              	.LVL138:
+ 1347              	.L107:
+ 431:Core/Src/sd.c ****     if (!timeout)
+ 1348              		.loc 1 431 5 is_stmt 1 view .LVU380
+ 1349              		.loc 1 431 8 is_stmt 0 view .LVU381
+ 1350 0050 7CB1     		cbz	r4, .L112
+ 1351              	.LVL139:
+ 1352              	.L106:
+ 432:Core/Src/sd.c ****     {
+ 433:Core/Src/sd.c ****         sd_deselect();
+ 434:Core/Src/sd.c ****         return TIMEOUT;
+ 435:Core/Src/sd.c ****     }
+ 436:Core/Src/sd.c **** 
+ 437:Core/Src/sd.c ****     /*error handling function */
+ 438:Core/Src/sd.c **** 
+ 439:Core/Src/sd.c ****     return rs;
+ 440:Core/Src/sd.c **** }
+ 1353              		.loc 1 440 1 view .LVU382
+ 1354 0052 2846     		mov	r0, r5
+ 1355 0054 38BD     		pop	{r3, r4, r5, pc}
+ 1356              	.LVL140:
+ 1357              	.L110:
+ 404:Core/Src/sd.c ****     {
+ 1358              		.loc 1 404 49 discriminator 1 view .LVU383
+ 1359 0056 094A     		ldr	r2, .L113
+ 1360 0058 D279     		ldrb	r2, [r2, #7]	@ zero_extendqisi2
+ 404:Core/Src/sd.c ****     {
+ 1361              		.loc 1 404 39 discriminator 1 view .LVU384
+ 1362 005a 002A     		cmp	r2, #0
+ 1363 005c D7D1     		bne	.L104
+ 406:Core/Src/sd.c ****         size = SDHC_SINGLE_BLOCK_SIZE;
+ 1364              		.loc 1 406 9 is_stmt 1 view .LVU385
+ 406:Core/Src/sd.c ****         size = SDHC_SINGLE_BLOCK_SIZE;
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 35
+
+
+ 1365              		.loc 1 406 14 is_stmt 0 view .LVU386
+ 1366 005e 490A     		lsrs	r1, r1, #9
+ 1367 0060 41EAC351 		orr	r1, r1, r3, lsl #23
+ 1368              	.LVL141:
+ 407:Core/Src/sd.c ****     }
+ 1369              		.loc 1 407 9 is_stmt 1 view .LVU387
+ 407:Core/Src/sd.c ****     }
+ 1370              		.loc 1 407 14 is_stmt 0 view .LVU388
+ 1371 0064 4FF40073 		mov	r3, #512
+ 1372              	.LVL142:
+ 407:Core/Src/sd.c ****     }
+ 1373              		.loc 1 407 14 view .LVU389
+ 1374 0068 0493     		str	r3, [sp, #16]
+ 1375 006a D0E7     		b	.L104
+ 1376              	.LVL143:
+ 1377              	.L111:
+ 413:Core/Src/sd.c ****         return rs;
+ 1378              		.loc 1 413 9 is_stmt 1 view .LVU390
+ 1379 006c FFF7FEFF 		bl	sd_deselect
+ 1380              	.LVL144:
+ 414:Core/Src/sd.c ****     }
+ 1381              		.loc 1 414 9 view .LVU391
+ 414:Core/Src/sd.c ****     }
+ 1382              		.loc 1 414 16 is_stmt 0 view .LVU392
+ 1383 0070 EFE7     		b	.L106
+ 1384              	.LVL145:
+ 1385              	.L112:
+ 433:Core/Src/sd.c ****         return TIMEOUT;
+ 1386              		.loc 1 433 9 is_stmt 1 view .LVU393
+ 1387 0072 FFF7FEFF 		bl	sd_deselect
+ 1388              	.LVL146:
+ 434:Core/Src/sd.c ****     }
+ 1389              		.loc 1 434 9 view .LVU394
+ 434:Core/Src/sd.c ****     }
+ 1390              		.loc 1 434 16 is_stmt 0 view .LVU395
+ 1391 0076 4125     		movs	r5, #65
+ 1392              	.LVL147:
+ 434:Core/Src/sd.c ****     }
+ 1393              		.loc 1 434 16 view .LVU396
+ 1394 0078 EBE7     		b	.L106
+ 1395              	.L114:
+ 1396 007a 00BF     		.align	2
+ 1397              	.L113:
+ 1398 007c 00000000 		.word	.LANCHOR1
+ 1399              		.cfi_endproc
+ 1400              	.LFE144:
+ 1402              		.section	.text.SD_Init,"ax",%progbits
+ 1403              		.align	1
+ 1404              		.global	SD_Init
+ 1405              		.syntax unified
+ 1406              		.thumb
+ 1407              		.thumb_func
+ 1408              		.fpu fpv4-sp-d16
+ 1410              	SD_Init:
+ 1411              	.LFB145:
+ 441:Core/Src/sd.c **** 
+ 442:Core/Src/sd.c **** Res_Status SD_Init(void)
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 36
+
+
+ 443:Core/Src/sd.c **** {
+ 1412              		.loc 1 443 1 is_stmt 1 view -0
+ 1413              		.cfi_startproc
+ 1414              		@ args = 0, pretend = 0, frame = 0
+ 1415              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1416 0000 10B5     		push	{r4, lr}
+ 1417              	.LCFI24:
+ 1418              		.cfi_def_cfa_offset 8
+ 1419              		.cfi_offset 4, -8
+ 1420              		.cfi_offset 14, -4
+ 444:Core/Src/sd.c ****     Res_Status res;
+ 1421              		.loc 1 444 5 view .LVU398
+ 445:Core/Src/sd.c ****     FCLK_SLOW();
+ 1422              		.loc 1 445 5 view .LVU399
+ 1423 0002 164B     		ldr	r3, .L121
+ 1424 0004 1A68     		ldr	r2, [r3]
+ 1425 0006 1368     		ldr	r3, [r2]
+ 1426 0008 23F03803 		bic	r3, r3, #56
+ 1427 000c 43F03003 		orr	r3, r3, #48
+ 1428 0010 1360     		str	r3, [r2]
+ 1429              		.loc 1 445 16 view .LVU400
+ 446:Core/Src/sd.c **** 
+ 447:Core/Src/sd.c ****     /*Pull up MOSI and CS voltage high in at least 74 clock*/
+ 448:Core/Src/sd.c ****     // HAL_Delay(10); // Delay to give sd card enough time to power up
+ 449:Core/Src/sd.c ****     CS_HIGH();
+ 1430              		.loc 1 449 5 view .LVU401
+ 1431 0012 0122     		movs	r2, #1
+ 1432 0014 4FF48051 		mov	r1, #4096
+ 1433 0018 1148     		ldr	r0, .L121+4
+ 1434 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1435              	.LVL148:
+ 1436              		.loc 1 449 14 view .LVU402
+ 450:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ 1437              		.loc 1 450 5 view .LVU403
+ 1438              	.LBB9:
+ 1439              		.loc 1 450 10 view .LVU404
+ 1440              		.loc 1 450 14 is_stmt 0 view .LVU405
+ 1441 001e 0024     		movs	r4, #0
+ 1442              		.loc 1 450 5 view .LVU406
+ 1443 0020 03E0     		b	.L116
+ 1444              	.LVL149:
+ 1445              	.L117:
+ 451:Core/Src/sd.c ****     {
+ 452:Core/Src/sd.c ****         /*send at least 80 dummy byte*/
+ 453:Core/Src/sd.c ****         xchg_byte(SD_DUMMY_BYTE);
+ 1446              		.loc 1 453 9 is_stmt 1 discriminator 3 view .LVU407
+ 1447 0022 FF20     		movs	r0, #255
+ 1448 0024 FFF7FEFF 		bl	xchg_byte
+ 1449              	.LVL150:
+ 450:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ 1450              		.loc 1 450 29 discriminator 3 view .LVU408
+ 450:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ 1451              		.loc 1 450 30 is_stmt 0 discriminator 3 view .LVU409
+ 1452 0028 0134     		adds	r4, r4, #1
+ 1453              	.LVL151:
+ 1454              	.L116:
+ 450:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 37
+
+
+ 1455              		.loc 1 450 21 is_stmt 1 discriminator 1 view .LVU410
+ 450:Core/Src/sd.c ****     for (int i = 0; i < 10; i++)
+ 1456              		.loc 1 450 5 is_stmt 0 discriminator 1 view .LVU411
+ 1457 002a 092C     		cmp	r4, #9
+ 1458 002c F9DD     		ble	.L117
+ 1459              	.LBE9:
+ 454:Core/Src/sd.c ****     }
+ 455:Core/Src/sd.c **** 
+ 456:Core/Src/sd.c ****     if ((res = SD_GoIdleState()) != IDLE_STATE) // CMD0 check pass;
+ 1460              		.loc 1 456 5 is_stmt 1 view .LVU412
+ 1461              		.loc 1 456 16 is_stmt 0 view .LVU413
+ 1462 002e FFF7FEFF 		bl	SD_GoIdleState
+ 1463              	.LVL152:
+ 1464 0032 0446     		mov	r4, r0
+ 1465              	.LVL153:
+ 1466              		.loc 1 456 8 view .LVU414
+ 1467 0034 0128     		cmp	r0, #1
+ 1468 0036 01D0     		beq	.L120
+ 1469              	.LVL154:
+ 1470              	.L118:
+ 457:Core/Src/sd.c ****     {
+ 458:Core/Src/sd.c ****         return res;
+ 459:Core/Src/sd.c ****     }
+ 460:Core/Src/sd.c ****     if ((res = SD_CheckVersion()) != IDLE_STATE) // CMD8 check pass
+ 461:Core/Src/sd.c ****     {
+ 462:Core/Src/sd.c ****         return res;
+ 463:Core/Src/sd.c ****     }
+ 464:Core/Src/sd.c ****     /*Deselect sd card*/
+ 465:Core/Src/sd.c ****     sd_deselect();
+ 466:Core/Src/sd.c **** 
+ 467:Core/Src/sd.c ****     if ((res = SD_getCardType()) != SD_NO_ERROR) // CMD58 check pass
+ 468:Core/Src/sd.c ****     {
+ 469:Core/Src/sd.c ****         return res;
+ 470:Core/Src/sd.c ****     }
+ 471:Core/Src/sd.c **** 
+ 472:Core/Src/sd.c ****     sd_deselect();
+ 473:Core/Src/sd.c ****     return SD_NO_ERROR;
+ 474:Core/Src/sd.c **** }
+ 1471              		.loc 1 474 1 view .LVU415
+ 1472 0038 2046     		mov	r0, r4
+ 1473 003a 10BD     		pop	{r4, pc}
+ 1474              	.LVL155:
+ 1475              	.L120:
+ 460:Core/Src/sd.c ****     {
+ 1476              		.loc 1 460 5 is_stmt 1 view .LVU416
+ 460:Core/Src/sd.c ****     {
+ 1477              		.loc 1 460 16 is_stmt 0 view .LVU417
+ 1478 003c FFF7FEFF 		bl	SD_CheckVersion
+ 1479              	.LVL156:
+ 460:Core/Src/sd.c ****     {
+ 1480              		.loc 1 460 16 view .LVU418
+ 1481 0040 0446     		mov	r4, r0
+ 1482              	.LVL157:
+ 460:Core/Src/sd.c ****     {
+ 1483              		.loc 1 460 8 view .LVU419
+ 1484 0042 0128     		cmp	r0, #1
+ 1485 0044 F8D1     		bne	.L118
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 38
+
+
+ 465:Core/Src/sd.c **** 
+ 1486              		.loc 1 465 5 is_stmt 1 view .LVU420
+ 1487 0046 FFF7FEFF 		bl	sd_deselect
+ 1488              	.LVL158:
+ 467:Core/Src/sd.c ****     {
+ 1489              		.loc 1 467 5 view .LVU421
+ 467:Core/Src/sd.c ****     {
+ 1490              		.loc 1 467 16 is_stmt 0 view .LVU422
+ 1491 004a FFF7FEFF 		bl	SD_getCardType
+ 1492              	.LVL159:
+ 467:Core/Src/sd.c ****     {
+ 1493              		.loc 1 467 8 view .LVU423
+ 1494 004e 0446     		mov	r4, r0
+ 1495 0050 0028     		cmp	r0, #0
+ 1496 0052 F1D1     		bne	.L118
+ 472:Core/Src/sd.c ****     return SD_NO_ERROR;
+ 1497              		.loc 1 472 5 is_stmt 1 view .LVU424
+ 1498 0054 FFF7FEFF 		bl	sd_deselect
+ 1499              	.LVL160:
+ 473:Core/Src/sd.c **** }
+ 1500              		.loc 1 473 5 view .LVU425
+ 473:Core/Src/sd.c **** }
+ 1501              		.loc 1 473 12 is_stmt 0 view .LVU426
+ 1502 0058 EEE7     		b	.L118
+ 1503              	.L122:
+ 1504 005a 00BF     		.align	2
+ 1505              	.L121:
+ 1506 005c 00000000 		.word	hspi2
+ 1507 0060 00040048 		.word	1207960576
+ 1508              		.cfi_endproc
+ 1509              	.LFE145:
+ 1511              		.global	sd_Info
+ 1512              		.section	.bss.res.0,"aw",%nobits
+ 1513              		.align	1
+ 1514              		.set	.LANCHOR0,. + 0
+ 1517              	res.0:
+ 1518 0000 0000     		.space	2
+ 1519              		.section	.bss.sd_Info,"aw",%nobits
+ 1520              		.align	3
+ 1521              		.set	.LANCHOR1,. + 0
+ 1524              	sd_Info:
+ 1525 0000 00000000 		.space	24
+ 1525      00000000 
+ 1525      00000000 
+ 1525      00000000 
+ 1525      00000000 
+ 1526              		.text
+ 1527              	.Letext0:
+ 1528              		.file 2 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1529              		.file 3 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 1530              		.file 4 "Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h"
+ 1531              		.file 5 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h"
+ 1532              		.file 6 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_gpio.h"
+ 1533              		.file 7 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_dma.h"
+ 1534              		.file 8 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h"
+ 1535              		.file 9 "Core/Inc/sd.h"
+ 1536              		.file 10 "Core/Inc/main.h"
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 39
+
+
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s 			page 40
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 sd.c
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:18     .text.xchg_byte:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:26     .text.xchg_byte:0000000000000000 xchg_byte
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:66     .text.xchg_byte:0000000000000028 $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:71     .text.rcv_mul_byte:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:78     .text.rcv_mul_byte:0000000000000000 rcv_mul_byte
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:129    .text.xmit_mul_byte:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:136    .text.xmit_mul_byte:0000000000000000 xmit_mul_byte
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:184    .text.sd_wait_ready:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:191    .text.sd_wait_ready:0000000000000000 sd_wait_ready
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:243    .text.sd_deselect:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:250    .text.sd_deselect:0000000000000000 sd_deselect
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:277    .text.sd_deselect:0000000000000018 $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:282    .text.sd_select:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:289    .text.sd_select:0000000000000000 sd_select
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:334    .text.sd_select:0000000000000028 $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:339    .text.send_cmd:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:345    .text.send_cmd:0000000000000000 send_cmd
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:483    .text.SD_GoIdleState:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:490    .text.SD_GoIdleState:0000000000000000 SD_GoIdleState
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:529    .text.SD_GoIdleState:0000000000000020 $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:534    .text.SD_CheckVersion:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:541    .text.SD_CheckVersion:0000000000000000 SD_CheckVersion
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:706    .text.SD_CheckVersion:0000000000000090 $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:712    .text.SD_getCardType:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:719    .text.SD_getCardType:0000000000000000 SD_getCardType
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:859    .text.SD_getCardType:0000000000000070 $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:864    .text.SD_getCSDRegister:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:871    .text.SD_getCSDRegister:0000000000000000 SD_getCSDRegister
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1074   .text.SD_getCSDRegister:00000000000000f4 $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1079   .text.SD_readSingleBlock:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1086   .text.SD_readSingleBlock:0000000000000000 SD_readSingleBlock
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1201   .text.SD_readSingleBlock:0000000000000068 $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1206   .text.SD_Init:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1213   .text.SD_Init:0000000000000000 SD_Init
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1309   .text.SD_Init:000000000000005c $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1327   .bss.sd_Info:0000000000000000 sd_Info
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1316   .bss.res.0:0000000000000000 $d
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1320   .bss.res.0:0000000000000000 res.0
-C:\Users\Falle\AppData\Local\Temp\cch538mr.s:1323   .bss.sd_Info:0000000000000000 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:18     .text.xchg_byte:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:26     .text.xchg_byte:0000000000000000 xchg_byte
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:66     .text.xchg_byte:0000000000000028 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:71     .text.rcv_mul_byte:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:78     .text.rcv_mul_byte:0000000000000000 rcv_mul_byte
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:129    .text.xmit_mul_byte:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:136    .text.xmit_mul_byte:0000000000000000 xmit_mul_byte
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:188    .text.sd_wait_ready:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:195    .text.sd_wait_ready:0000000000000000 sd_wait_ready
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:247    .text.sd_deselect:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:254    .text.sd_deselect:0000000000000000 sd_deselect
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:281    .text.sd_deselect:0000000000000018 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:286    .text.sd_select:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:293    .text.sd_select:0000000000000000 sd_select
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:338    .text.sd_select:0000000000000028 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:343    .text.send_cmd:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:349    .text.send_cmd:0000000000000000 send_cmd
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:487    .text.SD_GoIdleState:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:494    .text.SD_GoIdleState:0000000000000000 SD_GoIdleState
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:533    .text.SD_GoIdleState:0000000000000020 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:538    .text.SD_CheckVersion:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:545    .text.SD_CheckVersion:0000000000000000 SD_CheckVersion
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:714    .text.SD_CheckVersion:0000000000000090 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:720    .text.SD_getCardType:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:727    .text.SD_getCardType:0000000000000000 SD_getCardType
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:882    .text.SD_getCardType:0000000000000078 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:887    .text.SD_getCSDRegister:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:894    .text.SD_getCSDRegister:0000000000000000 SD_getCSDRegister
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1108   .text.SD_getCSDRegister:0000000000000100 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1113   .text.SD_readSingleBlock:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1120   .text.SD_readSingleBlock:0000000000000000 SD_readSingleBlock
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1247   .text.SD_readSingleBlock:0000000000000070 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1252   .text.SD_writeSingleBlock:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1259   .text.SD_writeSingleBlock:0000000000000000 SD_writeSingleBlock
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1398   .text.SD_writeSingleBlock:000000000000007c $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1403   .text.SD_Init:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1410   .text.SD_Init:0000000000000000 SD_Init
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1506   .text.SD_Init:000000000000005c $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1524   .bss.sd_Info:0000000000000000 sd_Info
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1513   .bss.res.0:0000000000000000 $d
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1517   .bss.res.0:0000000000000000 res.0
+C:\Users\Falle\AppData\Local\Temp\ccgkgqZT.s:1520   .bss.sd_Info:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_TransmitReceive

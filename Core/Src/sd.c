@@ -68,7 +68,7 @@ void xmit_mul_byte(UINT8 *xmitData, UINT8 len)
 {
     for (int i = 0; i < len; i++)
     {
-        xchg_byte(xmitData[i]);
+        xchg_byte(*(++xmitData));
     }
 }
 
@@ -227,10 +227,11 @@ Res_Status SD_CheckVersion(void)
         {
             /*These sd card is not well-defined*/
             /*Or some error happen when receiving R7*/
+            sd_deselect();
             return OTHER_ERROR;
         }
     }
-    /*Version 1.0*/
+    /*Version 1.0*/ /*UNTESTED*/
     else if (rs == (ILL_COMMAND | IDLE_STATE))
     {
         sd_Info.sd_version = SDC_VER1;
@@ -244,13 +245,14 @@ Res_Status SD_CheckVersion(void)
         /*Time out*/
         if (timeout < 0)
         {
+            sd_deselect();
             return TIMEOUT;
         }
         return rs;
     }
     else
     {
-        return rs;
+        return SD_NO_ERROR;
     }
 }
 
@@ -259,17 +261,24 @@ Res_Status SD_getCardType(void)
 {
     Res_Status rs;
     /*We should first send ACMD41 to activate sd card's initialization*/
-    UINT16 timeout = 0xFFF;
+    UINT8 timeout = 0xFF;
     while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
         ;
     if (!timeout)
+    {
+        sd_deselect();
         return TIMEOUT; // timeout
+    }
     if (rs != SD_NO_ERROR)
+    {
+        sd_deselect();
         return rs; // get other illegal response
+    }
 
     /*send CMD58 to get OCR info*/
     if ((rs = send_cmd(CMD58, 0)) != SD_NO_ERROR)
     {
+        sd_deselect();
         return rs;
     }
     /*Send succeed, getting R3 response*/
@@ -300,6 +309,7 @@ Res_Status SD_getCSDRegister(void)
     /*wait for the R1 response from CMD9*/
     if ((rs = send_cmd(CMD9, 0)) != SD_NO_ERROR)
     {
+        sd_deselect();
         return rs;
     }
 
@@ -309,7 +319,10 @@ Res_Status SD_getCSDRegister(void)
     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
         ;
     if (!timeout)
+    {
+        sd_deselect();
         return TIMEOUT;
+    }
 
     /*token valid, then try to get 16bits bytes from the sd card */
     UINT8 csd[16] = {0};
@@ -358,16 +371,21 @@ Res_Status SD_readSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 size)
 
     /*send cmd17 to read*/
     if ((rs = send_cmd(CMD17, addr)) != SD_NO_ERROR)
+    {
+        sd_deselect();
         return rs;
+    }
 
     /*Get block read token*/
     UINT8 timeout = 0xFF;
     UINT8 read_token;
     while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
         ;
-    if (!timeout) // timeout
+    if (!timeout)
+    { // timeout
+        sd_deselect();
         return TIMEOUT;
-
+    }
     /*Read data*/
     rcv_mul_byte(pbuff, size);
     /*2 crc bit*/
@@ -376,6 +394,49 @@ Res_Status SD_readSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 size)
 
     sd_deselect();
     return SD_NO_ERROR;
+}
+
+/*Write a single block given the address*/
+Res_Status SD_writeSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 size)
+{
+    Res_Status rs;
+
+    if (sd_Info.sd_V2cardType == SDHC && sd_Info.sd_version == SDC_VER2)
+    {
+        addr /= SDHC_SINGLE_BLOCK_SIZE;
+        size = SDHC_SINGLE_BLOCK_SIZE;
+    }
+
+    /*send CMD24*/
+    if ((rs = send_cmd(CMD24, addr)) != SD_NO_ERROR)
+    {
+        sd_deselect();
+        return rs;
+    }
+
+    /*Transmit block write token*/
+    // sd_select();
+    xchg_byte(SD_DUMMY_BYTE);
+    xchg_byte(SD_START_SINGLE_WRITE_TOKEN);
+
+    /*Transmit data*/
+    xmit_mul_byte(pbuff, size);
+    xchg_byte(SD_DUMMY_BYTE);
+    xchg_byte(SD_DUMMY_BYTE); // CRC
+
+    /*get data response token*/
+    UINT8 timeout = 0xFF;
+    while ((rs = xchg_byte(SD_DUMMY_BYTE)) == 0xFF && --timeout)
+        ;
+    if (!timeout)
+    {
+        sd_deselect();
+        return TIMEOUT;
+    }
+
+    /*error handling function */
+
+    return rs;
 }
 
 Res_Status SD_Init(void)

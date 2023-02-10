@@ -9,23 +9,36 @@ typedef unsigned long long UINT64;
 /*Single token or byte is defined here*/
 #define SD_DUMMY_BYTE (UINT8)(0xFF)
 #define SD_START_SINGLE_READ_TOKEN (UINT8)(0xFE)
+#define SD_START_SINGLE_WRITE_TOKEN (UINT8)(0xFE)
 #define SD_START_MULTI_READ_TOKEN (UINT8)(0xFE)
+#define SD_START_MULTI_WRITE_TOKEN (UINT8)(0xFC)
+#define SD_END_MULTI_WRITE_TOKEN (UINT8)(0xFD)
 
 /*SD'S parameters are defined here*/
 #define SDHC_SINGLE_BLOCK_SIZE 512
+/*________________________________*/
 
 typedef enum
 {
-    SD_NO_ERROR = 0,
-    IDLE_STATE = 1,
-    ERASE_RESET = 2,
-    ILL_COMMAND = 4,
-    COM_CRC_ERROR = 8,
-    ERASE_SEQUENCE = 16,
-    ADDRESS_ERROR = 32,
-    PARAMETER_ERROR = 64,
-    TIMEOUT = 128,
-    OTHER_ERROR = 256,
+    SD_NO_ERROR = 0x00,
+    IDLE_STATE = 0x01,
+    ERASE_RESET = 0x02,
+    ILL_COMMAND = 0x04,
+    COM_CRC_ERROR = 0x08,
+    ERASE_SEQUENCE = 0x10,
+    ADDRESS_ERROR = 0x20,
+    PARAMETER_ERROR = 0x40,
+
+    /*timeout*/
+    TIMEOUT = (0x40) + 1,
+
+    /*Data response status*/
+    SD_DATA_OK = 0x05,
+    SD_DATA_CRC_ERROR = 0x0B,
+    SD_DATA_WRITE_ERROR = 0x0D,
+    SD_DATA_OTHER_ERROR = (0x0D) + 1,
+
+    OTHER_ERROR = 0xFF + 1
 } Res_Status;
 
 typedef struct
@@ -88,3 +101,4 @@ extern SD_Info sd_Info;
 Res_Status SD_Init(void);
 Res_Status SD_getCSDRegister(void);
 Res_Status SD_readSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 block_size);
+Res_Status SD_writeSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 block_size);

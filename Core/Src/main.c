@@ -65,6 +65,8 @@ static void MX_SPI2_Init(void);
  */
 
 Res_Status res;
+UINT8 xmitDatas[512];
+UINT8 rcvDatas[512];
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -96,18 +98,23 @@ int main(void)
   {
     return 0;
   }
-  // SD initialization test
+
+  /*SD initialization test*/
   if ((res = SD_getCSDRegister()) != SD_NO_ERROR)
     return 0; // CMD9 test
 
-  /*Start reading test*/
-  UINT8 datas[512];
+  /*Start writing test */
   for (int i = 0; i < 512; i++)
   {
-    datas[i] = i;
+    xmitDatas[i] = i;
   }
 
-  res = SD_readSingleBlock(datas, 0, 512);
+  if ((res = SD_writeSingleBlock(xmitDatas, 0, 512)) != SD_DATA_OK)
+    return 0;
+
+  /*Start reading test*/
+  if ((res = SD_readSingleBlock(rcvDatas, 0, 512)) != SD_NO_ERROR)
+    return 0;
 
   /*End reading test*/
   /* USER CODE END 2 */
