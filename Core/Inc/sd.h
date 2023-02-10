@@ -8,7 +8,8 @@ typedef unsigned long long UINT64;
 
 /*Single token or byte is defined here*/
 #define SD_DUMMY_BYTE (UINT8)(0xFF)
-#define SD_READ_TOKEN (UINT8)(0XFE)
+#define SD_START_SINGLE_READ_TOKEN (UINT8)(0xFE)
+#define SD_START_MULTI_READ_TOKEN (UINT8)(0xFE)
 
 /*SD'S parameters are defined here*/
 #define SDHC_SINGLE_BLOCK_SIZE 512
@@ -86,3 +87,4 @@ extern SD_Info sd_Info;
 
 Res_Status SD_Init(void);
 Res_Status SD_getCSDRegister(void);
+Res_Status SD_readSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 block_size);

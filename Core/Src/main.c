@@ -92,8 +92,24 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   res = SD_Init();
-  res = SD_getCSDRegister();
+  if (res != SD_NO_ERROR)
+  {
+    return 0;
+  }
+  // SD initialization test
+  if ((res = SD_getCSDRegister()) != SD_NO_ERROR)
+    return 0; // CMD9 test
 
+  /*Start reading test*/
+  UINT8 datas[512];
+  for (int i = 0; i < 512; i++)
+  {
+    datas[i] = i;
+  }
+
+  res = SD_readSingleBlock(datas, 0, 512);
+
+  /*End reading test*/
   /* USER CODE END 2 */
 
   /* Infinite loop */

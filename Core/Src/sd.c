@@ -43,7 +43,7 @@
     } /* Set SCLK = fast, approx 4.5 MBits/s */
 
 /*Begin global variable define*/
-SD_Info sd_Info;
+SD_Info sd_Info; // Structure that stores sd's information
 /*End global variable define*/
 
 /*Exchange a single byte through spi communication */
@@ -52,6 +52,24 @@ UINT8 xchg_byte(UINT8 xmitData)
     UINT8 rcvData;
     HAL_SPI_TransmitReceive(&SD_SPI_HANDLE, &xmitData, &rcvData, 1, 50);
     return rcvData;
+}
+
+/*recieve multiple bytes*/
+void rcv_mul_byte(UINT8 *rcvData, UINT8 len)
+{
+    for (int i = 0; i < len; i++)
+    {
+        rcvData[i] = xchg_byte(SD_DUMMY_BYTE);
+    }
+}
+
+/*transmit multiple bytes*/
+void xmit_mul_byte(UINT8 *xmitData, UINT8 len)
+{
+    for (int i = 0; i < len; i++)
+    {
+        xchg_byte(xmitData[i]);
+    }
 }
 
 /*Wait until the sd card is ready or timeout*/
@@ -288,17 +306,14 @@ Res_Status SD_getCSDRegister(void)
     /*Get read-block token*/
     UINT8 read_token, timeout;
     timeout = 0xFF;
-    while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != 0xFE && --timeout)
+    while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
         ;
     if (!timeout)
         return TIMEOUT;
 
     /*token valid, then try to get 16bits bytes from the sd card */
     UINT8 csd[16] = {0};
-    for (int i = 0; i < 16; i++)
-    {
-        csd[i] = xchg_byte(SD_DUMMY_BYTE);
-    }
+    rcv_mul_byte(csd, 16);
 
     /*read two dummy crc check bit*/
     xchg_byte(SD_DUMMY_BYTE);
@@ -310,7 +325,7 @@ Res_Status SD_getCSDRegister(void)
     {
         sd_Info.CSD.c_size = (UINT32)csd[9] + (UINT32)(csd[8] << 8) + ((UINT32)(csd[7] & 0x3F) << 16);
         sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
-        sd_Info.sd_capacity = (UINT64)(sd_Info.CSD.c_size + 1) * 512 * 1024; // capacity is measure in KB
+        sd_Info.sd_capacity = (UINT64)(sd_Info.CSD.c_size + 1) * 512 * 1024; // capacity is measure in Byte
     }
     /*SDSC*/
     else
@@ -325,7 +340,42 @@ Res_Status SD_getCSDRegister(void)
         sd_Info.sd_capacity *= sd_Info.sd_block_size;                // card size = block count * single block size
     }
 
-    return rs;
+    sd_deselect();
+    return SD_NO_ERROR;
+}
+
+/*Read a single block given the address*/
+Res_Status SD_readSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 size)
+{
+    /*Sector count*/
+    Res_Status rs;
+    /*SDHC and the above sd cards use sector unit to search for the data*/
+    if (sd_Info.sd_V2cardType == SDHC && sd_Info.sd_version == SDC_VER2)
+    {
+        addr /= SDHC_SINGLE_BLOCK_SIZE;
+        size = SDHC_SINGLE_BLOCK_SIZE;
+    }
+
+    /*send cmd17 to read*/
+    if ((rs = send_cmd(CMD17, addr)) != SD_NO_ERROR)
+        return rs;
+
+    /*Get block read token*/
+    UINT8 timeout = 0xFF;
+    UINT8 read_token;
+    while ((read_token = xchg_byte(SD_DUMMY_BYTE)) != SD_START_SINGLE_READ_TOKEN && --timeout)
+        ;
+    if (!timeout) // timeout
+        return TIMEOUT;
+
+    /*Read data*/
+    rcv_mul_byte(pbuff, size);
+    /*2 crc bit*/
+    xchg_byte(SD_DUMMY_BYTE);
+    xchg_byte(SD_DUMMY_BYTE);
+
+    sd_deselect();
+    return SD_NO_ERROR;
 }
 
 Res_Status SD_Init(void)
@@ -353,12 +403,11 @@ Res_Status SD_Init(void)
     /*Deselect sd card*/
     sd_deselect();
 
-    if ((res = SD_getCardType()) != SD_NO_ERROR)
+    if ((res = SD_getCardType()) != SD_NO_ERROR) // CMD58 check pass
     {
         return res;
     }
-    else
-    {
-        return res;
-    }
+
+    sd_deselect();
+    return SD_NO_ERROR;
 }
