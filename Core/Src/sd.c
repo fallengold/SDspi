@@ -215,7 +215,7 @@ Res_Status SD_CheckVersion(void)
     /*Version 1.0*/
     else if (rs == (ILL_COMMAND | IDLE_STATE))
     {
-        sd_Info.sd_version = SDC_VER1_VER3;
+        sd_Info.sd_version = SDC_VER1;
         UINT16 timeout;
         timeout = 0XFFF;
         /*do something*/
@@ -265,12 +265,12 @@ Res_Status SD_getCardType(void)
     /*1 -> SDHC; 0-> SDSC*/
     if (R3_res[1] & 0x80)
     {
-        sd_Info.sd_cardType = SDHC;
+        sd_Info.sd_V2cardType = SDHC;
         return SD_NO_ERROR;
     }
     else
     {
-        sd_Info.sd_cardType = SDSC;
+        sd_Info.sd_V2cardType = SDSC;
         return SD_NO_ERROR;
     }
 }
@@ -303,6 +303,27 @@ Res_Status SD_getCSDRegister(void)
     /*read two dummy crc check bit*/
     xchg_byte(SD_DUMMY_BYTE);
     xchg_byte(SD_DUMMY_BYTE);
+
+    /*Calculate card's block's size, card's capacity*/
+    /*SD Ver2.0 (SDHC)*/
+    if (sd_Info.sd_version == SDC_VER2 && sd_Info.sd_V2cardType == SDHC)
+    {
+        sd_Info.CSD.c_size = (UINT32)csd[9] + (UINT32)(csd[8] << 8) + ((UINT32)(csd[7] & 0x3F) << 16);
+        sd_Info.sd_block_size = SDHC_SINGLE_BLOCK_SIZE;
+        sd_Info.sd_capacity = (UINT64)(sd_Info.CSD.c_size + 1) * 512 * 1024; // capacity is measure in KB
+    }
+    /*SDSC*/
+    else
+    {
+        sd_Info.CSD.read_bl_len = csd[5] & 0x1F;
+        sd_Info.CSD.c_size = ((UINT16)(csd[6] & 0x02) << 10) + (csd[7] << 2) + ((csd[8] & 0xC0) >> 6);
+        sd_Info.CSD.c_size_mult = (csd[9] & 0x02) + ((csd[10] & 0x80) >> 7);
+        sd_Info.sd_capacity = (sd_Info.CSD.c_size + 1); // block base count
+
+        sd_Info.sd_capacity *= (1 << (sd_Info.CSD.c_size_mult + 2)); // block count = block base count * 2^(multplier + 2)
+        sd_Info.sd_block_size = 1 << (sd_Info.CSD.read_bl_len);      // single block size = 2 ^ (read_block_length)
+        sd_Info.sd_capacity *= sd_Info.sd_block_size;                // card size = block count * single block size
+    }
 
     return rs;
 }

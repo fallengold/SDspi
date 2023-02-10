@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
   29:Core/Src/main.c **** /* USER CODE BEGIN PTD */
   30:Core/Src/main.c **** 
   31:Core/Src/main.c **** /* USER CODE END PTD */
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 2
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 2
 
 
   32:Core/Src/main.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
   86:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
   87:Core/Src/main.c **** 
   88:Core/Src/main.c ****   /* USER CODE END SysInit */
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 3
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 3
 
 
   89:Core/Src/main.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  143:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
  144:Core/Src/main.c ****   {
  145:Core/Src/main.c ****     Error_Handler();
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 4
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 4
 
 
  146:Core/Src/main.c ****   }
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
   33              	.LCFI0:
   34              		.cfi_def_cfa_offset 12
   35              		.cfi_offset 4, -12
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 5
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 5
 
 
   36              		.cfi_offset 5, -8
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
   84 0036 DA6C     		ldr	r2, [r3, #76]
   85 0038 42F00202 		orr	r2, r2, #2
   86 003c DA64     		str	r2, [r3, #76]
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 6
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 6
 
 
   87              		.loc 1 200 3 view .LVU18
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  211:Core/Src/main.c ****   HAL_GPIO_Init(SPI2_CS_GPIO_Port, &GPIO_InitStruct);
  131              		.loc 1 211 3 is_stmt 1 view .LVU36
  132 0076 05A9     		add	r1, sp, #20
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 7
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 7
 
 
  133 0078 2846     		mov	r0, r5
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
    5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     08. May 2019
    6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
    7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 8
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 8
 
 
    8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
   62:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED                               __attribute__((packed, aligned(1)))
   63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 9
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 9
 
 
   65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  119:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  120:Drivers/CMSIS/Include/cmsis_gcc.h **** /* #########################  Startup and Lowlevel Init  ######################## */
  121:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 10
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 10
 
 
  122:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __PROGRAM_START
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  176:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  177:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __VECTOR_TABLE
  178:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __VECTOR_TABLE            __Vectors
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 11
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 11
 
 
  179:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  190              		.align	1
  191              		.syntax unified
  192              		.thumb
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 12
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 12
 
 
  193              		.thumb_func
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  233              		.loc 1 171 18 is_stmt 0 view .LVU59
  234 0020 4FF40072 		mov	r2, #512
  235 0024 8261     		str	r2, [r0, #24]
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 13
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 13
 
 
  172:Core/Src/main.c ****   hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  271              	.L12:
  272              		.align	2
  273              	.L11:
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 14
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 14
 
 
  274 0044 00000000 		.word	.LANCHOR0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  322 0022 0223     		movs	r3, #2
  323 0024 0693     		str	r3, [sp, #24]
  127:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 15
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 15
 
 
  324              		.loc 1 127 3 is_stmt 1 view .LVU87
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  143:Core/Src/main.c ****   {
  360              		.loc 1 143 3 is_stmt 1 view .LVU106
  143:Core/Src/main.c ****   {
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 16
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 16
 
 
  361              		.loc 1 143 7 is_stmt 0 view .LVU107
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  410              		.loc 1 84 3 view .LVU114
  411 0006 FFF7FEFF 		bl	SystemClock_Config
  412              	.LVL11:
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 17
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 17
 
 
   91:Core/Src/main.c ****   MX_SPI2_Init();
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  455              		.set	.LANCHOR1,. + 0
  458              	res:
  459 0000 0000     		.space	2
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 18
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 18
 
 
  460              		.text
@@ -1036,28 +1036,28 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 1
  472              		.file 13 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
  473              		.file 14 "Core/Inc/main.h"
  474              		.file 15 "<built-in>"
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\cco8fpme.s 			page 19
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:18     .text.MX_GPIO_Init:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:145    .text.MX_GPIO_Init:0000000000000084 $d
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:151    .text.Error_Handler:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:158    .text.Error_Handler:0000000000000000 Error_Handler
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:190    .text.MX_SPI2_Init:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:196    .text.MX_SPI2_Init:0000000000000000 MX_SPI2_Init
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:274    .text.MX_SPI2_Init:0000000000000044 $d
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:280    .text.SystemClock_Config:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:287    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:388    .text.main:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:395    .text.main:0000000000000000 main
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:440    .text.main:0000000000000024 $d
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:458    .bss.res:0000000000000000 res
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:451    .bss.hspi2:0000000000000000 hspi2
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:447    .bss.hspi2:0000000000000000 $d
-C:\Users\Falle\AppData\Local\Temp\cco8fpme.s:454    .bss.res:0000000000000000 $d
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:18     .text.MX_GPIO_Init:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:145    .text.MX_GPIO_Init:0000000000000084 $d
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:151    .text.Error_Handler:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:158    .text.Error_Handler:0000000000000000 Error_Handler
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:190    .text.MX_SPI2_Init:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:196    .text.MX_SPI2_Init:0000000000000000 MX_SPI2_Init
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:274    .text.MX_SPI2_Init:0000000000000044 $d
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:280    .text.SystemClock_Config:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:287    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:388    .text.main:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:395    .text.main:0000000000000000 main
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:440    .text.main:0000000000000024 $d
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:458    .bss.res:0000000000000000 res
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:451    .bss.hspi2:0000000000000000 hspi2
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:447    .bss.hspi2:0000000000000000 $d
+C:\Users\Falle\AppData\Local\Temp\ccD7m7K6.s:454    .bss.res:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
