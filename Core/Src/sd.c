@@ -262,7 +262,7 @@ Res_Status SD_getCardType(void)
     Res_Status rs;
     /*We should first send ACMD41 to activate sd card's initialization*/
     UINT8 timeout = 0xFF;
-    while ((rs = send_cmd(ACMD41, 1UL << 30)) != SD_NO_ERROR && --timeout)
+    while ((rs = send_cmd(ACMD41, 0x40000000)) != SD_NO_ERROR && --timeout)
         ;
     if (!timeout)
     {
@@ -457,6 +457,7 @@ Res_Status SD_Init(void)
     {
         return res;
     }
+    FCLK_FAST();
     if ((res = SD_CheckVersion()) != IDLE_STATE) // CMD8 check pass
     {
         return res;

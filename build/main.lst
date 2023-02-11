@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
   29:Core/Src/main.c **** /* USER CODE BEGIN PTD */
   30:Core/Src/main.c **** 
   31:Core/Src/main.c **** /* USER CODE END PTD */
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 2
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 2
 
 
   32:Core/Src/main.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
   86:Core/Src/main.c ****   SystemClock_Config();
   87:Core/Src/main.c **** 
   88:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 3
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 3
 
 
   89:Core/Src/main.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  143:Core/Src/main.c ****    */
  144:Core/Src/main.c ****   HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
  145:Core/Src/main.c **** 
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 4
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 4
 
 
  146:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  200:Core/Src/main.c ****   hspi2.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
  201:Core/Src/main.c ****   hspi2.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
  202:Core/Src/main.c ****   if (HAL_SPI_Init(&hspi2) != HAL_OK)
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 5
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 5
 
 
  203:Core/Src/main.c ****   {
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
   63              	.LBE4:
   64              		.loc 1 221 3 view .LVU8
  222:Core/Src/main.c ****   __HAL_RCC_GPIOF_CLK_ENABLE();
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 6
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 6
 
 
   65              		.loc 1 222 3 view .LVU9
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  114 0062 2846     		mov	r0, r5
  115 0064 FFF7FEFF 		bl	HAL_GPIO_WritePin
  116              	.LVL0:
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 7
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 7
 
 
  228:Core/Src/main.c **** 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  241:Core/Src/main.c **** /**
  242:Core/Src/main.c ****  * @brief  This function is executed in case of error occurrence.
  243:Core/Src/main.c ****  * @retval None
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 8
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 8
 
 
  244:Core/Src/main.c ****  */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
   39:Drivers/CMSIS/Include/cmsis_gcc.h **** /* CMSIS compiler specific defines */
   40:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ASM
   41:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 9
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 9
 
 
   42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
   96:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
   97:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   98:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 10
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 10
 
 
   99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  153:Drivers/CMSIS/Include/cmsis_gcc.h ****       pTable->dest[i] = pTable->src[i];
  154:Drivers/CMSIS/Include/cmsis_gcc.h ****     }
  155:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 11
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 11
 
 
  156:Drivers/CMSIS/Include/cmsis_gcc.h ****  
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  208:Drivers/CMSIS/Include/cmsis_gcc.h **** {
  209:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
  172              		.loc 2 209 3 view .LVU41
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 12
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 12
 
 
  173              		.syntax unified
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  218 000e 0023     		movs	r3, #0
  219 0010 8360     		str	r3, [r0, #8]
  191:Core/Src/main.c ****   hspi2.Init.CLKPolarity = SPI_POLARITY_HIGH;
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 13
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 13
 
 
  220              		.loc 1 191 3 is_stmt 1 view .LVU52
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  255 0034 0363     		str	r3, [r0, #48]
  201:Core/Src/main.c ****   if (HAL_SPI_Init(&hspi2) != HAL_OK)
  256              		.loc 1 201 3 is_stmt 1 view .LVU72
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 14
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 14
 
 
  201:Core/Src/main.c ****   if (HAL_SPI_Init(&hspi2) != HAL_OK)
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  304 0006 0021     		movs	r1, #0
  305 0008 06A8     		add	r0, sp, #24
  306 000a FFF7FEFF 		bl	memset
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 15
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 15
 
 
  307              	.LVL4:
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  345 003c 0193     		str	r3, [sp, #4]
  161:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
  346              		.loc 1 161 3 is_stmt 1 view .LVU98
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 16
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 16
 
 
  161:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  389              		.global	main
  390              		.syntax unified
  391              		.thumb
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 17
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 17
 
 
  392              		.thumb_func
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  436              		.cfi_def_cfa_offset 4
  437              		@ sp needed
  438 0022 5DF804FB 		ldr	pc, [sp], #4
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 18
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 18
 
 
  439              	.L25:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  479 004a 0023     		movs	r3, #0
  480 004c 0A48     		ldr	r0, .L26+4
  481 004e FFF7FEFF 		bl	SD_writeSingleBlock
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 19
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 19
 
 
  482              	.LVL19:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  528      00000000 
  528      00000000 
  528      00000000 
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 20
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 20
 
 
  529              		.section	.bss.rcvDatas,"aw",%nobits
@@ -1179,32 +1179,32 @@ ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 1
  562              		.file 13 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h"
  563              		.file 14 "Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h"
  564              		.file 15 "<built-in>"
-ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s 			page 21
+ARM GAS  C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:18     .text.MX_GPIO_Init:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:145    .text.MX_GPIO_Init:0000000000000084 $d
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:151    .text.Error_Handler:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:158    .text.Error_Handler:0000000000000000 Error_Handler
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:190    .text.MX_SPI2_Init:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:196    .text.MX_SPI2_Init:0000000000000000 MX_SPI2_Init
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:274    .text.MX_SPI2_Init:0000000000000044 $d
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:280    .text.SystemClock_Config:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:287    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:388    .text.main:0000000000000000 $t
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:395    .text.main:0000000000000000 main
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:512    .text.main:0000000000000074 $d
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:534    .bss.rcvDatas:0000000000000000 rcvDatas
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:548    .bss.xmitDatas:0000000000000000 xmitDatas
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:541    .bss.res:0000000000000000 res
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:527    .bss.hspi2:0000000000000000 hspi2
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:523    .bss.hspi2:0000000000000000 $d
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:530    .bss.rcvDatas:0000000000000000 $d
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:537    .bss.res:0000000000000000 $d
-C:\Users\Falle\AppData\Local\Temp\ccxX5I4O.s:544    .bss.xmitDatas:0000000000000000 $d
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:18     .text.MX_GPIO_Init:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:145    .text.MX_GPIO_Init:0000000000000084 $d
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:151    .text.Error_Handler:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:158    .text.Error_Handler:0000000000000000 Error_Handler
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:190    .text.MX_SPI2_Init:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:196    .text.MX_SPI2_Init:0000000000000000 MX_SPI2_Init
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:274    .text.MX_SPI2_Init:0000000000000044 $d
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:280    .text.SystemClock_Config:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:287    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:388    .text.main:0000000000000000 $t
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:395    .text.main:0000000000000000 main
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:512    .text.main:0000000000000074 $d
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:534    .bss.rcvDatas:0000000000000000 rcvDatas
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:548    .bss.xmitDatas:0000000000000000 xmitDatas
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:541    .bss.res:0000000000000000 res
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:527    .bss.hspi2:0000000000000000 hspi2
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:523    .bss.hspi2:0000000000000000 $d
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:530    .bss.rcvDatas:0000000000000000 $d
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:537    .bss.res:0000000000000000 $d
+C:\Users\Falle\AppData\Local\Temp\ccacR3yr.s:544    .bss.xmitDatas:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
