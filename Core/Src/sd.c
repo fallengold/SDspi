@@ -256,18 +256,34 @@ Res_Status SD_CheckVersion(void)
     }
 }
 
+#define ACMD41_HCS 0x40000000
+#define ACMD41_SDXC_POWER 0x10000000
+#define ACMD41_S18R 0x04000000
+#define ACMD41_VOLTAGE 0x00ff8000
+#define ACMD41_ARG_HC (ACMD41_HCS | ACMD41_SDXC_POWER | ACMD41_VOLTAGE)
+#define ACMD41_ARG_SC (ACMD41_VOLTAGE)
+
 /*To check SDHC or SDSC*/
 Res_Status SD_getCardType(void)
 {
     Res_Status rs;
     /*We should first send ACMD41 to activate sd card's initialization*/
-    UINT8 timeout = 0xFF;
-    while ((rs = send_cmd(ACMD41, 0x40000000)) != SD_NO_ERROR && --timeout)
-        ;
+    UINT16 timeout = 0xFFF;
+    while ((rs = send_cmd(ACMD41, ACMD41_HCS)) != SD_NO_ERROR && --timeout)
+    {
+    };
     if (!timeout)
     {
-        sd_deselect();
-        return TIMEOUT; // timeout
+        timeout = 0xFF;
+        // try with CMD1 command
+        while ((rs = send_cmd(CMD1, ACMD41_HCS)) != SD_NO_ERROR && --timeout)
+            ;
+        if (!timeout)
+        {
+            sd_deselect();
+            goto cmd58test;
+            return TIMEOUT;
+        } // timeout
     }
     if (rs != SD_NO_ERROR)
     {
@@ -275,13 +291,17 @@ Res_Status SD_getCardType(void)
         return rs; // get other illegal response
     }
 
-    /*send CMD58 to get OCR info*/
+/*send CMD58 to get OCR info*/
+cmd58test:;
     if ((rs = send_cmd(CMD58, 0)) != SD_NO_ERROR)
     {
+        goto readocrtest;
         sd_deselect();
         return rs;
     }
+readocrtest:;
     /*Send succeed, getting R3 response*/
+
     UINT8 R3_res[5];
     R3_res[0] = (UINT8)rs;
     for (int i = 1; i < 5; i++)
@@ -442,7 +462,6 @@ Res_Status SD_writeSingleBlock(UINT8 *pbuff, UINT64 addr, UINT32 size)
 Res_Status SD_Init(void)
 {
     Res_Status res;
-    FCLK_SLOW();
 
     /*Pull up MOSI and CS voltage high in at least 74 clock*/
     // HAL_Delay(10); // Delay to give sd card enough time to power up
@@ -457,13 +476,10 @@ Res_Status SD_Init(void)
     {
         return res;
     }
-    FCLK_FAST();
     if ((res = SD_CheckVersion()) != IDLE_STATE) // CMD8 check pass
     {
         return res;
     }
-    /*Deselect sd card*/
-    sd_deselect();
 
     if ((res = SD_getCardType()) != SD_NO_ERROR) // CMD58 check pass
     {
